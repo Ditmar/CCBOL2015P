@@ -1,7 +1,7 @@
 @extends('blog.mainblog')
 @section('title'){{'Nueva publicacion | '.\Auth::user()->username}}@endsection
 @section('content')
-	@include('Blog.partials.MainMenuUsers')
+	@include('blog.partials.mainmenuusers')
 	<style>
 	.btn-file {
 	    position: relative;
