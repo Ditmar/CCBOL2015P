@@ -89,7 +89,7 @@
 		  	  	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 		  	  	<strong>Depósito no Registrado!</strong> Usted aún no ha registrado el deposito de su inscripción
 		  	  </div>
-		  	  @include('ParticipantesPanel.deposito')
+		  	  @include('participantespanel.deposito')
 
 		  	  @else
 		  	  	@if($depo=="proceso")
