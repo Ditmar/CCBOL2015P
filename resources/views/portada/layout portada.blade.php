@@ -50,6 +50,7 @@
 
   <script src="{{asset('js/raphael-min.js')}}"></script>
   <script src="{{asset('js/flowchart-latest.js')}}"></script>
+  <script src="{{asset('js/serializeObject.js')}}"></script>
 
   <!--
   <script src="{{asset('../js/animatescroll.min.js')}}"></script>

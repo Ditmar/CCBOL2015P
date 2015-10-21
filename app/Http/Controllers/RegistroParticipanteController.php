@@ -17,7 +17,6 @@ class RegistroParticipanteController extends Controller
       $paises = \DB::table('Paises')->get();
       $universidades = \DB::table('Universidad')->get();
       $carreras = \DB::table('carrera')->get();
-
     	return view('participantes.registroparticipantes');
       }
     public function getciudad($idPais)
@@ -25,6 +24,10 @@ class RegistroParticipanteController extends Controller
         $ciudades=\DB::table('Ciudad')->where("idPais",$idPais)->get();
         return Response::json(array(
             "ciudades"=>$ciudades));
+    }
+    public function getcaptcha()
+    {
+        return view("portada.captcha");
     }
     public function getDataForm()
     {
@@ -81,7 +84,14 @@ class RegistroParticipanteController extends Controller
             'password'  => 'required|confirmed|min:6|max:16',
         );
 
-        $this->validate($request, $rules);
+        //$this->validate($request, $rules);
+        $validator = \Validator::make(\Input::all(), $rules);
+        if($validator->fails())
+        {
+            return \Response::json(array(
+                        'success' => false,
+                        'errors' => $validator->getMessageBag()->toArray()));
+        }
 
         $u=new User();
         $u->username=\Input::get('nick');
@@ -120,8 +130,25 @@ class RegistroParticipanteController extends Controller
         /*fila de usuario*/
         $p->idUs=$idusuario;// lo puse uno por que NOSE que usuario poner, se supone que el registro es libre
         $p->save();
+        $monto=250;
+        $msn="";
+        if(\Input::get('semestre')=="profesional")
+        {
+            $monto=300;
+        }else if(\Input::get('semestre')=="estudiante")
+        {
+            $monto=250;
+        }else
+        {
+            $monto=1000000000;
+            $msn="Usted a modificado el formulario, registramos su ip por seguridad, no intente dañar este sistema.";
+        }
         $data = array(
                     'name' => \Input::get('nombres'),
+                    "monto"=>$monto,
+                    "montod"=>$monto+50,
+                    "tipo"=>\Input::get('semestre'),
+                    "msn"=>$msn,
                     'url' => "http://".$_SERVER['HTTP_HOST']."/verificar"
                 );
         \Mail::send('contacto.email',$data, function($message)
@@ -135,12 +162,13 @@ class RegistroParticipanteController extends Controller
         if(\Auth::check()){
           return \Redirect::route('home')->with('alert','Participante creado con exito');
           //return \Redirect::route('/admin/home')->with('alert','Participante creado con exito');
-        }else {
-          return view('participantes.success',array());
-          //return redirect()->action('MainPageController@index')->with('alert','Registro Correcto');
+        }else {    
+            return \Response::json(array(
+                "success"=>true,
+                "msn"=>"Su registro se completo con exito, le acabamos de enviar un correo a  ".\Input::get('emails').", con instruciones sobre el registro, si el email no se encuentra en la bandeja de entrada verifique el correo SPAM, muchas gracias por registrarte  "
+                ));
         }
 
-        //return \Redirect::route('home')->with('alert','Usuario creado con existo');;
     }
 
 }

@@ -35,6 +35,7 @@ class MainPageController extends BaseController
                 ->with('universidades',$universidades)
                 ->with('carreras',$carreras)
                 ->with('inaguracion',$inaguracion)
-                ->with('mensaje',$mensaje);
+                ->with('mensaje',$mensaje)
+                ->with("auth",\Auth::check());
 	}
 }

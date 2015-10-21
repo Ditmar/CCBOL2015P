@@ -80,7 +80,7 @@ class ParticipantesPanelController extends Controller
         );
         //echo"AQUI ";
         $this->validate($request,$rules);
-        $validator = \Validator::make(\Input::all(), $rules);
+       //$validator = \Validator::make(\Input::all(), $rules);
         /*if($validator->fails())
         {
             return \Redirect::route('formulario')->withErrors($validator);

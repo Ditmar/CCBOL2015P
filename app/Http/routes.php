@@ -38,6 +38,8 @@ Route::get('articulos/{slug}',[
 	'as' => 'article',
 	'uses' => 'BlogController@article'
 ]);//todos los articulos
+Route::get("/captcha","RegistroParticipanteController@getcaptcha");
+
 Route::get('tag/{tag}',[
 	'as' => 'tagged',
 	'uses' => 'BlogController@tags'
