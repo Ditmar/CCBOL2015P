@@ -124,7 +124,7 @@ class RegistroParticipanteController extends Controller
                     'name' => \Input::get('nombres'),
                     'url' => "http://".$_SERVER['HTTP_HOST']."/verificar"
                 );
-        \Mail::send('Contacto.email',$data, function($message)
+        \Mail::send('contacto.email',$data, function($message)
         {
             $message->from('spyatorio@gmail.com', 'CCBOL2015');
             $message->to(\Input::get('emails'));

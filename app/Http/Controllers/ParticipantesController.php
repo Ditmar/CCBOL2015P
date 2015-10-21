@@ -122,7 +122,7 @@ class ParticipantesController extends Controller
                     'name' => $participante->nombres." ".$participante->apellidos,
                     'url' => "http://".$_SERVER['HTTP_HOST']."/verificar"
                 );
-        \Mail::send('Contacto.confirmacion',$data, function($message)use ($participante)
+        \Mail::send('contacto.confirmacion',$data, function($message)use ($participante)
         {
             $message->from('spyatorio@gmail.com', 'CCBOL2015');
             $message->to($participante->emails);
