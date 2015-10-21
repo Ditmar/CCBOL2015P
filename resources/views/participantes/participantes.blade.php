@@ -99,19 +99,14 @@ var peticiones=function(url)
 {
     $.ajax({
                 url: url,
-                type:'post',
-                beforeSend: function (xhr) {
-                  var token = $('meta[name="csrf_token"]').attr('content');
-                  if (token) {
-                    return xhr.setRequestHeader('X-CSRF-TOKEN', token);
-                  }
-                },
+                type:'get',
                 data: {},
                 success:function(html)
                 {
                   $("#resultados").html(html);
                 }
               });
+
 }
 $(function() {
     $('#btntodos').click(function(e) {

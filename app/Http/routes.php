@@ -115,13 +115,13 @@ Route::group(['middleware' => ['auth','administrator'],'prefix'=>'admin'], funct
 								'as' =>'participantesindex'
 						]);
 						//TODOS LOS PARTICIPANTES
-						Route::post('/registrados','ParticipantesController@ParticipantesRegistrados');
+						Route::get('/registrados','ParticipantesController@ParticipantesRegistrados');
 						//TODOS LOS PARTICIPANTES QUE REALIZARON UN DEPOSITO
-						Route::post('/registradosproceso','ParticipantesController@ParticipantesProceso');
+						Route::get('/registradosproceso','ParticipantesController@ParticipantesProceso');
 						//TODOS LOS PARTICIPANTES OBSERVADOS
-						Route::post('/observados','ParticipantesController@ParticipantesObservados');
+						Route::get('/observados','ParticipantesController@ParticipantesObservados');
 						//TODOS LOS PARTICIPANTES INSCRITOS
-						Route::post('/inscritos','ParticipantesController@ParticipantesInscritos');
+						Route::get('/inscritos','ParticipantesController@ParticipantesInscritos');
 						
 						/*RUTAS PARA AGREDITACION O DESAGRADITACION DE UN PARTICIPANTE*/
 						Route::get('/participante/{id}/Agreditacion','ParticipantesController@Agreditacion');
