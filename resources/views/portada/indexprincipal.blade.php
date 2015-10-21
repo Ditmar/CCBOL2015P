@@ -1,4 +1,4 @@
-@extends('Portada.layout portada')
+@extends('portada.layout portada')
 @section('title')@endsection
 @section('content')
 <meta name="csrf_token" content="{{ csrf_token() }}" />
@@ -1141,7 +1141,7 @@ var theInterval = setInterval("updatecountdown()", 1000);
 
 </script>
 </div>
-@include('Portada.partials.temporizador')
+@include('portada.partials.temporizador')
 @endsection
 @section('js')
 <script type="text/javascript">
