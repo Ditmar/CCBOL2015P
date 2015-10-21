@@ -1,4 +1,4 @@
-@extends('Portada.layout portada')
+@extends('portada.layout portada')
 @section('title')@endsection
 @section('content')
 <div class="expo">

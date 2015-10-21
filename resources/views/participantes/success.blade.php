@@ -1,6 +1,6 @@
-@extends('Portada.layout Portada')
+@extends('portada.layout portada')
 @section('content')
-@include('Portada.partials.NavVerificar')
+@include('portada.partials.navverificar')
 <meta name="csrf_token" content="{{ csrf_token() }}" />
 	<br><br>
 <div class="container-fluid">

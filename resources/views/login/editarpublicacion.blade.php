@@ -1,4 +1,4 @@
-@extends('Blog.mainblog')
+@extends('blog.mainblog')
 @section('title'){{'Edicion de publicacion | '.$post->title}}@endsection
 @section('content')
 	@include('Blog.partials.MainMenuUsers')
@@ -102,7 +102,7 @@
 		</div>
 	</div>
 	<br> <br>
-	@include('Blog.partials.footer')
+	@include('blog.partials.footer')
 @endsection
 @section('js')
 	<script>

@@ -1,5 +1,5 @@
-@extends('Blog.mainblog')
-@include('Blog.partials.MainMenuParticipantes')
+@extends('blog.mainblog')
+@include('blog.partials.mainmenuparticipantes')
 @section('content')
 <meta name="csrf_token" content="{{ csrf_token() }}" />
 

@@ -1,4 +1,4 @@
-@extends('Blog.mainblog')
+@extends('blog.mainblog')
 @section('title'){{$user}}@endsection
 @section('content')
 	@include('Blog.partials.MainMenuUsers')

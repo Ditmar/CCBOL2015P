@@ -1,7 +1,7 @@
-@extends('Blog.mainblog')
+@extends('blog.mainblog')
 @section('title'){{'Contenido de etiqueta | blog CCBOL 2015'}}@endsection
 @section('content')
-	@include('Blog.partials.MainMenuArticulos')
+	@include('blog.partials.mainmenuarticulos')
 	<div class="container">
 		<div class="row-fluid">
 			<div class="jumbotron" >
@@ -75,5 +75,5 @@
 			</div>
 		</section>
 	</div>
-	@include('Blog.partials.footer')	
+	@include('blog.partials.footer')	
 @stop

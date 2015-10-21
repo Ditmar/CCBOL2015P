@@ -1,5 +1,5 @@
-@extends('Blog.mainblog')
-@include('Blog.partials.MainMenuUsers')
+@extends('blog.mainblog')
+@include('blog.partials.mainmenuusers')
 @section('content')
 <div class="container">
   @if($participante[0]->destado =='proceso')

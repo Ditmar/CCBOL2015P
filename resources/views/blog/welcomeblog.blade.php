@@ -1,10 +1,10 @@
-@extends('Blog.mainblog')
+@extends('blog.mainblog')
 @section('title')
 @stop
 @section('content')
-	@include('Blog.partials.MainBlogNav')
+	@include('blog.partials.mainblognav')
 	@if(isset($_GET['page']))
-		@include('Blog.partials.MainBlogNavPage')
+		@include('blog.partials.mainblognavpage')
 		<!--<div class="row-fluid">
 			<div class="jumbotron" >
 				<h2  class="text-center">Blog CCBOL 2015 <br>
@@ -99,7 +99,7 @@
 		</div>
 		</div>
 	</section>
-	@include('Blog.partials.footer')
+	@include('blog.partials.footer')
 @endsection
 
 @stop

@@ -1,5 +1,5 @@
-@extends('Portada.layout portada')
-@include('Portada.partials.NavContacto')
+@extends('portada.layout portada')
+@include('portada.partials.navcontacto')
 @section('content')
 <div class="container marginbot-50">
 	<div class="row">

@@ -1,4 +1,4 @@
-@extends('Blog.mainblog')
+@extends('blog.mainblog')
 @section('title'){{'Nueva publicacion | '.\Auth::user()->username}}@endsection
 @section('content')
 	@include('Blog.partials.MainMenuUsers')
@@ -88,7 +88,7 @@
 		</div>
 	</div>
 	<br> <br>
-	@include('Blog.partials.footer')
+	@include('blog.partials.footer')
 @endsection
 @section('js')
 	<script>

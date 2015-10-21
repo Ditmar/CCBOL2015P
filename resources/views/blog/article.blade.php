@@ -1,7 +1,7 @@
-@extends('Blog.mainblog')
+@extends('blog.mainblog')
 @section('title'){{$title.' | Blog CCBOL 2015'}}@endsection
 @section('content')
-	@include('Blog.partials.MainMenuArticulos')
+	@include('blog.partials.mainmenuarticulos')
 	<div class="row-fluid">
 		<div class="container">
 			<div class="col-md-2"></div>
@@ -35,5 +35,5 @@
 			  	fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));
 </script>
-	@include('Blog.partials.footer')
+	@include('blog.partials.footer')
 @stop

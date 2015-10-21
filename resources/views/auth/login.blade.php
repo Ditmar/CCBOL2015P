@@ -1,4 +1,4 @@
-@extends('Blog.mainblog')
+@extends('blog.mainblog')
 @section('id'){{'log'}}@endsection
 @section('content')
 <section id="logbox">
