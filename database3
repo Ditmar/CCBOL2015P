@@ -1,0 +1,1868 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.4.4
+-- Dumped by pg_dump version 9.4.4
+-- Started on 2015-10-17 15:02:05 BOT
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- TOC entry 196 (class 3079 OID 12123)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 2418 (class 0 OID 0)
+-- Dependencies: 196
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 179 (class 1259 OID 16953)
+-- Name: Ciudad; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE "Ciudad" (
+    id integer NOT NULL,
+    nombre character varying(255) NOT NULL,
+    "idPais" integer NOT NULL,
+    created_at timestamp(0) without time zone NOT NULL,
+    updated_at timestamp(0) without time zone NOT NULL
+);
+
+
+ALTER TABLE "Ciudad" OWNER TO postgres;
+
+--
+-- TOC entry 178 (class 1259 OID 16951)
+-- Name: Ciudad_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE "Ciudad_id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE "Ciudad_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 2419 (class 0 OID 0)
+-- Dependencies: 178
+-- Name: Ciudad_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE "Ciudad_id_seq" OWNED BY "Ciudad".id;
+
+
+--
+-- TOC entry 177 (class 1259 OID 16942)
+-- Name: Paises; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE "Paises" (
+    id integer NOT NULL,
+    codigo character varying(255) NOT NULL,
+    nombre character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone NOT NULL,
+    updated_at timestamp(0) without time zone NOT NULL
+);
+
+
+ALTER TABLE "Paises" OWNER TO postgres;
+
+--
+-- TOC entry 176 (class 1259 OID 16940)
+-- Name: Paises_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE "Paises_id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE "Paises_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 2420 (class 0 OID 0)
+-- Dependencies: 176
+-- Name: Paises_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE "Paises_id_seq" OWNED BY "Paises".id;
+
+
+--
+-- TOC entry 181 (class 1259 OID 16966)
+-- Name: Universidad; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE "Universidad" (
+    id integer NOT NULL,
+    nombre character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone NOT NULL,
+    updated_at timestamp(0) without time zone NOT NULL
+);
+
+
+ALTER TABLE "Universidad" OWNER TO postgres;
+
+--
+-- TOC entry 180 (class 1259 OID 16964)
+-- Name: Universidad_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE "Universidad_id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE "Universidad_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 2421 (class 0 OID 0)
+-- Dependencies: 180
+-- Name: Universidad_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE "Universidad_id_seq" OWNED BY "Universidad".id;
+
+
+--
+-- TOC entry 183 (class 1259 OID 16974)
+-- Name: carrera; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE carrera (
+    id integer NOT NULL,
+    nombre character varying(255) NOT NULL,
+    "idUni" integer NOT NULL,
+    created_at timestamp(0) without time zone NOT NULL,
+    updated_at timestamp(0) without time zone NOT NULL
+);
+
+
+ALTER TABLE carrera OWNER TO postgres;
+
+--
+-- TOC entry 182 (class 1259 OID 16972)
+-- Name: carrera_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE carrera_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE carrera_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2422 (class 0 OID 0)
+-- Dependencies: 182
+-- Name: carrera_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE carrera_id_seq OWNED BY carrera.id;
+
+
+--
+-- TOC entry 187 (class 1259 OID 17092)
+-- Name: deposito; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE deposito (
+    id integer NOT NULL,
+    codigo character varying(255) NOT NULL,
+    monto integer NOT NULL,
+    fecha date NOT NULL,
+    hora time(0) without time zone NOT NULL,
+    depositante character varying(255) NOT NULL,
+    ci_depositante character varying(255) NOT NULL,
+    imgboleta character varying(255) NOT NULL,
+    remember_token character varying(100),
+    "idPa" integer NOT NULL,
+    created_at timestamp(0) without time zone NOT NULL,
+    updated_at timestamp(0) without time zone NOT NULL,
+    url character varying(255) NOT NULL,
+    absurl character varying(255) NOT NULL,
+    estado character varying(255)
+);
+
+
+ALTER TABLE deposito OWNER TO postgres;
+
+--
+-- TOC entry 186 (class 1259 OID 17090)
+-- Name: deposito_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE deposito_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE deposito_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2423 (class 0 OID 0)
+-- Dependencies: 186
+-- Name: deposito_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE deposito_id_seq OWNED BY deposito.id;
+
+
+--
+-- TOC entry 195 (class 1259 OID 17142)
+-- Name: deposito_participantes; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE deposito_participantes (
+    id integer NOT NULL,
+    id_participante integer NOT NULL,
+    codigo integer NOT NULL,
+    fecha date NOT NULL,
+    hora character varying(255) NOT NULL,
+    depositante character varying(255) NOT NULL,
+    ci_depositante integer NOT NULL,
+    imgboleta character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone NOT NULL,
+    updated_at timestamp(0) without time zone NOT NULL
+);
+
+
+ALTER TABLE deposito_participantes OWNER TO postgres;
+
+--
+-- TOC entry 194 (class 1259 OID 17140)
+-- Name: deposito_participantes_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE deposito_participantes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE deposito_participantes_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2424 (class 0 OID 0)
+-- Dependencies: 194
+-- Name: deposito_participantes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE deposito_participantes_id_seq OWNED BY deposito_participantes.id;
+
+
+--
+-- TOC entry 172 (class 1259 OID 16913)
+-- Name: migrations; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE migrations (
+    migration character varying(255) NOT NULL,
+    batch integer NOT NULL
+);
+
+
+ALTER TABLE migrations OWNER TO postgres;
+
+--
+-- TOC entry 193 (class 1259 OID 17127)
+-- Name: model_participantes; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE model_participantes (
+    id integer NOT NULL,
+    nombres character varying(255) NOT NULL,
+    apellidos character varying(255) NOT NULL,
+    nick character varying(255) NOT NULL,
+    ci integer NOT NULL,
+    semestre character varying(255) NOT NULL,
+    sexo character varying(255) NOT NULL,
+    emails character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone NOT NULL,
+    updated_at timestamp(0) without time zone NOT NULL
+);
+
+
+ALTER TABLE model_participantes OWNER TO postgres;
+
+--
+-- TOC entry 192 (class 1259 OID 17125)
+-- Name: model_participantes_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE model_participantes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE model_participantes_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2425 (class 0 OID 0)
+-- Dependencies: 192
+-- Name: model_participantes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE model_participantes_id_seq OWNED BY model_participantes.id;
+
+
+--
+-- TOC entry 185 (class 1259 OID 16987)
+-- Name: participante; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE participante (
+    id integer NOT NULL,
+    nombres character varying(255) NOT NULL,
+    apellidos character varying(255) NOT NULL,
+    nick character varying(255) NOT NULL,
+    ci character varying(255) NOT NULL,
+    sexo character varying(255) NOT NULL,
+    estado boolean DEFAULT false NOT NULL,
+    semestre character varying(255) NOT NULL,
+    emails character varying(255) NOT NULL,
+    remember_token character varying(100),
+    "idUni" integer NOT NULL,
+    "idCa" integer NOT NULL,
+    "idPais" integer NOT NULL,
+    "idCi" integer NOT NULL,
+    created_at timestamp(0) without time zone NOT NULL,
+    updated_at timestamp(0) without time zone NOT NULL,
+    "idUs" integer NOT NULL
+);
+
+
+ALTER TABLE participante OWNER TO postgres;
+
+--
+-- TOC entry 184 (class 1259 OID 16985)
+-- Name: participante_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE participante_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE participante_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2426 (class 0 OID 0)
+-- Dependencies: 184
+-- Name: participante_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE participante_id_seq OWNED BY participante.id;
+
+
+--
+-- TOC entry 175 (class 1259 OID 16932)
+-- Name: password_resets; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE password_resets (
+    email character varying(255) NOT NULL,
+    token character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone NOT NULL
+);
+
+
+ALTER TABLE password_resets OWNER TO postgres;
+
+--
+-- TOC entry 189 (class 1259 OID 17108)
+-- Name: posts; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE posts (
+    id integer NOT NULL,
+    id_usuario integer NOT NULL,
+    title character varying(255) NOT NULL,
+    content text NOT NULL,
+    tags character varying(255) NOT NULL,
+    photo character varying(255) NOT NULL,
+    remember_token character varying(100),
+    created_at timestamp(0) without time zone NOT NULL,
+    updated_at timestamp(0) without time zone NOT NULL,
+    slug character varying(255)
+);
+
+
+ALTER TABLE posts OWNER TO postgres;
+
+--
+-- TOC entry 188 (class 1259 OID 17106)
+-- Name: posts_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE posts_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE posts_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2427 (class 0 OID 0)
+-- Dependencies: 188
+-- Name: posts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE posts_id_seq OWNED BY posts.id;
+
+
+--
+-- TOC entry 191 (class 1259 OID 17119)
+-- Name: tiempos; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tiempos (
+    id integer NOT NULL,
+    dia integer NOT NULL,
+    mes integer NOT NULL,
+    anio integer NOT NULL,
+    hora integer NOT NULL,
+    minutos integer NOT NULL,
+    segundos integer NOT NULL,
+    created_at timestamp(0) without time zone NOT NULL,
+    updated_at timestamp(0) without time zone NOT NULL
+);
+
+
+ALTER TABLE tiempos OWNER TO postgres;
+
+--
+-- TOC entry 190 (class 1259 OID 17117)
+-- Name: tiempos_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE tiempos_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE tiempos_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2428 (class 0 OID 0)
+-- Dependencies: 190
+-- Name: tiempos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE tiempos_id_seq OWNED BY tiempos.id;
+
+
+--
+-- TOC entry 174 (class 1259 OID 16918)
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE users (
+    id integer NOT NULL,
+    username character varying(255) NOT NULL,
+    email character varying(255) NOT NULL,
+    nombres character varying(255) NOT NULL,
+    apellidos character varying(255) NOT NULL,
+    password character varying(60) NOT NULL,
+    remember_token character varying(100),
+    created_at timestamp(0) without time zone NOT NULL,
+    updated_at timestamp(0) without time zone NOT NULL,
+    active boolean DEFAULT true NOT NULL,
+    rol character varying(255)
+);
+
+
+ALTER TABLE users OWNER TO postgres;
+
+--
+-- TOC entry 173 (class 1259 OID 16916)
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE users_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2429 (class 0 OID 0)
+-- Dependencies: 173
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE users_id_seq OWNED BY users.id;
+
+
+--
+-- TOC entry 2226 (class 2604 OID 16956)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "Ciudad" ALTER COLUMN id SET DEFAULT nextval('"Ciudad_id_seq"'::regclass);
+
+
+--
+-- TOC entry 2225 (class 2604 OID 16945)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "Paises" ALTER COLUMN id SET DEFAULT nextval('"Paises_id_seq"'::regclass);
+
+
+--
+-- TOC entry 2227 (class 2604 OID 16969)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "Universidad" ALTER COLUMN id SET DEFAULT nextval('"Universidad_id_seq"'::regclass);
+
+
+--
+-- TOC entry 2228 (class 2604 OID 16977)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY carrera ALTER COLUMN id SET DEFAULT nextval('carrera_id_seq'::regclass);
+
+
+--
+-- TOC entry 2231 (class 2604 OID 17095)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY deposito ALTER COLUMN id SET DEFAULT nextval('deposito_id_seq'::regclass);
+
+
+--
+-- TOC entry 2235 (class 2604 OID 17145)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY deposito_participantes ALTER COLUMN id SET DEFAULT nextval('deposito_participantes_id_seq'::regclass);
+
+
+--
+-- TOC entry 2234 (class 2604 OID 17130)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY model_participantes ALTER COLUMN id SET DEFAULT nextval('model_participantes_id_seq'::regclass);
+
+
+--
+-- TOC entry 2229 (class 2604 OID 16990)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY participante ALTER COLUMN id SET DEFAULT nextval('participante_id_seq'::regclass);
+
+
+--
+-- TOC entry 2232 (class 2604 OID 17111)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY posts ALTER COLUMN id SET DEFAULT nextval('posts_id_seq'::regclass);
+
+
+--
+-- TOC entry 2233 (class 2604 OID 17122)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tiempos ALTER COLUMN id SET DEFAULT nextval('tiempos_id_seq'::regclass);
+
+
+--
+-- TOC entry 2223 (class 2604 OID 16921)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- TOC entry 2394 (class 0 OID 16953)
+-- Dependencies: 179
+-- Data for Name: Ciudad; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "Ciudad" (id, nombre, "idPais", created_at, updated_at) FROM stdin;
+6	Buenos Aires\t	2	2015-10-08 20:04:41	2015-10-08 20:04:41
+7	Catamarca\t\t	2	2015-10-08 20:04:41	2015-10-08 20:04:41
+8	Chaco\t 	2	2015-10-08 20:04:41	2015-10-08 20:04:41
+9	Chubut\t	2	2015-10-08 20:04:41	2015-10-08 20:04:41
+10	Córdoba\t	2	2015-10-08 20:04:41	2015-10-08 20:04:41
+11	Corrientes\t	2	2015-10-08 20:04:41	2015-10-08 20:04:41
+12	Entre Ríos\t	2	2015-10-08 20:04:41	2015-10-08 20:04:41
+13	Formosa\t	2	2015-10-08 20:04:41	2015-10-08 20:04:41
+14	Jujuy	2	2015-10-08 20:04:41	2015-10-08 20:04:41
+15	La Pampa	2	2015-10-08 20:04:41	2015-10-08 20:04:41
+16	La Rioja	2	2015-10-08 20:04:41	2015-10-08 20:04:41
+17	Mendoza\t	2	2015-10-08 20:04:41	2015-10-08 20:04:41
+18	Misiones	2	2015-10-08 20:04:41	2015-10-08 20:04:41
+19	Neuquén\t	2	2015-10-08 20:04:41	2015-10-08 20:04:41
+20	Río Negro\t	2	2015-10-08 20:04:41	2015-10-08 20:04:41
+21	Salta\t	2	2015-10-08 20:04:41	2015-10-08 20:04:41
+22	San Juan	2	2015-10-08 20:04:41	2015-10-08 20:04:41
+23	San Luis	2	2015-10-08 20:04:41	2015-10-08 20:04:41
+24	Santa Cruz	2	2015-10-08 20:04:41	2015-10-08 20:04:41
+25	Santa Fe	2	2015-10-08 20:04:41	2015-10-08 20:04:41
+26	Santiago	2	2015-10-08 20:04:41	2015-10-08 20:04:41
+27	Tierra del Fuego	2	2015-10-08 20:04:41	2015-10-08 20:04:41
+28	Tucumán	2	2015-10-08 20:04:41	2015-10-08 20:04:41
+29	Potosí	1	2015-10-08 20:07:58	2015-10-08 20:07:58
+30	La Paz	1	2015-10-08 20:07:58	2015-10-08 20:07:58
+31	Beni	1	2015-10-08 20:07:58	2015-10-08 20:07:58
+32	Pando	1	2015-10-08 20:07:58	2015-10-08 20:07:58
+33	Santa Cruz	1	2015-10-08 20:07:58	2015-10-08 20:07:58
+34	Sucre	1	2015-10-08 20:07:58	2015-10-08 20:07:58
+35	Cochabamba	1	2015-10-08 20:07:58	2015-10-08 20:07:58
+36	Tarija	1	2015-10-08 20:07:58	2015-10-08 20:07:58
+38	Alicante 	13	2015-10-08 20:31:16	2015-10-08 20:31:16
+39	Almería 	13	2015-10-08 20:31:16	2015-10-08 20:31:16
+40	Avilés 	13	2015-10-08 20:31:16	2015-10-08 20:31:16
+41	Barcelona 	13	2015-10-08 20:31:16	2015-10-08 20:31:16
+42	Bilbao 	13	2015-10-08 20:31:16	2015-10-08 20:31:16
+43	Burgos 	13	2015-10-08 20:31:16	2015-10-08 20:31:16
+44	Cádiz 	13	2015-10-08 20:31:16	2015-10-08 20:31:16
+45	Cartagena 	13	2015-10-08 20:31:16	2015-10-08 20:31:16
+46	Córdoba 	13	2015-10-08 20:31:16	2015-10-08 20:31:16
+47	Gerona 	13	2015-10-08 20:31:16	2015-10-08 20:31:16
+48	Gijón 	13	2015-10-08 20:31:16	2015-10-08 20:31:16
+49	Granada 	13	2015-10-08 20:31:16	2015-10-08 20:31:16
+50	Huelva 	13	2015-10-08 20:31:16	2015-10-08 20:31:16
+51	Islas Canarias 	13	2015-10-08 20:31:16	2015-10-08 20:31:16
+52	Islas Baleares 	13	2015-10-08 20:31:16	2015-10-08 20:31:16
+53	Jerez 	13	2015-10-08 20:31:16	2015-10-08 20:31:16
+54	Madrid 	13	2015-10-08 20:31:16	2015-10-08 20:31:16
+55	Málaga 	13	2015-10-08 20:31:16	2015-10-08 20:31:16
+56	Marbella 	13	2015-10-08 20:31:16	2015-10-08 20:31:16
+57	Murcia 	13	2015-10-08 20:31:16	2015-10-08 20:31:16
+58	Oviedo 	13	2015-10-08 20:31:16	2015-10-08 20:31:16
+59	Pamplona 	13	2015-10-08 20:31:16	2015-10-08 20:31:16
+60	Ronda 	13	2015-10-08 20:31:16	2015-10-08 20:31:16
+61	Salamanca  	13	2015-10-08 20:31:16	2015-10-08 20:31:16
+62	San Sebastián 	13	2015-10-08 20:31:16	2015-10-08 20:31:16
+63	Santander 	13	2015-10-08 20:31:16	2015-10-08 20:31:16
+64	Santiago 	13	2015-10-08 20:31:16	2015-10-08 20:31:16
+65	Sevilla 	13	2015-10-08 20:31:16	2015-10-08 20:31:16
+66	Tarragona 	13	2015-10-08 20:31:16	2015-10-08 20:31:16
+67	Toledo  	13	2015-10-08 20:31:16	2015-10-08 20:31:16
+68	Valencia  	13	2015-10-08 20:31:16	2015-10-08 20:31:16
+69	Zaragoza  	13	2015-10-08 20:31:16	2015-10-08 20:31:16
+37	Oruro	1	2015-10-08 20:07:58	2015-10-08 20:07:58
+70	Aguachica Cesar	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+71	Apartadó Antioquia	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+72	Arauca	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+73	Armenia Quindío	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+74	Barrancabermeja Santander	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+75	Barranquilla Atlántico	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+76	Bello Antioquia	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+77	Bogotá Distrito Capital	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+78	Bucaramanga Santander	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+79	Buenaventura Valle del Cauca	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+80	Buga Valle del Cauca	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+81	Cali Valle del Cauca	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+82	Cartago Valle del Cauca	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+83	Cartagena Bolívar	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+84	Caucasia Antioquia	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+85	Cereté Córdoba	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+86	Chia Cundinamarca	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+87	Ciénaga Magdalena	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+88	Cúcuta Norte de Santander	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+89	Dosquebradas Risaralda	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+90	Duitama Boyacá	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+91	Envigado Antioquia	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+92	Facatativá Cundinamarca	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+93	Florencia Caqueta	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+94	Floridablanca Santander	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+95	Fusagasugá Cundinamarca	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+96	Girardot Cundinamarca	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+97	Girón Santander	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+98	Ibagué Tolima	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+99	Ipiales Nariño	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+100	Itagüí Antioquia	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+101	Jamundí Valle del Cauca	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+102	Lorica Córdoba	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+103	Los Patios Norte de Santander	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+104	Magangué Bolivar	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+105	Maicao Guajira	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+106	Malambo Atlántico	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+107	Manizales Caldas	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+108	Medellín Antioquia	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+109	Melgar Tolima	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+110	Montería Córdoba	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+111	Neiva Huila	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+112	Ocaña Norte de Santander	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+113	Paipa, Boyacá	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+114	Palmira Valle del Cauca	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+115	Pamplona Norte de Santander	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+116	Pasto Nariño	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+117	Pereira Risaralda	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+118	Piedecuesta Santander	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+119	Pitalito Huila	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+120	Popayán Cauca	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+121	Quibdó Choco	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+122	Riohacha Guajira	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+123	Rionegro Antioquia	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+124	Sabanalarga Atlántico	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+125	Sahagún Córdoba	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+126	San Andrés Isla	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+127	Santa Marta Magdalena	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+128	Sincelejo Sucre	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+129	Soacha Cundinamarca	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+130	Sogamoso Boyacá	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+131	Soledad Atlántico	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+132	Tibú Norte de Santander	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+133	Tuluá Valle del Cauca	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+134	Tumaco Nariño	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+135	Tunja Boyacá	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+136	Turbo Antioquia	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+137	Valledupar Cesar	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+138	Villa de leyva	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+139	Villa del Rosario Norte de Santander	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+140	Villavicencio Meta	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+141	Yopal Casanare	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+142	Yumbo Valle del Cauca	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+143	Zipaquirá Cundinamarca	6	2015-10-08 20:41:11	2015-10-08 20:41:11
+144	Ciudad de Vinto	1	2015-10-08 20:50:48	2015-10-08 20:50:48
+145	Ciudad de Villamontes	1	2015-10-08 20:50:48	2015-10-08 20:50:48
+146	Ciudad de Camiri	1	2015-10-08 20:50:48	2015-10-08 20:50:48
+147	Ciudad de Montero	1	2015-10-08 20:50:48	2015-10-08 20:50:48
+148	Ciudad de El-alto	1	2015-10-08 20:50:48	2015-10-08 20:50:48
+149	Ciudad de Oruro	1	2015-10-08 20:50:48	2015-10-08 20:50:48
+150	Ciudad de Rosario	1	2015-10-08 20:50:48	2015-10-08 20:50:48
+151	Gran Santiago	5	2015-10-08 20:55:10	2015-10-08 20:55:10
+152	Gran ConcepciÛn	5	2015-10-08 20:55:11	2015-10-08 20:55:11
+153	Gran ValparaÌso	5	2015-10-08 20:55:11	2015-10-08 20:55:11
+154	Gran La Serena	5	2015-10-08 20:55:11	2015-10-08 20:55:11
+155	Gran Temuco	5	2015-10-08 20:55:11	2015-10-08 20:55:11
+156	Antofagasta	5	2015-10-08 20:55:11	2015-10-08 20:55:11
+157	Gran Iquique	5	2015-10-08 20:55:11	2015-10-08 20:55:11
+158	Gran Rancagua	5	2015-10-08 20:55:11	2015-10-08 20:55:11
+159	Gran Puerto Montt	5	2015-10-08 20:55:11	2015-10-08 20:55:11
+160	Talca	5	2015-10-08 20:55:11	2015-10-08 20:55:11
+161	Arica	5	2015-10-08 20:55:11	2015-10-08 20:55:11
+162	Gran Chill·n	5	2015-10-08 20:55:11	2015-10-08 20:55:11
+163	Los ¡ngeles	5	2015-10-08 20:55:11	2015-10-08 20:55:11
+164	CopiapÛ	5	2015-10-08 20:55:11	2015-10-08 20:55:11
+165	Gran Quillota	5	2015-10-08 20:55:11	2015-10-08 20:55:11
+166	Valdivia	5	2015-10-08 20:55:11	2015-10-08 20:55:11
+167	Osorno	5	2015-10-08 20:55:11	2015-10-08 20:55:11
+168	Gran San Antonio	5	2015-10-08 20:55:11	2015-10-08 20:55:11
+169	CuricÛ	5	2015-10-08 20:55:11	2015-10-08 20:55:11
+170	Calama	5	2015-10-08 20:55:11	2015-10-08 20:55:11
+171	Punta Arenas	5	2015-10-08 20:55:11	2015-10-08 20:55:11
+172	Colina	5	2015-10-08 20:55:11	2015-10-08 20:55:11
+173	Melipilla	5	2015-10-08 20:55:11	2015-10-08 20:55:11
+174	Ovalle	5	2015-10-08 20:55:11	2015-10-08 20:55:11
+175	Linares	5	2015-10-08 20:55:11	2015-10-08 20:55:11
+176	PeÒaflor	5	2015-10-08 20:55:11	2015-10-08 20:55:11
+177	Lampa	5	2015-10-08 20:55:11	2015-10-08 20:55:11
+178	Buin	5	2015-10-08 20:55:11	2015-10-08 20:55:11
+179	San Fernando	5	2015-10-08 20:55:11	2015-10-08 20:55:11
+180	San Felipe	5	2015-10-08 20:55:11	2015-10-08 20:55:11
+181	Paine	5	2015-10-08 20:55:11	2015-10-08 20:55:11
+182	Talagante	5	2015-10-08 20:55:11	2015-10-08 20:55:11
+183	Los Andes	5	2015-10-08 20:55:11	2015-10-08 20:55:11
+184	Coyhaique	5	2015-10-08 20:55:11	2015-10-08 20:55:11
+185	Rengo	5	2015-10-08 20:55:11	2015-10-08 20:55:11
+186	Vallenar	5	2015-10-08 20:55:11	2015-10-08 20:55:11
+187	Villarrica	5	2015-10-08 20:55:11	2015-10-08 20:55:11
+188	San Carlos	5	2015-10-08 20:55:11	2015-10-08 20:55:11
+189	Angol	5	2015-10-08 20:55:11	2015-10-08 20:55:11
+190	RIO DE JANEIRO	4	2015-10-08 21:03:12	2015-10-08 21:03:12
+191	SAO PAULO	4	2015-10-08 21:03:12	2015-10-08 21:03:12
+192	FORTALEZA	4	2015-10-08 21:03:12	2015-10-08 21:03:12
+193	BELO HORIZONTE	4	2015-10-08 21:03:12	2015-10-08 21:03:12
+194	PORTO ALEGRE	4	2015-10-08 21:03:12	2015-10-08 21:03:12
+195	MACEIO	4	2015-10-08 21:03:12	2015-10-08 21:03:12
+196	RECIFE	4	2015-10-08 21:03:12	2015-10-08 21:03:12
+197	CURITIBA	4	2015-10-08 21:03:12	2015-10-08 21:03:12
+198	SALVADOR DE BAHIA	4	2015-10-08 21:03:12	2015-10-08 21:03:12
+199	SAO LUIS	4	2015-10-08 21:03:12	2015-10-08 21:03:12
+200	NATAL	4	2015-10-08 21:03:12	2015-10-08 21:03:12
+201	MANAUS	4	2015-10-08 21:03:12	2015-10-08 21:03:12
+202	GOIANIA	4	2015-10-08 21:03:12	2015-10-08 21:03:12
+203	CAMPINAS	4	2015-10-08 21:03:12	2015-10-08 21:03:12
+204	SAO BERNARDO DE OCAMPO	4	2015-10-08 21:03:12	2015-10-08 21:03:12
+205	CAMPO GRANDE	4	2015-10-08 21:03:12	2015-10-08 21:03:12
+206	JABOATAO DE GUARARAPES	4	2015-10-08 21:03:12	2015-10-08 21:03:12
+207	BELEM	4	2015-10-08 21:03:12	2015-10-08 21:03:12
+208	FEIRA DE SANTANA	4	2015-10-08 21:03:12	2015-10-08 21:03:12
+209	JOAO PESOA	4	2015-10-08 21:03:12	2015-10-08 21:03:12
+210	UBERLANDIA	4	2015-10-08 21:03:12	2015-10-08 21:03:12
+211	OSASCO	4	2015-10-08 21:03:12	2015-10-08 21:03:12
+212	CUIABA	4	2015-10-08 21:03:12	2015-10-08 21:03:12
+213	SOROCABA	4	2015-10-08 21:03:12	2015-10-08 21:03:12
+214	SANTO ANDRE	4	2015-10-08 21:03:12	2015-10-08 21:03:12
+215	LONDRINA	4	2015-10-08 21:03:12	2015-10-08 21:03:12
+216	NOVA IGUACU	4	2015-10-08 21:03:12	2015-10-08 21:03:12
+217	TERESINA	4	2015-10-08 21:03:12	2015-10-08 21:03:12
+218	SAO GONCALO	4	2015-10-08 21:03:12	2015-10-08 21:03:12
+219	ARACAJU	4	2015-10-08 21:03:12	2015-10-08 21:03:12
+220	GUARULOHS	4	2015-10-08 21:03:12	2015-10-08 21:03:12
+221	DUQUE DE CAXIAS	4	2015-10-08 21:03:12	2015-10-08 21:03:12
+222	CANTAGEM	4	2015-10-08 21:03:12	2015-10-08 21:03:12
+223	SAO JOSE DOS CAMPOS	4	2015-10-08 21:03:12	2015-10-08 21:03:12
+224	RIBERIAO PRETO	4	2015-10-08 21:03:12	2015-10-08 21:03:12
+225	RIO DE JANEIRO	4	2015-10-08 21:03:13	2015-10-08 21:03:13
+226	SAO PAULO	4	2015-10-08 21:03:13	2015-10-08 21:03:13
+227	FORTALEZA	4	2015-10-08 21:03:13	2015-10-08 21:03:13
+228	BELO HORIZONTE	4	2015-10-08 21:03:13	2015-10-08 21:03:13
+229	PORTO ALEGRE	4	2015-10-08 21:03:13	2015-10-08 21:03:13
+230	MACEIO	4	2015-10-08 21:03:13	2015-10-08 21:03:13
+231	RECIFE	4	2015-10-08 21:03:13	2015-10-08 21:03:13
+232	CURITIBA	4	2015-10-08 21:03:13	2015-10-08 21:03:13
+233	SALVADOR DE BAHIA	4	2015-10-08 21:03:13	2015-10-08 21:03:13
+234	SAO LUIS	4	2015-10-08 21:03:13	2015-10-08 21:03:13
+235	NATAL	4	2015-10-08 21:03:13	2015-10-08 21:03:13
+236	MANAUS	4	2015-10-08 21:03:13	2015-10-08 21:03:13
+237	GOIANIA	4	2015-10-08 21:03:13	2015-10-08 21:03:13
+238	CAMPINAS	4	2015-10-08 21:03:13	2015-10-08 21:03:13
+239	SAO BERNARDO DE OCAMPO	4	2015-10-08 21:03:13	2015-10-08 21:03:13
+240	CAMPO GRANDE	4	2015-10-08 21:03:13	2015-10-08 21:03:13
+241	JABOATAO DE GUARARAPES	4	2015-10-08 21:03:13	2015-10-08 21:03:13
+242	BELEM	4	2015-10-08 21:03:13	2015-10-08 21:03:13
+243	FEIRA DE SANTANA	4	2015-10-08 21:03:13	2015-10-08 21:03:13
+244	JOAO PESOA	4	2015-10-08 21:03:13	2015-10-08 21:03:13
+245	UBERLANDIA	4	2015-10-08 21:03:13	2015-10-08 21:03:13
+246	OSASCO	4	2015-10-08 21:03:13	2015-10-08 21:03:13
+247	CUIABA	4	2015-10-08 21:03:13	2015-10-08 21:03:13
+248	SOROCABA	4	2015-10-08 21:03:13	2015-10-08 21:03:13
+249	SANTO ANDRE	4	2015-10-08 21:03:13	2015-10-08 21:03:13
+250	LONDRINA	4	2015-10-08 21:03:13	2015-10-08 21:03:13
+251	NOVA IGUACU	4	2015-10-08 21:03:13	2015-10-08 21:03:13
+252	TERESINA	4	2015-10-08 21:03:13	2015-10-08 21:03:13
+253	SAO GONCALO	4	2015-10-08 21:03:13	2015-10-08 21:03:13
+254	ARACAJU	4	2015-10-08 21:03:13	2015-10-08 21:03:13
+255	GUARULOHS	4	2015-10-08 21:03:13	2015-10-08 21:03:13
+256	DUQUE DE CAXIAS	4	2015-10-08 21:03:13	2015-10-08 21:03:13
+257	CANTAGEM	4	2015-10-08 21:03:13	2015-10-08 21:03:13
+258	SAO JOSE DOS CAMPOS	4	2015-10-08 21:03:13	2015-10-08 21:03:13
+259	RIBERIAO PRETO	4	2015-10-08 21:03:13	2015-10-08 21:03:13
+260	Lima	3	2015-10-08 21:04:59	2015-10-08 21:04:59
+261	Arequipa	3	2015-10-08 21:04:59	2015-10-08 21:04:59
+262	Trujillo	3	2015-10-08 21:04:59	2015-10-08 21:04:59
+263	Chiclayo	3	2015-10-08 21:04:59	2015-10-08 21:04:59
+264	Iquitos	3	2015-10-08 21:04:59	2015-10-08 21:04:59
+265	Piura	3	2015-10-08 21:04:59	2015-10-08 21:04:59
+266	Cusco	3	2015-10-08 21:04:59	2015-10-08 21:04:59
+267	Chimbote	3	2015-10-08 21:04:59	2015-10-08 21:04:59
+268	Huancayo	3	2015-10-08 21:04:59	2015-10-08 21:04:59
+269	Tacna	3	2015-10-08 21:04:59	2015-10-08 21:04:59
+270	Juliaca	3	2015-10-08 21:04:59	2015-10-08 21:04:59
+271	Ica	3	2015-10-08 21:04:59	2015-10-08 21:04:59
+272	Cajamarca	3	2015-10-08 21:04:59	2015-10-08 21:04:59
+273	Pucallpa	3	2015-10-08 21:04:59	2015-10-08 21:04:59
+274	Sullana	3	2015-10-08 21:04:59	2015-10-08 21:04:59
+275	Ayacucho	3	2015-10-08 21:04:59	2015-10-08 21:04:59
+276	Chincha	3	2015-10-08 21:04:59	2015-10-08 21:04:59
+277	Hu·nuco	3	2015-10-08 21:04:59	2015-10-08 21:04:59
+278	Huacho	3	2015-10-08 21:04:59	2015-10-08 21:04:59
+279	Tarapoto	3	2015-10-08 21:04:59	2015-10-08 21:04:59
+280	Puno	3	2015-10-08 21:04:59	2015-10-08 21:04:59
+281	Paita	3	2015-10-08 21:04:59	2015-10-08 21:04:59
+282	Huaraz	3	2015-10-08 21:04:59	2015-10-08 21:04:59
+283	Tumbes	3	2015-10-08 21:04:59	2015-10-08 21:04:59
+284	Pisco	3	2015-10-08 21:04:59	2015-10-08 21:04:59
+285	Huaral	3	2015-10-08 21:04:59	2015-10-08 21:04:59
+286	JaÈn	3	2015-10-08 21:04:59	2015-10-08 21:04:59
+287	Moyobamba	3	2015-10-08 21:04:59	2015-10-08 21:04:59
+288	San Vicente de CaÒete	3	2015-10-08 21:04:59	2015-10-08 21:04:59
+289	Puerto Maldonado	3	2015-10-08 21:04:59	2015-10-08 21:04:59
+290	Catacaos	3	2015-10-08 21:04:59	2015-10-08 21:04:59
+291	Ilo	3	2015-10-08 21:04:59	2015-10-08 21:04:59
+292	Cerro de Pasco	3	2015-10-08 21:04:59	2015-10-08 21:04:59
+293	Barranca	3	2015-10-08 21:04:59	2015-10-08 21:04:59
+294	Yurimaguas	3	2015-10-08 21:04:59	2015-10-08 21:04:59
+295	Chancay	3	2015-10-08 21:04:59	2015-10-08 21:04:59
+296	Andahuaylas	3	2015-10-08 21:04:59	2015-10-08 21:04:59
+297	Moquegua	3	2015-10-08 21:04:59	2015-10-08 21:04:59
+298	Talara	3	2015-10-08 21:04:59	2015-10-08 21:04:59
+299	Abancay	3	2015-10-08 21:04:59	2015-10-08 21:04:59
+300	Lambayeque	3	2015-10-08 21:05:00	2015-10-08 21:05:00
+301	Chulucanas	3	2015-10-08 21:05:00	2015-10-08 21:05:00
+302	Tingo MarÌa	3	2015-10-08 21:05:00	2015-10-08 21:05:00
+303	Sicuani	3	2015-10-08 21:05:00	2015-10-08 21:05:00
+304	Mala	3	2015-10-08 21:05:00	2015-10-08 21:05:00
+305	Huancavelica	3	2015-10-08 21:05:00	2015-10-08 21:05:00
+306	FerreÒafe	3	2015-10-08 21:05:00	2015-10-08 21:05:00
+307	ChepÈn	3	2015-10-08 21:05:00	2015-10-08 21:05:00
+308	Pacasmayo	3	2015-10-08 21:05:00	2015-10-08 21:05:00
+309	Tarma	3	2015-10-08 21:05:00	2015-10-08 21:05:00
+310	Sechura	3	2015-10-08 21:05:00	2015-10-08 21:05:00
+311	Guadalupe	3	2015-10-08 21:05:00	2015-10-08 21:05:00
+312	Bagua Grande	3	2015-10-08 21:05:00	2015-10-08 21:05:00
+313	Montevideo	11	2015-10-08 21:13:22	2015-10-08 21:13:22
+314	Salt\t	11	2015-10-08 21:13:22	2015-10-08 21:13:22
+315	Paysandú	11	2015-10-08 21:13:22	2015-10-08 21:13:22
+316	Maldonado	11	2015-10-08 21:13:22	2015-10-08 21:13:22
+317	Rivera 	11	2015-10-08 21:13:22	2015-10-08 21:13:22
+318	Tacuarembó	11	2015-10-08 21:13:22	2015-10-08 21:13:22
+319	Melo	11	2015-10-08 21:13:22	2015-10-08 21:13:22
+320	Artigas	11	2015-10-08 21:13:22	2015-10-08 21:13:22
+321	Mercedes Soriano	11	2015-10-08 21:13:22	2015-10-08 21:13:22
+322	Minas\tLavalleja	11	2015-10-08 21:13:22	2015-10-08 21:13:22
+323	San José de Mayo	11	2015-10-08 21:13:22	2015-10-08 21:13:22
+324	Durazno 	11	2015-10-08 21:13:22	2015-10-08 21:13:22
+325	Florida\t	11	2015-10-08 21:13:22	2015-10-08 21:13:22
+326	Treinta y Tres	11	2015-10-08 21:13:22	2015-10-08 21:13:22
+327	Colonia del Sacramento\t	11	2015-10-08 21:13:22	2015-10-08 21:13:22
+328	Rocha	11	2015-10-08 21:13:22	2015-10-08 21:13:22
+329	Fray Bentos 	11	2015-10-08 21:13:22	2015-10-08 21:13:22
+330	Trinidad Flores	11	2015-10-08 21:13:22	2015-10-08 21:13:22
+331	Canelone	11	2015-10-08 21:13:22	2015-10-08 21:13:22
+333	Areguá\t	9	2015-10-08 21:43:17	2015-10-08 21:43:17
+334	Ayolas	9	2015-10-08 21:43:17	2015-10-08 21:43:17
+335	Caacupé	9	2015-10-08 21:43:17	2015-10-08 21:43:17
+336	Caazapá	9	2015-10-08 21:43:17	2015-10-08 21:43:17
+337	Ciudad del Este	9	2015-10-08 21:43:17	2015-10-08 21:43:17
+338	Mariano Roque Alonso	9	2015-10-08 21:43:17	2015-10-08 21:43:17
+339	Concepción2	9	2015-10-08 21:43:17	2015-10-08 21:43:17
+340	Encarnación	9	2015-10-08 21:43:17	2015-10-08 21:43:17
+341	Fernando de la Mora	9	2015-10-08 21:43:17	2015-10-08 21:43:17
+342	Itauguá	9	2015-10-08 21:43:17	2015-10-08 21:43:17
+343	LambaréLimpio	9	2015-10-08 21:43:17	2015-10-08 21:43:17
+344	Luquekm2	9	2015-10-08 21:43:17	2015-10-08 21:43:17
+345	Minga Guazú	9	2015-10-08 21:43:17	2015-10-08 21:43:17
+346	Paraguarí	9	2015-10-08 21:43:17	2015-10-08 21:43:17
+347	Pedro Juan Caballero	9	2015-10-08 21:43:17	2015-10-08 21:43:17
+348	Pilar2	9	2015-10-08 21:43:17	2015-10-08 21:43:17
+349	San Estanislao	9	2015-10-08 21:43:17	2015-10-08 21:43:17
+350	San Ignacio	9	2015-10-08 21:43:17	2015-10-08 21:43:17
+351	San Juan Bautista	9	2015-10-08 21:43:17	2015-10-08 21:43:17
+352	San Pedro	9	2015-10-08 21:43:17	2015-10-08 21:43:17
+353	Villa Elisa	9	2015-10-08 21:43:17	2015-10-08 21:43:17
+354	Villa Hayesnte Hayesm	9	2015-10-08 21:43:17	2015-10-08 21:43:17
+355	Villarrica	9	2015-10-08 21:43:17	2015-10-08 21:43:17
+356	Villeta	9	2015-10-08 21:43:17	2015-10-08 21:43:17
+357	Asunciónunción	9	2015-10-08 21:43:18	2015-10-08 21:43:18
+358	Areguá\t	9	2015-10-08 21:43:18	2015-10-08 21:43:18
+359	Ayolas	9	2015-10-08 21:43:18	2015-10-08 21:43:18
+360	Caacupé	9	2015-10-08 21:43:18	2015-10-08 21:43:18
+361	Caazapá	9	2015-10-08 21:43:18	2015-10-08 21:43:18
+362	Ciudad del Este	9	2015-10-08 21:43:18	2015-10-08 21:43:18
+363	Mariano Roque Alonso	9	2015-10-08 21:43:18	2015-10-08 21:43:18
+364	Concepción2	9	2015-10-08 21:43:18	2015-10-08 21:43:18
+365	Encarnación	9	2015-10-08 21:43:18	2015-10-08 21:43:18
+366	Fernando de la Mora	9	2015-10-08 21:43:18	2015-10-08 21:43:18
+367	Itauguá	9	2015-10-08 21:43:18	2015-10-08 21:43:18
+368	LambaréLimpio	9	2015-10-08 21:43:18	2015-10-08 21:43:18
+369	Luquekm2	9	2015-10-08 21:43:18	2015-10-08 21:43:18
+370	Minga Guazú	9	2015-10-08 21:43:18	2015-10-08 21:43:18
+371	Paraguarí	9	2015-10-08 21:43:18	2015-10-08 21:43:18
+372	Pedro Juan Caballero	9	2015-10-08 21:43:18	2015-10-08 21:43:18
+373	Pilar2	9	2015-10-08 21:43:18	2015-10-08 21:43:18
+374	San Estanislao	9	2015-10-08 21:43:18	2015-10-08 21:43:18
+375	San Ignacio	9	2015-10-08 21:43:18	2015-10-08 21:43:18
+376	San Juan Bautista	9	2015-10-08 21:43:18	2015-10-08 21:43:18
+377	San Pedro	9	2015-10-08 21:43:18	2015-10-08 21:43:18
+378	Villa Elisa	9	2015-10-08 21:43:18	2015-10-08 21:43:18
+379	Villa Hayesnte Hayesm	9	2015-10-08 21:43:18	2015-10-08 21:43:18
+380	Villarrica	9	2015-10-08 21:43:18	2015-10-08 21:43:18
+381	Villeta	9	2015-10-08 21:43:18	2015-10-08 21:43:18
+332	Asunción	9	2015-10-08 21:43:17	2015-10-08 21:43:17
+382	Guayaquil\t	7	2015-10-08 22:02:23	2015-10-08 22:02:23
+383	Quito	7	2015-10-08 22:02:23	2015-10-08 22:02:23
+384	Cuenca	7	2015-10-08 22:02:23	2015-10-08 22:02:23
+385	Santo Domingo	7	2015-10-08 22:02:23	2015-10-08 22:02:23
+386	Machala	7	2015-10-08 22:02:23	2015-10-08 22:02:23
+387	Guayaquil\t	7	2015-10-08 22:02:23	2015-10-08 22:02:23
+388	Quito	7	2015-10-08 22:02:23	2015-10-08 22:02:23
+389	Cuenca	7	2015-10-08 22:02:23	2015-10-08 22:02:23
+390	Santo Domingo	7	2015-10-08 22:02:23	2015-10-08 22:02:23
+391	Machala	7	2015-10-08 22:02:23	2015-10-08 22:02:23
+472	Altagracia	12	2015-10-08 22:06:54	2015-10-08 22:06:54
+473	Archipiélago Los Roques	12	2015-10-08 22:06:54	2015-10-08 22:06:54
+474	Barinas	12	2015-10-08 22:06:54	2015-10-08 22:06:54
+475	Barquisimeto	12	2015-10-08 22:06:54	2015-10-08 22:06:54
+476	Calabozo	12	2015-10-08 22:06:54	2015-10-08 22:06:54
+477	Canaima	12	2015-10-08 22:06:54	2015-10-08 22:06:54
+478	Caraballeda	12	2015-10-08 22:06:54	2015-10-08 22:06:54
+479	Caracas	12	2015-10-08 22:06:54	2015-10-08 22:06:54
+480	Catia La Mar	12	2015-10-08 22:06:54	2015-10-08 22:06:54
+481	Chichiriviche	12	2015-10-08 22:06:54	2015-10-08 22:06:54
+482	Ciudad Bolívar	12	2015-10-08 22:06:54	2015-10-08 22:06:54
+483	Ciudad Guayana	12	2015-10-08 22:06:54	2015-10-08 22:06:54
+484	Coro	12	2015-10-08 22:06:54	2015-10-08 22:06:54
+485	El Tigre	12	2015-10-08 22:06:54	2015-10-08 22:06:54
+486	El Yaque	12	2015-10-08 22:06:54	2015-10-08 22:06:54
+487	Isla de Coche	12	2015-10-08 22:06:54	2015-10-08 22:06:54
+488	Maiquetía	12	2015-10-08 22:06:54	2015-10-08 22:06:54
+489	Manzanillo	12	2015-10-08 22:06:54	2015-10-08 22:06:54
+490	Maracaibo	12	2015-10-08 22:06:54	2015-10-08 22:06:54
+491	Maracay	12	2015-10-08 22:06:54	2015-10-08 22:06:54
+492	Maturín	12	2015-10-08 22:06:54	2015-10-08 22:06:54
+493	Pampatar	12	2015-10-08 22:06:54	2015-10-08 22:06:54
+494	Pedro González	12	2015-10-08 22:06:54	2015-10-08 22:06:54
+495	Porlamar	12	2015-10-08 22:06:54	2015-10-08 22:06:54
+496	Punto Fijo	12	2015-10-08 22:06:54	2015-10-08 22:06:54
+497	San Cristóbal	12	2015-10-08 22:06:54	2015-10-08 22:06:54
+498	Valencia	12	2015-10-08 22:06:54	2015-10-08 22:06:54
+499	Acarigua	12	2015-10-08 22:06:54	2015-10-08 22:06:54
+500	Barcelona	12	2015-10-08 22:06:54	2015-10-08 22:06:54
+501	Carúpano	12	2015-10-08 22:06:54	2015-10-08 22:06:54
+502	Cumaná	12	2015-10-08 22:06:54	2015-10-08 22:06:54
+503	Higuerote	12	2015-10-08 22:06:54	2015-10-08 22:06:54
+504	La Guaira	12	2015-10-08 22:06:54	2015-10-08 22:06:54
+505	Las Piedras	12	2015-10-08 22:06:54	2015-10-08 22:06:54
+506	Mérida	12	2015-10-08 22:06:54	2015-10-08 22:06:54
+507	Naguanagua	12	2015-10-08 22:06:54	2015-10-08 22:06:54
+508	Puerto Ayacucho	12	2015-10-08 22:06:54	2015-10-08 22:06:54
+509	Puerto Cabello	12	2015-10-08 22:06:54	2015-10-08 22:06:54
+510	Puerto la Cruz	12	2015-10-08 22:06:54	2015-10-08 22:06:54
+511	San Antonio	12	2015-10-08 22:06:54	2015-10-08 22:06:54
+\.
+
+
+--
+-- TOC entry 2430 (class 0 OID 0)
+-- Dependencies: 178
+-- Name: Ciudad_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('"Ciudad_id_seq"', 511, true);
+
+
+--
+-- TOC entry 2392 (class 0 OID 16942)
+-- Dependencies: 177
+-- Data for Name: Paises; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "Paises" (id, codigo, nombre, created_at, updated_at) FROM stdin;
+1	Bo	Bolivia	2015-10-06 00:00:00	2015-10-06 00:00:00
+2	Ar	Argentina	2015-10-06 00:00:00	2015-10-06 00:00:00
+3	Pe	Peru	2015-10-06 00:00:00	2015-10-06 00:00:00
+5	Chl	Chile	2015-10-06 00:00:00	2015-10-06 00:00:00
+4	Br	Brasil	2015-10-06 00:00:00	2015-10-06 00:00:00
+6	Co	Colombia	2015-10-08 00:00:00	2015-10-08 00:00:00
+7	Ec	Ecuador	2015-10-08 00:00:00	2015-10-08 00:00:00
+8	Gua	Guayana	2015-10-08 00:00:00	2015-10-08 00:00:00
+9	Gua	Paraguay	2015-10-08 00:00:00	2015-10-08 00:00:00
+10	Su	Surinam	2015-10-08 00:00:00	2015-10-08 00:00:00
+11	Ur	Uruguay	2015-10-08 00:00:00	2015-10-08 00:00:00
+12	Ve	Venezuela	2015-10-08 00:00:00	2015-10-08 00:00:00
+13	Es	España	2015-10-08 00:00:00	2015-10-08 00:00:00
+\.
+
+
+--
+-- TOC entry 2431 (class 0 OID 0)
+-- Dependencies: 176
+-- Name: Paises_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('"Paises_id_seq"', 1, false);
+
+
+--
+-- TOC entry 2396 (class 0 OID 16966)
+-- Dependencies: 181
+-- Data for Name: Universidad; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "Universidad" (id, nombre, created_at, updated_at) FROM stdin;
+1	Universidad A. del Beni José Ballivián (UABJB)	2015-10-08 22:14:36	2015-10-08 22:14:36
+2	Universidad Mayor de San Fco. Xavier (USFX)	2015-10-08 22:14:36	2015-10-08 22:14:36
+3	Universidad Andina Simón Bolívar (UASB)	2015-10-08 22:14:36	2015-10-08 22:14:36
+4	Universidad Mayor de San Simón (UMSS)	2015-10-08 22:14:36	2015-10-08 22:14:36
+5	Escuela Militar de Ingeniería (EMI)	2015-10-08 22:14:36	2015-10-08 22:14:36
+6	Escuela Militar de Ingeniería (EMI)	2015-10-08 22:14:36	2015-10-08 22:14:36
+7	Universidad Mayor de San Andrés (UMSA)	2015-10-08 22:14:36	2015-10-08 22:14:36
+8	Universidad Pública de El Alto (UPEA)	2015-10-08 22:14:36	2015-10-08 22:14:36
+9	Universidad Técnica de Oruro (UTO)	2015-10-08 22:14:36	2015-10-08 22:14:36
+10	Universidad Autónoma Tomás Frías (UATF)	2015-10-08 22:14:36	2015-10-08 22:14:36
+11	Universidad Nacional Siglo XX (UNSXX)	2015-10-08 22:14:36	2015-10-08 22:14:36
+12	Escuela Militar de Ingeniería (EMI)	2015-10-08 22:14:36	2015-10-08 22:14:36
+13	Universidad Autónoma Gabriel Rene Moreno (UAGRM)	2015-10-08 22:14:36	2015-10-08 22:14:36
+14	Universidad Nacional del Oriente (UNO)	2015-10-08 22:14:36	2015-10-08 22:14:36
+15	Universidad Nacional Ecológica Santa Cruz (UECOLOGICA)	2015-10-08 22:14:36	2015-10-08 22:14:36
+16	Universidad Autónoma Juan Misael Saracho (UAJMS)	2015-10-08 22:14:36	2015-10-08 22:14:36
+17	Universidad Privada del Valle (UNIVALLE)	2015-10-08 22:14:36	2015-10-08 22:14:36
+18	Universidad Boliviana de Informática (UBI)	2015-10-08 22:14:36	2015-10-08 22:14:36
+19	Universidad Simón I. Patiño (USIP)	2015-10-08 22:14:36	2015-10-08 22:14:36
+20	Universidad Central (UNICEN)	2015-10-08 22:14:36	2015-10-08 22:14:36
+21	Universidad Católica Boliviana San Pablo (UCB)	2015-10-08 22:14:36	2015-10-08 22:14:36
+22	Universidad de Aquino Bolivia (UDABOL)	2015-10-08 22:14:36	2015-10-08 22:14:36
+23	Universidad Adventista de Bolivia (UAB)	2015-10-08 22:14:36	2015-10-08 22:14:36
+24	Universidad Privada Abierta Latinoamericana (UPAL)	2015-10-08 22:14:36	2015-10-08 22:14:36
+25	Universidad Privada Boliviana (UPB)	2015-10-08 22:14:36	2015-10-08 22:14:36
+26	Universidad Privada Franz Tamayo (UNIFRANZ)	2015-10-08 22:14:36	2015-10-08 22:14:36
+27	Universidad Técnica Privada Cosmos (UNITEPC)	2015-10-08 22:14:36	2015-10-08 22:14:36
+28	Universidad La Salle (ULS)	2015-10-08 22:14:36	2015-10-08 22:14:36
+29	Universidad Nur	2015-10-08 22:14:36	2015-10-08 22:14:36
+30	Universidad Loyola	2015-10-08 22:14:36	2015-10-08 22:14:36
+31	Universidad Priv. Ntra. Sra. de La Paz (UNSLP)	2015-10-08 22:14:36	2015-10-08 22:14:36
+32	Universidad Priv. San Francisco de Asis (USFA)	2015-10-08 22:14:36	2015-10-08 22:14:36
+33	Universidad Real(UREAL)	2015-10-08 22:14:36	2015-10-08 22:14:36
+34	Universidad Salesiana de Bolivia (USALESIANA)	2015-10-08 22:14:36	2015-10-08 22:14:36
+35	Universidad de los Andes (UDELOSANDES)	2015-10-08 22:14:36	2015-10-08 22:14:36
+36	Univ. para la Inv. Estratégica en Bolivia (UPIEB)	2015-10-08 22:14:36	2015-10-08 22:14:36
+37	Universidad Tecnológica Boliviana (UTB)	2015-10-08 22:14:36	2015-10-08 22:14:36
+38	Universidad Unión Bolivariana (UB)	2015-10-08 22:14:36	2015-10-08 22:14:36
+39	Universidad Saint Paul (USP)	2015-10-08 22:14:36	2015-10-08 22:14:36
+40	Universidad de la Cordillera (UCORDILLERA)	2015-10-08 22:14:36	2015-10-08 22:14:36
+41	Universidad Privada De Oruro (UNIOR)	2015-10-08 22:14:36	2015-10-08 22:14:36
+42	Universidad Católica Boliviana San Pablo - Santa Cruz	2015-10-08 22:14:36	2015-10-08 22:14:36
+43	Universidad Cristiana de Bolivia (UCEBOL)	2015-10-08 22:14:36	2015-10-08 22:14:36
+44	Universidad Evangélica Boliviana (UEB)	2015-10-08 22:14:36	2015-10-08 22:14:36
+45	Universidad Privada Cumbre	2015-10-08 22:14:36	2015-10-08 22:14:36
+46	Univ. Privada De Santa Cruz De La Sierra (UPSA)	2015-10-08 22:14:36	2015-10-08 22:14:36
+47	Universidad Privada Domingo Savio (UPDS)	2015-10-08 22:14:36	2015-10-08 22:14:36
+48	Univ. Tecnológica Priv. de Santa Cruz (UTEPSA)	2015-10-08 22:14:36	2015-10-08 22:14:36
+49	Universidad Católica Boliviana San Pablo - Tarija	2015-10-08 22:14:36	2015-10-08 22:14:36
+50	Otros	2015-10-08 22:14:36	2015-10-08 22:14:36
+\.
+
+
+--
+-- TOC entry 2432 (class 0 OID 0)
+-- Dependencies: 180
+-- Name: Universidad_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('"Universidad_id_seq"', 50, true);
+
+
+--
+-- TOC entry 2398 (class 0 OID 16974)
+-- Dependencies: 183
+-- Data for Name: carrera; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY carrera (id, nombre, "idUni", created_at, updated_at) FROM stdin;
+1	 Facultad de Agronomía	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+2	Ingeniería Agronómica	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+3	Técnica Superior Agropecuaria de Viacha	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+4	· Facultad de Arquitectura, Artes, Diseño y Urbanismo	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+5	· Facultad de Ciencias Económicas y Financieras	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+6	Administración de Empresas	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+7	Auditoría	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+8	Economía 	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+9	· Facultad de Ciencias Puras y Naturales	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+10	Biología	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+11	Estadística	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+12	Física	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+13	Informática	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+14	Matemáticas	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+15	Química	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+16	· Facultad de Ciencias Sociales	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+17	Antropología y Arqueología	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+18	Ciencias de la Comunicación Social	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+19	Sociología	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+20	Trabajo Social	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+21	· Facultad de Humanidades y Ciencias de la Educación	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+22	Bibliotecología y Cs. Información	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+23	Ciencias de la Educación	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+24	Filosofía	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+25	Historia	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+26	Lingüística e Idiomas	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+27	Literatura	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+28	Psicología	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+29	Turismo	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+30	· Facultad de Derecho y Ciencias Políticas	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+31	Derecho	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+32	Ciencias Políticas	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+33	· Facultad de Ciencias Farmacéuticas y Bioquímicas	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+34	Bioquímica	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+35	Química Farmacéutica	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+36	Oferta académica 	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+37	Oferta académica	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+38	· Facultad de Ciencias Geológicas	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+39	Ingeniería Geográfica	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+40	Ingeniería Geológica y Medio Ambiente	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+41	· Facultad de Ingeniería	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+42	Ing. Civil	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+43	Ing. Electrica	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+44	Ing. Electronica	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+45	Ing. Industrial	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+46	Ing. Mecanica	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+47	Ing. Metalurgica y Materiales	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+48	Ing. Petrolera	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+49	Ing. Quimica	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+50	· Facultad de Medicina, Enfermería, Nutrición y Tecnología Médica	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+51	Medicina	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+52	Enfermería	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+53	Nutrición y Dietética 	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+54	· Facultad de Odontología	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+55	Facultad de Odontología	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+56	· Facultad Técnica	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+57	Construcciones Civiles	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+58	Topografía Y Geodesia	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+59	Electricidad	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+60	Electrónica y Telecomunicaciones	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+61	Electromecánica	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+62	Mecánica Automotriz	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+63	Mecánica de Aviación	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+64	Mecánica Industrial	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+65	Química Industrial	7	2015-10-08 22:31:03	2015-10-08 22:31:03
+66	ARTES MUSICALES	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+67	ARTES PLASTICAS	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+68	INGENIERIA AGROINDUSTRIAL	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+69	INGENIERIA AGRONOMICA	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+70	INGENIERIA AGROPECUARIA - VILLAZON	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+71	INGENIERIA EN DESARROLLO RURAL	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+72	MED. VETERINARIA Y ZOOTECNIA - TUPIZA	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+73	ENFERMERIA	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+74	ENFERMERIA - VILLAZON	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+75	ADMINISTRACION DE EMPRESAS	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+76	CONTABILIDAD Y FINANZAS	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+77	CONTADURIA PUBLICA	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+78	CONTADURIA PUBLICA - TUPIZA	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+79	ECONOMIA	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+80	ECONOMIA - UNCIA	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+81	ECONOMIA - UYUNI	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+82	ESTADISTICA	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+83	FISICA	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+84	INGENIERIA INFORMATICA	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+85	MATEMATICA	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+86	QUIMICA	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+87	LINGUISTICA E IDIOMAS	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+88	LINGUISTICA E IDIOMAS - UYUNI	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+89	TRABAJO SOCIAL	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+90	TRABAJO SOCIAL - UNCIA	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+91	TURISMO	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+92	TURISMO - UYUNI	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+93	DERECHO	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+94	DERECHO - UNCIA	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+95	PEDAGOGIA INTERCULTURAL	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+96	CONSTRUCCIONES CIVILES	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+97	GEODESIA Y TOPOGRAFIA	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+98	INGENIERIA CIVIL	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+99	INGENIERIA DE SISTEMAS	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+100	INGENIERIA GEOLOGICA	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+101	INGENIERIA DEL MEDIO AMBIENTE	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+102	INGENIERIA GEOLOGICA	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+103	INGENIERIA MINERA	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+104	ING. DE PROCESOS DE MAT. PRIMAS MIN.	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+105	INGENIERIA MINERA	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+106	MEDICINA	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+107	TECNOLOGICA	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+108	INGENIERIA ELECTRICA	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+109	INGENIERIA ELECTRONICA	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+110	INGENIERIA MECANICA	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+111	INGENIERIA MECATRONICA	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+112	MECANICA AUTOMOTRIZ	10	2015-10-08 22:35:30	2015-10-08 22:35:30
+113	ING. DE SISTEMAS	1	2015-10-08 00:00:00	2015-10-08 00:00:00
+117	Agronomía	2	2015-10-10 00:14:31	2015-10-10 00:14:31
+118	Zootecnia	2	2015-10-10 00:14:31	2015-10-10 00:14:31
+119	Economía	2	2015-10-10 00:14:31	2015-10-10 00:14:31
+120	Ing. Comercial	2	2015-10-10 00:14:31	2015-10-10 00:14:31
+121	Comunicación Social	2	2015-10-10 00:14:31	2015-10-10 00:14:31
+122	Pedagogía 	2	2015-10-10 00:14:31	2015-10-10 00:14:31
+123	Turismo 	2	2015-10-10 00:14:31	2015-10-10 00:14:31
+124	Psicología 	2	2015-10-10 00:14:31	2015-10-10 00:14:31
+125	Enfermería  	2	2015-10-10 00:14:31	2015-10-10 00:14:31
+126	Fisioterapia   	2	2015-10-10 00:14:31	2015-10-10 00:14:31
+127	Arquitectura 	2	2015-10-10 00:14:31	2015-10-10 00:14:31
+128	Ing. de Alimentos 	2	2015-10-10 00:14:31	2015-10-10 00:14:31
+129	Ind. de la Alimentación 	2	2015-10-10 00:14:31	2015-10-10 00:14:31
+130	Informática 	2	2015-10-10 00:14:31	2015-10-10 00:14:31
+131	Ing. Mecánica 	2	2015-10-10 00:14:31	2015-10-10 00:14:31
+132	Ing. Química 	2	2015-10-10 00:14:31	2015-10-10 00:14:31
+133	Ing. Industrial 	2	2015-10-10 00:14:31	2015-10-10 00:14:31
+134	Química Industrial 	2	2015-10-10 00:14:31	2015-10-10 00:14:31
+135	Ing. Eléctrica	2	2015-10-10 00:14:31	2015-10-10 00:14:31
+136	Ing. Medio Ambiental	2	2015-10-10 00:14:31	2015-10-10 00:14:31
+137	Mec. Automotriz 	2	2015-10-10 00:14:31	2015-10-10 00:14:31
+138	Maq. Elect.,Instalac. Resid. e Ind. 	2	2015-10-10 00:14:31	2015-10-10 00:14:31
+139	Radio-TV y Computación 	2	2015-10-10 00:14:31	2015-10-10 00:14:31
+140	Construcciones Civiles 	2	2015-10-10 00:14:31	2015-10-10 00:14:31
+141	Radio y Televisión 	2	2015-10-10 00:14:31	2015-10-10 00:14:31
+142	Ing. de Sistemas	2	2015-10-10 00:14:56	2015-10-10 00:14:56
+143	Ingeniería Civil	4	2015-10-10 00:19:18	2015-10-10 00:19:18
+144	Ingeniería De Alimentos	4	2015-10-10 00:19:18	2015-10-10 00:19:18
+145	Ingeniería De Sistemas	4	2015-10-10 00:19:18	2015-10-10 00:19:18
+146	Ingeniería Eléctrica	4	2015-10-10 00:19:18	2015-10-10 00:19:18
+147	Ingeniería Electrónica	4	2015-10-10 00:19:18	2015-10-10 00:19:18
+148	Ingeniería Electromecánica	4	2015-10-10 00:19:18	2015-10-10 00:19:18
+149	Ingeniería Industrial	4	2015-10-10 00:19:18	2015-10-10 00:19:18
+150	Ingeniería en Informática	4	2015-10-10 00:19:18	2015-10-10 00:19:18
+151	Ingeniería Matemática	4	2015-10-10 00:19:18	2015-10-10 00:19:18
+152	Ingeniería Mecánica	4	2015-10-10 00:19:18	2015-10-10 00:19:18
+153	Ingeniería Química	4	2015-10-10 00:19:18	2015-10-10 00:19:18
+154	Ingeniería de Minas	9	2015-10-10 00:22:08	2015-10-10 00:22:08
+155	Ingeniería Civil	9	2015-10-10 00:22:08	2015-10-10 00:22:08
+156	Ingeniería Metalúrgica	9	2015-10-10 00:22:08	2015-10-10 00:22:08
+157	Ingeniería Mecánica	9	2015-10-10 00:22:08	2015-10-10 00:22:08
+158	Ingeniería Eléctrica	9	2015-10-10 00:22:08	2015-10-10 00:22:08
+159	Ingeniería de Procesos Químicos	9	2015-10-10 00:22:08	2015-10-10 00:22:08
+160	Ingeniería Geológica	9	2015-10-10 00:22:08	2015-10-10 00:22:08
+161	Ingeniería de Sistemas	9	2015-10-10 00:22:08	2015-10-10 00:22:08
+162	Ingeniería Industrial	9	2015-10-10 00:22:08	2015-10-10 00:22:08
+163	Programa Ingeniería Electromecánica	9	2015-10-10 00:22:08	2015-10-10 00:22:08
+164	Programa Ingeniería Electrónica	9	2015-10-10 00:22:08	2015-10-10 00:22:08
+165	Programa Ingeniería Informática	9	2015-10-10 00:22:08	2015-10-10 00:22:08
+166	Programa Ingeniería de Materiales	9	2015-10-10 00:22:08	2015-10-10 00:22:08
+167	Electrónica	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+168	Ofimática	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+169	Siderurgia	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+170	Construcciones civiles	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+171	Facultad de Ciencias agrícolas	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+172	Ciencias ambientales	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+173	Ingeniería agronómica	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+174	Biología	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+175	Facultad de Ciencias económicas y financieras	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+176	Ingeniería comercial	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+177	Economía	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+178	Ingeniería financiera	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+179	Facultad de Ciencias exactas y tecnología	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+180	Ingeniería ambiental	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+181	Ingeniería civil	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+182	Ingeniería electromecánica	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+183	Ingeniería Industrial	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+184	Ingeniería petrolera	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+185	Ingeniería química	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+186	Ingeniería en control de procesos	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+187	Facultad de Ingeniería en Ciencias de la Computación y Telecomunicaciones	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+188	Ingeniería en sistemas	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+189	Ingeniería en redes y telecomunicaciones	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+190	Facultad de Ciencias jurídicas, políticas, sociales y relaciones internacionales	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+191	Ciencia política y Administración pública	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+192	Derecho	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+193	Trabajo social	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+194	Facultad de Ciencias veterinarias y zootecnia	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+195	Facultad de humanidades	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+196	Ciencias de la educación	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+197	Ciencias de la educación distancia-bachilleres	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+198	Ciencias de la comunicación	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+199	Ciencias de la comunicación distanc.	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+200	Sociología	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+201	Psicología	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+202	Gestión del turismo	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+203	Lenguas modernas y filología hispánica	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+204	Actividad física	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+205	Facultad de Ciencias de la salud humana	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+206	Enfermería	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+207	Odontología	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+208	Facultad de Ciencias Farmacéuticas y Bioquímicas	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+209	Bioquímica	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+210	Facultad de Ciencias del hábitat, diseño y arte	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+211	Planificación territorial	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+212	Facultad de Auditoría financiera o Contaduría pública	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+213	Información y control de gestión	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+214	Facultad de Integral del norte	13	2015-10-10 00:26:03	2015-10-10 00:26:03
+215	Ciencias de la Educación	13	2015-10-10 00:26:04	2015-10-10 00:26:04
+216	Veterinaria y Zootecnia	13	2015-10-10 00:26:04	2015-10-10 00:26:04
+217	Ingeniería Industrial	13	2015-10-10 00:26:04	2015-10-10 00:26:04
+218	Ingeniería Petrolera	13	2015-10-10 00:26:04	2015-10-10 00:26:04
+219	Ingeniería en sistemas	13	2015-10-10 00:26:04	2015-10-10 00:26:04
+220	Ingeniería Comercial	13	2015-10-10 00:26:04	2015-10-10 00:26:04
+221	Contaduría Pública	13	2015-10-10 00:26:04	2015-10-10 00:26:04
+222	Ingeniería Agrícola	13	2015-10-10 00:26:04	2015-10-10 00:26:04
+\.
+
+
+--
+-- TOC entry 2433 (class 0 OID 0)
+-- Dependencies: 182
+-- Name: carrera_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('carrera_id_seq', 222, true);
+
+
+--
+-- TOC entry 2402 (class 0 OID 17092)
+-- Dependencies: 187
+-- Data for Name: deposito; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY deposito (id, codigo, monto, fecha, hora, depositante, ci_depositante, imgboleta, remember_token, "idPa", created_at, updated_at, url, absurl, estado) FROM stdin;
+13	1215655588	250	2015-10-16	21:00:00	chocolate	2548962	1445107371fanart.jpg	Hk9Y71l0I8Vb7uSc8iuEwUZz7DfEkZWjUYKFn71L	16	2015-10-17 13:42:52	2015-10-17 13:42:52	http://localhost:8000/participante/senddeposito	http://localhost:8000/participante/senddeposito	proceso
+8	123456789144	250	2015-10-15	15:00:00	Samuel Jackson	6609709	1444944174icon.png	Y8uNfyFHJ1CgzBKkPbjgedzL2HUn51sDoxQ8GiHT	10	2015-10-15 16:22:54	2015-10-15 16:22:54	http://localhost:8000:8000/participante/senddeposito	http://localhost:8000:8000/participante/senddeposito	correcto
+10	123456789141	250	2015-10-15	11:30:00	Samuel Jackson	7894561	1444955214icon.png	4wUCPuJY0tqzOajzEWfxXhN9kGH374ozdZsdrEOz	13	2015-10-15 19:26:54	2015-10-15 19:26:54	http://localhost:8000/participante/senddeposito	http://localhost:8000/participante/senddeposito	correcto
+11	12345678917	350	2015-10-15	22:45:00	Samuel Jackson	6609709	1444955516icon.png	4wUCPuJY0tqzOajzEWfxXhN9kGH374ozdZsdrEOz	14	2015-10-15 19:31:56	2015-10-15 19:31:56	http://localhost:8000/participante/senddeposito	http://localhost:8000/participante/senddeposito	observado
+12	3698521478	250	2015-10-17	03:50:00	Juan Perez	7894561	1445106495icon.png	Hk9Y71l0I8Vb7uSc8iuEwUZz7DfEkZWjUYKFn71L	15	2015-10-17 13:28:15	2015-10-17 13:28:15	http://localhost:8000/participante/senddeposito	http://localhost:8000/participante/senddeposito	proceso
+\.
+
+
+--
+-- TOC entry 2434 (class 0 OID 0)
+-- Dependencies: 186
+-- Name: deposito_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('deposito_id_seq', 13, true);
+
+
+--
+-- TOC entry 2410 (class 0 OID 17142)
+-- Dependencies: 195
+-- Data for Name: deposito_participantes; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY deposito_participantes (id, id_participante, codigo, fecha, hora, depositante, ci_depositante, imgboleta, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2435 (class 0 OID 0)
+-- Dependencies: 194
+-- Name: deposito_participantes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('deposito_participantes_id_seq', 1, false);
+
+
+--
+-- TOC entry 2387 (class 0 OID 16913)
+-- Dependencies: 172
+-- Data for Name: migrations; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY migrations (migration, batch) FROM stdin;
+2014_10_12_000000_create_users_table	1
+2014_10_12_100000_create_password_resets_table	1
+2015_09_24_042437_paises	1
+2015_09_24_042848_create_ciudad_table	1
+2015_09_24_044424_create_table_universidades	1
+2015_09_24_045034_create_table_carrera	1
+2015_09_24_045046_create_table_participante	1
+2015_09_24_052626_table_add_user_foreignkey	1
+2015_09_24_052920_create_table_deposito	2
+2015_09_24_221859_agregar_columna_url_deposito	2
+2015_09_25_233043_create_posts_table	2
+2015_09_26_002313_add_slug_to_posts_table	2
+2015_09_30_025433_create_tiempos_table	2
+2015_10_02_135303_create_model_participantes_table	2
+2015_10_02_135317_create_deposito_participantes_table	2
+2015_10_13_005052_addrolUser	3
+2015_10_15_170019_addEstadoDeposito	4
+\.
+
+
+--
+-- TOC entry 2408 (class 0 OID 17127)
+-- Dependencies: 193
+-- Data for Name: model_participantes; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY model_participantes (id, nombres, apellidos, nick, ci, semestre, sexo, emails, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2436 (class 0 OID 0)
+-- Dependencies: 192
+-- Name: model_participantes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('model_participantes_id_seq', 1, false);
+
+
+--
+-- TOC entry 2400 (class 0 OID 16987)
+-- Dependencies: 185
+-- Data for Name: participante; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY participante (id, nombres, apellidos, nick, ci, sexo, estado, semestre, emails, remember_token, "idUni", "idCa", "idPais", "idCi", created_at, updated_at, "idUs") FROM stdin;
+9	Ditmar David	Castro Angulo	Ditmar	6609709	Masculino	f	sexto semestre	ditmarcastro@gmail.com	hVTQdObpHGhJfuKBHEVHQl86vgJssL4kKzykbpry	1	113	1	30	2015-10-13 01:35:15	2015-10-13 01:35:15	5
+11	kate	Estampida	kate	7894565	Masculino	f	sexto Semestre	kate@gmail.com	E0BlGWcm3olCl7Vse26idY9G5CMLmbIp4BmU0dG8	2	118	1	29	2015-10-13 13:50:17	2015-10-13 13:50:17	7
+12	mario	loredo	marion	7894515	Femenino	f	Sexto Semestre	spyatorio@gmail.com	E0BlGWcm3olCl7Vse26idY9G5CMLmbIp4BmU0dG8	1	113	1	29	2015-10-13 13:51:57	2015-10-13 13:51:57	8
+13	Juan	Perez Rodriguez	Juancho	7412589	Masculino	f	Octavo Semestre	rat_zi_@hotmail.com	4wUCPuJY0tqzOajzEWfxXhN9kGH374ozdZsdrEOz	13	188	1	33	2015-10-15 18:42:24	2015-10-15 18:42:24	9
+14	Gustavo	Alonzo Mamani	replay	1478523	Femenino	f	Segundo Semestre	gusgus@gmail.com	4wUCPuJY0tqzOajzEWfxXhN9kGH374ozdZsdrEOz	10	99	1	29	2015-10-15 19:29:55	2015-10-15 19:29:55	10
+10	Fernando	Loredo	Oso	7894561	Masculino	f	sexto Semestre	gary@gmail.com	E0BlGWcm3olCl7Vse26idY9G5CMLmbIp4BmU0dG8	7	13	1	145	2015-10-13 13:44:54	2015-10-13 13:44:54	6
+15	 Juan Pablo	Choque	Juanchocalancho	8523697	Masculino	f	Noveno Semestre	juan@gmail.com	Hk9Y71l0I8Vb7uSc8iuEwUZz7DfEkZWjUYKFn71L	10	84	1	29	2015-10-17 13:23:45	2015-10-17 13:23:45	11
+16	nevy ratzy	Loredo Almendras	tigrito	6702136	Masculino	f	primer semestre	Nevy_Ratzy_LA@hotmail.com	Hk9Y71l0I8Vb7uSc8iuEwUZz7DfEkZWjUYKFn71L	10	106	1	29	2015-10-17 13:38:52	2015-10-17 13:38:52	12
+\.
+
+
+--
+-- TOC entry 2437 (class 0 OID 0)
+-- Dependencies: 184
+-- Name: participante_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('participante_id_seq', 16, true);
+
+
+--
+-- TOC entry 2390 (class 0 OID 16932)
+-- Dependencies: 175
+-- Data for Name: password_resets; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY password_resets (email, token, created_at) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2404 (class 0 OID 17108)
+-- Dependencies: 189
+-- Data for Name: posts; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY posts (id, id_usuario, title, content, tags, photo, remember_token, created_at, updated_at, slug) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2438 (class 0 OID 0)
+-- Dependencies: 188
+-- Name: posts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('posts_id_seq', 1, false);
+
+
+--
+-- TOC entry 2406 (class 0 OID 17119)
+-- Dependencies: 191
+-- Data for Name: tiempos; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tiempos (id, dia, mes, anio, hora, minutos, segundos, created_at, updated_at) FROM stdin;
+1	16	11	2015	8	0	0	2015-10-09 00:00:00	2015-10-09 00:00:00
+\.
+
+
+--
+-- TOC entry 2439 (class 0 OID 0)
+-- Dependencies: 190
+-- Name: tiempos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('tiempos_id_seq', 1, false);
+
+
+--
+-- TOC entry 2389 (class 0 OID 16918)
+-- Dependencies: 174
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY users (id, username, email, nombres, apellidos, password, remember_token, created_at, updated_at, active, rol) FROM stdin;
+5	Ditmar	ditmarcastro@gmail.com	Ditmar David	Castro Angulo	$2y$10$CiZZQLJGaQfym/s6sMOQGuz0C7NH6wdKRHwE9fF4wGW6Y3E/uQOiG	Ci04sU2Chp973s39qEDlgSJCGbtazxJEn07vUNugs8uR7t55Cr54b20GeZal	2015-10-13 01:35:15	2015-10-13 23:40:43	t	admin
+9	Juancho	rat_zi_@hotmail.com	Juan	Perez Rodriguez	$2y$10$KqVkZ52Pl7XYVXqFMbOEH.sSZGQRDfEbCSfVNRuSWlC4pTGIU3Mki	xNlRxLfCuGJktnL84hvwVGxIw9w4pvTxV7LNCLfc5bToEdE9UywGHMX63kYR	2015-10-15 18:42:24	2015-10-15 19:28:35	t	participante
+1	Libre	Libre@gmail.com	libre	registro	$2y$10$clRyj71S7Craav4oPDqG6uTO5Fd9hMmDpppXShEaQ.xanrJOidYjm	\N	2015-10-04 09:58:11	2015-10-04 09:58:11	t	admin
+3	David123	David123@gmail.com	choque gutierres	sanches luz	$2y$10$LMTET4Qa4T59.9NOoaChA.NYRY3R0OxmNgC5K.J8LRYuu7.QCdmy.	\N	2015-10-04 09:58:11	2015-10-04 09:58:11	t	admin
+7	kate	kate@gmail.com	kate	Estampida	$2y$10$M0OiDekSi7MaG28w25ImQ.O/wsykHIIOMdrnl6yH5fvNUIyjIjtYO	E0BlGWcm3olCl7Vse26idY9G5CMLmbIp4BmU0dG8	2015-10-13 13:50:17	2015-10-13 13:50:17	t	participante
+2	Jose123	jose123@gmail.com	jose martin	lopez sans	$2y$10$jzhalBrOCGUApdnSfq4VQee.egiRgH4Zkj0iWjd.m4U4IUCHi96c.	eXTJwdPgNxCuSI2wE9THLO3i3x6jTtRSEobxdnwNKWjkLH3n5uSAxgms2qSK	2015-10-04 09:58:11	2015-10-16 00:41:37	t	admin
+10	replay	gusgus@gmail.com	Gustavo	Alonzo Mamani	$2y$10$m9dKNqaKNtrPldQuo.Ci7.wdB5jiobfe.1ln.L3Waefg4EwUr5wzy	4hn2Jz3eY1utLxkfHnRbc8W3np0hpAvujakKNtJ7dDs9dGUYqmSwqcVWobzm	2015-10-15 19:29:55	2015-10-16 00:42:18	t	participante
+8	marion	spyatorio@gmail.com	mario	loredo	$2y$10$z2GkqVfVqsHaCbZGHdMV..oPGlE6z5vP47H4Lq4O8t4BZWoK8SILO	aI0ABeINKaQVJUwD4hiYLQiOVxDYIM9PrFSbT9rXAHZKfOyWWdhJkTOTMa7V	2015-10-13 13:51:57	2015-10-13 23:07:46	t	participante
+6	bash	gary@gmail.com	bash	Estampida	$2y$10$EGD1.XxxFSxdbRse51R9OuswQ1xpCi85JGNzYGS6Ez.JWghnpO386	9QWkZZmXNWwLpGPpjgMTf5m1gMjsgsYS9GvA5xIM2oeuUbyUxtgk9D2wd6Uu	2015-10-13 13:44:53	2015-10-16 00:45:24	t	participante
+11	Juanchocalancho	juan@gmail.com	Juan	Choque	$2y$10$FXdTg4XcO/b57szfAa60zuNgYvSUhFtWhzGI7VRhGnoPZ4lQ5FSgS	A2LLDYcbBA9kcH0rCUQ3RSw3HjbjZRfkKWSZMJJkfRqisDdCjNO7iX4iKZwk	2015-10-17 13:23:44	2015-10-17 13:28:35	t	participante
+12	tigrito	Nevy_Ratzy_LA@hotmail.com	nevy ratzy	Loredo Almendras	$2y$10$MdEkd19DembahS57191zBOooB16iWzaHczzhDb50phmLID1rNyK3q	Hk9Y71l0I8Vb7uSc8iuEwUZz7DfEkZWjUYKFn71L	2015-10-17 13:38:52	2015-10-17 13:38:52	t	participante
+\.
+
+
+--
+-- TOC entry 2440 (class 0 OID 0)
+-- Dependencies: 173
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('users_id_seq', 12, true);
+
+
+--
+-- TOC entry 2247 (class 2606 OID 16958)
+-- Name: Ciudad_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY "Ciudad"
+    ADD CONSTRAINT "Ciudad_pkey" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2245 (class 2606 OID 16950)
+-- Name: Paises_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY "Paises"
+    ADD CONSTRAINT "Paises_pkey" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2249 (class 2606 OID 16971)
+-- Name: Universidad_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY "Universidad"
+    ADD CONSTRAINT "Universidad_pkey" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2251 (class 2606 OID 16979)
+-- Name: carrera_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY carrera
+    ADD CONSTRAINT carrera_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2267 (class 2606 OID 17152)
+-- Name: deposito_participantes_codigo_unique; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY deposito_participantes
+    ADD CONSTRAINT deposito_participantes_codigo_unique UNIQUE (codigo);
+
+
+--
+-- TOC entry 2269 (class 2606 OID 17150)
+-- Name: deposito_participantes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY deposito_participantes
+    ADD CONSTRAINT deposito_participantes_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2255 (class 2606 OID 17100)
+-- Name: deposito_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY deposito
+    ADD CONSTRAINT deposito_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2261 (class 2606 OID 17139)
+-- Name: model_participantes_ci_unique; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY model_participantes
+    ADD CONSTRAINT model_participantes_ci_unique UNIQUE (ci);
+
+
+--
+-- TOC entry 2263 (class 2606 OID 17137)
+-- Name: model_participantes_nick_unique; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY model_participantes
+    ADD CONSTRAINT model_participantes_nick_unique UNIQUE (nick);
+
+
+--
+-- TOC entry 2265 (class 2606 OID 17135)
+-- Name: model_participantes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY model_participantes
+    ADD CONSTRAINT model_participantes_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2253 (class 2606 OID 16996)
+-- Name: participante_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY participante
+    ADD CONSTRAINT participante_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2257 (class 2606 OID 17116)
+-- Name: posts_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY posts
+    ADD CONSTRAINT posts_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2259 (class 2606 OID 17124)
+-- Name: tiempos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tiempos
+    ADD CONSTRAINT tiempos_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2237 (class 2606 OID 16931)
+-- Name: users_email_unique; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_email_unique UNIQUE (email);
+
+
+--
+-- TOC entry 2239 (class 2606 OID 16927)
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2241 (class 2606 OID 16929)
+-- Name: users_username_unique; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_username_unique UNIQUE (username);
+
+
+--
+-- TOC entry 2242 (class 1259 OID 16938)
+-- Name: password_resets_email_index; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX password_resets_email_index ON password_resets USING btree (email);
+
+
+--
+-- TOC entry 2243 (class 1259 OID 16939)
+-- Name: password_resets_token_index; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX password_resets_token_index ON password_resets USING btree (token);
+
+
+--
+-- TOC entry 2271 (class 2606 OID 16980)
+-- Name: carrera_iduni_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY carrera
+    ADD CONSTRAINT carrera_iduni_foreign FOREIGN KEY ("idUni") REFERENCES "Universidad"(id);
+
+
+--
+-- TOC entry 2270 (class 2606 OID 16959)
+-- Name: ciudad_idpais_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "Ciudad"
+    ADD CONSTRAINT ciudad_idpais_foreign FOREIGN KEY ("idPais") REFERENCES "Paises"(id) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 2277 (class 2606 OID 17101)
+-- Name: deposito_idpa_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY deposito
+    ADD CONSTRAINT deposito_idpa_foreign FOREIGN KEY ("idPa") REFERENCES participante(id);
+
+
+--
+-- TOC entry 2273 (class 2606 OID 17002)
+-- Name: participante_idca_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY participante
+    ADD CONSTRAINT participante_idca_foreign FOREIGN KEY ("idCa") REFERENCES carrera(id);
+
+
+--
+-- TOC entry 2275 (class 2606 OID 17012)
+-- Name: participante_idci_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY participante
+    ADD CONSTRAINT participante_idci_foreign FOREIGN KEY ("idCi") REFERENCES "Ciudad"(id);
+
+
+--
+-- TOC entry 2274 (class 2606 OID 17007)
+-- Name: participante_idpais_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY participante
+    ADD CONSTRAINT participante_idpais_foreign FOREIGN KEY ("idPais") REFERENCES "Paises"(id);
+
+
+--
+-- TOC entry 2272 (class 2606 OID 16997)
+-- Name: participante_iduni_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY participante
+    ADD CONSTRAINT participante_iduni_foreign FOREIGN KEY ("idUni") REFERENCES "Universidad"(id);
+
+
+--
+-- TOC entry 2276 (class 2606 OID 17017)
+-- Name: participante_idus_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY participante
+    ADD CONSTRAINT participante_idus_foreign FOREIGN KEY ("idUs") REFERENCES users(id);
+
+
+--
+-- TOC entry 2417 (class 0 OID 0)
+-- Dependencies: 5
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+-- Completed on 2015-10-17 15:02:05 BOT
+
+--
+-- PostgreSQL database dump complete
+--
+
