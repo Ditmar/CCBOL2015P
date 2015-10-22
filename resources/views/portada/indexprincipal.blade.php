@@ -15,7 +15,7 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
         <div class="item active">
-          <img src="img/4.jpg" alt="First slide"/>
+          <img src="img/banner3.png" alt="First slide"/>
                   <!-- Static Headers -->
                   <div class="header-text hidden-xs">
                       <div align="center">
@@ -41,7 +41,6 @@
                           <br>
                           <div class="">
                                <a class="btn btn-theme btn-sm btn-min-block" href="#registro">Registrate Ya</a>
-                               <a class="btn btn-theme btn-sm btn-min-block" href="{{URL::to('verificar')}}">Verificar su Registro</a>
                           </div>
                           <h3>Falta</h3>
                       </div>
@@ -276,7 +275,9 @@ st->op1->op2->op3->e
                   <a class="btn btn-primary" href="/logout" role="button">Cerrar Sesion</a>
                 </p>
               @endif
-              
+                <div class="posibleerror">
+                  
+                </div>
               </div>
     				</div>
     			</div>
@@ -1067,6 +1068,9 @@ $("#registro-participante").submit(function(){
         var errores=html.errors;
         var listerror=Object.keys(errores);
         //console.log(html.catpcha);
+        $(".posibleerror").html("<span class='label label-danger'>Existen errores en el formulario</span>");
+        var top=$(document).scrollTop();
+        window.scrollTo(0,top-400);
         for(var i=0;i<listerror.length;i++)
         {
           $("#"+listerror[i]).html(errores[listerror[i]]);
@@ -1095,6 +1099,8 @@ $("#registro-participante").submit(function(){
         $("#btnregister").attr('disabled',false); 
     }else
     {
+      var top=$(document).scrollTop();
+      window.scrollTo(0,top-550);
 
       $(".formcontent").html(html.msn);
     }
@@ -1141,6 +1147,7 @@ $("#registro-participante").submit(function(){
 	});
 
 $("#pais").change( function(event) {
+
 		$.ajax({
 			type: 'post',
 			url: '/ciudades',
