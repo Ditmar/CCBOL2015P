@@ -49,33 +49,7 @@
 
     </div>
     <!-- Controls -->
-    <style>
-        #Temporizador{
-          position:absolute;
-          z-index:1000;
-          top:450px;
-          margin-left:auto;
-          width:100%;
-          text-align:center;
-          display:block;
-          font-size: 90px;
-        }
-        #Mediciones{
-          position:absolute;
-          z-index:1000;
-          text-align: center;
-          top:495px;
-          display:block;
-          font-size: 20px;
-          width:30%;
-          margin-left:35%;
-          -moz-border-radius: 10px;
-          -webkit-border-radius: 10px;
-        }
-        #TT{
-          width:100%;
-        }
-    </style>
+    
     <div id="Temporizador"></div>
     <div id="Mediciones">
       <table id="TT">
@@ -783,7 +757,6 @@ st->op1->op2->op3->e
         <div class="section-heading text-center">
         <h2 class="h-bold">Expositores</h2>
         <div class="divider-header"></div>
-        <p>Lorem ipsum dolor sit amet, agam perfecto sensibus usu at duo ut iriure.</p>
         </div>
         </div>
       </div>
