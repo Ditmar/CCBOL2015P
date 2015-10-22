@@ -929,115 +929,8 @@ a.btn:focus{
 
 /* Media queries */
 
-@media(min-width:767px) {
-
-    .navbar {
-        padding: 20px 0;
-        border-bottom: 0;
-        letter-spacing: 1px;
-        background: 0 0;
-        -webkit-transition: background .5s ease-in-out,padding .5s ease-in-out;
-        -moz-transition: background .5s ease-in-out,padding .5s ease-in-out;
-        transition: background .5s ease-in-out,padding .5s ease-in-out;
-    }
-
-    .top-nav-collapse {
-        padding: 0;
-        background-color: #000;
-    }
-
-    .navbar-custom.top-nav-collapse {
-        border-bottom: 1px solid rgba(255,255,255,.3);
-    }
-	
-    .intro {
-        height: 100%;
-        padding: 0;
-    }
-
-    .brand-heading {
-        font-size: 100px;
-    }
-	
-
-    .intro-text {
-        font-size: 25px;
-    }
 
 
-}
-@media (max-width:768px) {
-	#Temporizador{
-          position:absolute;
-          z-index:1000;
-          top:50px;
-          margin-left:auto;
-          width:100%;
-          text-align:center;
-          display:block;
-          font-size: 20px;
-        }
-        #Mediciones{
-          position:absolute;
-          z-index:1000;
-          text-align: center;
-          top:495px;
-          display:block;
-          font-size: 10px;
-          width:30%;
-          margin-left:35%;
-          -moz-border-radius: 10px;
-          -webkit-border-radius: 10px;
-        }
-	#navigation {
-		padding: 20px 0;
-	}
-	.site-logo{
-		margin: 0 0 0 30px;
-		float:none;
-	}
-	.navbar-custom ul.nav li a {
-		color: #eee;
-	}
-	.navbar-custom ul.nav ul.dropdown-menu li {
-		border-bottom: 1px solid #aaa;
-
-	}
-	.navbar-header {
-		margin-top:-40px;
-		padding:0;
-	}
-	.navbar-header button {
-		background: #111;
-	}
-	
-	.navbar-header button.navbar-toggle {
-		padding: 4px 15px;
-		font-size: 14px;
-		color: #fff;
-	}
-	
-	.navbar-custom .nav {
-		background: #444;
-	}
-	
-	.service-box {
-		margin-bottom: 50px;
-	}
-	
-	.team-wrap {
-		margin-bottom: 30px;
-	}
-	
-	form#contact-form {
-		margin-bottom: 50px;
-	}
-	
-	.xs-marginbot-20 {
-		margin-bottom: 20px;
-	}
-
-}
 h1{
 	font-size:108px;
 	color:#fff;
@@ -1100,6 +993,160 @@ h1{
         #TT{
           width:100%;
         }
+@media(min-width:767px) {
+
+    .navbar {
+        padding: 20px 0;
+        border-bottom: 0;
+        letter-spacing: 1px;
+        background: 0 0;
+        -webkit-transition: background .5s ease-in-out,padding .5s ease-in-out;
+        -moz-transition: background .5s ease-in-out,padding .5s ease-in-out;
+        transition: background .5s ease-in-out,padding .5s ease-in-out;
+    }
+
+    .top-nav-collapse {
+        padding: 0;
+        background-color: #000;
+    }
+
+    .navbar-custom.top-nav-collapse {
+        border-bottom: 1px solid rgba(255,255,255,.3);
+    }
+	
+    .intro {
+        height: 100%;
+        padding: 0;
+    }
+
+    .brand-heading {
+        font-size: 100px;
+    }
+	
+
+    .intro-text {
+        font-size: 25px;
+    }
+
+
+}
+@media (max-width: 1000px)
+{
+	h1{
+		font-size:58px;
+		color:#fff;
+		display:block;
+		width:100%;
+		margin-top:-70px;
+	}
+	h3{
+		font-size:28px;
+	}
+	.site-logo-d
+{
+	box-shadow:0px 0px 5px #ccc;
+	border-radius:3px;
+	overflow:hidden;
+	position:absolute;
+	margin-top:-200px;
+	z-index:999;
+}
+#Temporizador{
+          position:absolute;
+          z-index:1000;
+          top:90px;
+          margin-left:auto;
+          width:100%;
+          text-align:center;
+          display:block;
+          font-size: 20px;
+        }
+        #Mediciones{
+          position:absolute;
+          z-index:1000;
+          text-align: center;
+          top:100px;
+          display:block;
+          font-size: 10px;
+          width:30%;
+          margin-left:35%;
+          -moz-border-radius: 10px;
+          -webkit-border-radius: 10px;
+        }
+}
+@media (max-width:768px) {
+	
+	#Temporizador{
+          position:absolute;
+          z-index:1000;
+          top:50px;
+          margin-left:auto;
+          width:100%;
+          text-align:center;
+          display:block;
+          font-size: 20px;
+        }
+        #Mediciones{
+          position:absolute;
+          z-index:1000;
+          text-align: center;
+          top:60px;
+          display:block;
+          font-size: 10px;
+          width:30%;
+          margin-left:35%;
+          -moz-border-radius: 10px;
+          -webkit-border-radius: 10px;
+        }
+	#navigation {
+		padding: 20px 0;
+	}
+	.site-logo{
+		margin: 0 0 0 30px;
+		float:none;
+	}
+	.navbar-custom ul.nav li a {
+		color: #eee;
+	}
+	.navbar-custom ul.nav ul.dropdown-menu li {
+		border-bottom: 1px solid #aaa;
+
+	}
+	.navbar-header {
+		margin-top:-40px;
+		padding:0;
+	}
+	.navbar-header button {
+		background: #111;
+	}
+	
+	.navbar-header button.navbar-toggle {
+		padding: 4px 15px;
+		font-size: 14px;
+		color: #fff;
+	}
+	
+	.navbar-custom .nav {
+		background: #444;
+	}
+	
+	.service-box {
+		margin-bottom: 50px;
+	}
+	
+	.team-wrap {
+		margin-bottom: 30px;
+	}
+	
+	form#contact-form {
+		margin-bottom: 50px;
+	}
+	
+	.xs-marginbot-20 {
+		margin-bottom: 20px;
+	}
+
+}
 @media (max-width:500px) {
 h1
 {
