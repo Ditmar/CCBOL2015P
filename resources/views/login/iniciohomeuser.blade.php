@@ -1,7 +1,7 @@
 @extends('blog.mainblog')
 @section('title'){{$user}}@endsection
 @section('content')
-	@include('blog.partials.mainmenuusers')
+@include('blog.partials.mainmenuusers')
 <div class="row-fluid">
 		<div class="container" id="admin">
 			@if(\Session::has('alert'))

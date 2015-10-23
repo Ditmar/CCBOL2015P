@@ -48,14 +48,19 @@
                 
 
                 <div align="center">
-                <span class="btn btn-primary btn-file">
-                Boleta de Deposito<input type="file" name="boleta" class="form-control" accept="image/*"  onchange="showMyImage(this)">
-                </span>
-                <img id="thumbnil" style="width:40%; margin-top:10px;"  src=""/>
-                <div class="bg-danger">{{$errors->first('boleta')}}</div>
-
-                   </div>
+                    <span class="btn btn-primary btn-file">
+                    Boleta de Deposito<input type="file" name="boleta" class="form-control" accept="image/*"  onchange="showMyImage(this)">
+                    </span>
+                    <img id="thumbnil" style="width:40%; margin-top:10px;"  src=""/>
+                    <div class="bg-danger">{{$errors->first('boleta')}}</div>
+                   </div>                   
                 </div>
+                <div class="form-group" id="capp">
+                  
+                    @include("portada.captcha")
+
+                </div>
+
 </div>
 <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-piggy-bank"></span>Registrar</button>
 </form>

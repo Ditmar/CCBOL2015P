@@ -628,7 +628,7 @@ st->op1->op2->op3->e
              Expositor José Daniel Alberto Constan
             Origen: Argentina
           </p>
-          <a href="#" class="btn btn-skin"><img src="img/b/Argentina.png" alt=""></a>
+          <a href="#" class="btn btn-skin"><img src="img/b/argentina.png" alt=""></a>
         </div>
               </div>
       </div>
@@ -681,7 +681,7 @@ st->op1->op2->op3->e
             Expositor: Jared Lopez
             Origen: Bolivia
           </p>
-          <a href="#" class="btn btn-skin"><img src="img/b/Bolivia48.png" alt=""></a>
+          <a href="#" class="btn btn-skin"><img src="img/b/bolivia48.png" alt=""></a>
         </div>
               </div>
       </div>
@@ -735,7 +735,7 @@ st->op1->op2->op3->e
             Expositor: M.Sc. Lilien Beatriz Garay Fernández
             Origen: Paraguay
           </p>
-          <a href="#" class="btn btn-skin"><img src="img/b/Paraguay.png" alt=""></a>
+          <a href="#" class="btn btn-skin"><img src="img/b/paraguay.png" alt=""></a>
         </div>
               </div>
       </div>
@@ -993,25 +993,25 @@ var loaddata=function(){
     if(data.succes)
     {
       var ciudad=data.ciudad;
-      $('#ciudad').html('');
-      $('#ciudad').append($('<option></option>').text('Seleccione un ciudad').val(''));
+      $('#ciudad1').html('');
+      $('#ciudad1').append($('<option></option>').text('Seleccione un ciudad').val(''));
       $.each(ciudad, function(i) {
-        $('#ciudad').append("<option value="+ciudad[i].id+">"+ciudad[i].nombre+"</option>");
+        $('#ciudad1').append("<option value="+ciudad[i].id+">"+ciudad[i].nombre+"</option>");
       });
 
-      setCursor(data.sessiones.idPais,"pais");
-      setCursor(data.sessiones.idCi,"ciudad");
-      setCursor(data.sessiones.idUni,"universidad");
-      $('#ciudad').select2();
+      setCursor(data.sessiones.idPais,"pais1");
+      setCursor(data.sessiones.idCi,"ciudad1");
+      setCursor(data.sessiones.idUni,"universidad1");
+      $('#ciudad1').select2();
       var carrera=data.carrera;
-      $('#carrera').html('');
-      $('#carrera').append($('<option></option>').text('Seleccione una carrera').val(''));
+      $('#carrera1').html('');
+      $('#carrera1').append($('<option></option>').text('Seleccione una carrera').val(''));
       $.each(carrera, function(i) {
-        $('#carrera').append("<option value="+carrera[i].id+">"+carrera[i].nombre+"</option>");
+        $('#carrera1').append("<option value="+carrera[i].id+">"+carrera[i].nombre+"</option>");
       });
 
-      setCursor(data.sessiones.idCa,"carrera");
-      $('#carrera').select2();
+      setCursor(data.sessiones.idCa,"carrera1");
+      $('#carrera1').select2();
     }
   })
   .fail(function() {
@@ -1022,8 +1022,15 @@ var loaddata=function(){
   });
 }
 loaddata();
+var datainformation=[];
 jQuery(document).ready(function() {
 $("#registro-participante").submit(function(){
+  //Borrar errores
+  for(var i=0;i<datainformation.length;i++)
+  {
+    $("#"+datainformation[i]).html("");
+  }
+
   var entrydata=$(this).serializeObject();
   $("#btnregister").html("Enviando Registro, Espere porfavor");
   $("#btnregister").attr('disabled', true);
@@ -1038,12 +1045,15 @@ $("#registro-participante").submit(function(){
     console.log(html);
     if(html.success==false)
     {
+        $("#pass").val("");
+        $("#repass").val("");
         var errores=html.errors;
         var listerror=Object.keys(errores);
         //console.log(html.catpcha);
         $(".posibleerror").html("<span class='label label-danger'>Existen errores en el formulario</span>");
         var top=$(document).scrollTop();
         window.scrollTo(0,top-400);
+        datainformation=listerror;
         for(var i=0;i<listerror.length;i++)
         {
           $("#"+listerror[i]).html(errores[listerror[i]]);
@@ -1098,28 +1108,28 @@ $("#registro-participante").submit(function(){
 	$.getJSON('paises', function( paiss ){
     var pais=paiss.pais;
 		//console.log(pais[1].nombre)
-		$('#pais').html('');
-		$('#pais').append($('<option></option>').text('Seleccione un pais').val(''));
+		$('#pais1').html('');
+		$('#pais1').append($('<option></option>').text('Seleccione un pais').val(''));
 		$.each(pais, function(i) {
-			$('#pais').append("<option value="+pais[i].id+">"+pais[i].nombre+"</option>");
+			$('#pais1').append("<option value="+pais[i].id+">"+pais[i].nombre+"</option>");
 		});
-    setCursor(paiss.idPais,"pais");
-		$('#pais').select2();
+    setCursor(paiss.idPais,"pais1");
+		$('#pais1').select2();
 	});
 //para universidades
 	$.getJSON('universidades', function( universidadd ){
     var universidad=universidadd.uni;
 		//console.log(pais[1].nombre)
-		$('#universidad').html('');
-		$('#universidad').append($('<option></option>').text('Seleccione una universidad').val(''));
+		$('#universidad1').html('');
+		$('#universidad1').append($('<option></option>').text('Seleccione una universidad').val(''));
 		$.each(universidad, function(i) {
-			$('#universidad').append("<option value="+universidad[i].id+">"+universidad[i].nombre+"</option>");
+			$('#universidad1').append("<option value="+universidad[i].id+">"+universidad[i].nombre+"</option>");
 		});
     setCursor(universidadd.idUni,"universidad");
-		$('#universidad').select2();
+		$('#universidad1').select2();
 	});
 
-$("#pais").change( function(event) {
+$("#pais1").change( function(event) {
 
 		$.ajax({
 			type: 'post',
@@ -1130,18 +1140,18 @@ $("#pais").change( function(event) {
 									return xhr.setRequestHeader('X-CSRF-TOKEN', token);
 						}
 				},
-			data: 'pais=' + $("#pais option:selected").val(),
+			data: 'pais=' + $("#pais1 option:selected").val(),
 		}).done(function ( ciudad ){
-			$('#ciudad').html('');
-			$('#ciudad').append($('<option></option>').text('Seleccione un ciudad').val(''));
+			$('#ciudad1').html('');
+			$('#ciudad1').append($('<option></option>').text('Seleccione un ciudad').val(''));
 			$.each(ciudad, function(i) {
-				$('#ciudad').append("<option value="+ciudad[i].id+">"+ciudad[i].nombre+"</option>");
+				$('#ciudad1').append("<option value="+ciudad[i].id+">"+ciudad[i].nombre+"</option>");
 			});
-			$('#ciudad').select2();
+			$('#ciudad1').select2();
 		});
 	});
 //para las carreras de los paises
-	$("#universidad").change( function(event) {
+	$("#universidad1").change( function(event) {
 		$.ajax({
 			type: 'post',
 			url: '/carreras',
@@ -1151,15 +1161,15 @@ $("#pais").change( function(event) {
 									return xhr.setRequestHeader('X-CSRF-TOKEN', token);
 						}
 				},
-			data: 'universidad=' + $("#universidad option:selected").val(),
+			data: 'universidad=' + $("#universidad1 option:selected").val(),
 		}).done(function ( carrera ){
 			//console.log(carrera)
-			$('#carrera').html('');
-			$('#carrera').append($('<option></option>').text('Seleccione una carrera').val(''));
+			$('#carrera1').html('');
+			$('#carrera1').append($('<option></option>').text('Seleccione una carrera').val(''));
 			$.each(carrera, function(i) {
-				$('#carrera').append("<option value="+carrera[i].id+">"+carrera[i].nombre+"</option>");
+				$('#carrera1').append("<option value="+carrera[i].id+">"+carrera[i].nombre+"</option>");
 			});
-			$('#carrera').select2();
+			$('#carrera1').select2();
 		});
 	});
 });

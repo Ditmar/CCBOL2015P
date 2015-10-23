@@ -29,7 +29,7 @@
                 <div class="form-group">
                   <label class="col-md-4 control-label">Password</label>
                   <div class="col-md-6">
-                    <input type="password" class="form-control" name="password" value="" required  placeholder="password">
+                    <input type="password" class="form-control" id="pass" name="password" value="" required  placeholder="password">
                     <div class="bg-danger" id="password">{{$errors->first('password')}}</div>
                   </div>
                 </div>
@@ -37,7 +37,7 @@
                 <div class="form-group">
                   <label class="col-md-4 control-label">Re. Password</label>
                   <div class="col-md-6">
-                    <input type="password" class="form-control" name="password_confirmation" value="" required  placeholder="confirmar">
+                    <input type="password" class="form-control" id="repass" name="password_confirmation" value="" required  placeholder="confirmar">
                     <div class="bg-danger" id="password_confirmation">{{$errors->first('password_confirmation')}}</div>
                   </div>
                 </div>
@@ -87,7 +87,7 @@
                   <div class="form-group">
                   <label class="col-md-4 control-label">Pais</label>
                   <div class="col-md-6">
-                    <select class="form-control" id="pais" name="pais" style="width:350px"></select>
+                    <select class="form-control" id="pais1" name="pais" style="width:350px"></select>
                     <div class="bg-danger" id="pais">{{$errors->first('pais')}}</div>
                   </div>
                 </div>
@@ -95,7 +95,7 @@
                 <div class="form-group">
                   <label class="col-md-4 control-label">Ciudad</label>
                   <div class="col-md-6">
-                    <select class="form-control static" id="ciudad" name="ciudad" style="width:350px">
+                    <select class="form-control static" id="ciudad1" name="ciudad" style="width:350px">
                       <option class="" value="">Es necesario seleccionar un pais</option>
                     </select>
                     <div class="bg-danger" id="ciudad">{{$errors->first('ciudad')}}</div>
@@ -105,7 +105,7 @@
                 <div class="form-group">
                   <label class="col-md-4 control-label">Universidad</label>
                   <div class="col-md-6">
-                    <select class="form-control" id="universidad" name="universidad" style="width:350px"></select>
+                    <select class="form-control" id="universidad1" name="universidad" style="width:350px"></select>
                     <div class="bg-danger" id="universidad">{{$errors->first('universidad')}}</div>
                   </div>
                 </div>
@@ -113,7 +113,7 @@
                 <div class="form-group">
                   <label class="col-md-4 control-label">Carrera</label>
                   <div class="col-md-6">
-                    <select class="form-control" id="carrera" name="carrera" style="width:350px">
+                    <select class="form-control" id="carrera1" name="carrera" style="width:350px">
                       <option value="">Es necesario seleccionar una universidad</option>
                     </select>
                     <div class="bg-danger" id="carrera">{{$errors->first('carrera')}}</div>

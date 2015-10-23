@@ -76,6 +76,7 @@ class ParticipantesPanelController extends Controller
             'fecha'  =>'required|date|date_format:Y-m-d',
             'hora'=>'required|date_format:H:i',
             'depositante'=>'required',
+            'g-recaptcha-response' => 'required|captcha',
             'boleta' => 'required|max:5500|image',
         );
         //echo"AQUI ";

@@ -44,7 +44,7 @@ class ContactoController extends Controller
 			$this->validate($request, $rules, $messages);
       $fromEmail = 'darkdragonplec@gmail.com';
 			$fromName = 'Administrador CCbol 2015';
-			\Mail::send('Contacto.correo', $data, function($message) use ($fromName, $fromEmail){
+			\Mail::send('contacto.correo', $data, function($message) use ($fromName, $fromEmail){
 				$message->to($fromEmail, $fromName);
 				$message->from($fromEmail, $fromName);
 				$message->subject('nuevo email de contacto');

@@ -1,7 +1,7 @@
 @extends('blog.mainblog')
 @section('id'){{'log'}}@endsection
 @section('content')
-	@include('Blog.partials.MainMenuUsers')
+	@include('blog.partials.mainmenuusers')
 <meta name="csrf_token" content="{{ csrf_token() }}" />
 	<style>
 	.btn-file {

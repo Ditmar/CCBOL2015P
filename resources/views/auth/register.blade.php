@@ -1,7 +1,7 @@
 @extends('blog.mainblog')
 @section('id'){{'log'}}@endsection
 @section('content')
-	@include('Blog.partials.MainMenuUsers')
+	@include('blog.partials.mainmenuusers')
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
