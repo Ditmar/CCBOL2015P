@@ -1,6 +1,58 @@
 @extends('blog.mainblog')
 @include('blog.partials.mainmenuusers')
 @section('content')
+<script type="text/javascript">
+  $(document).ready(function($) {
+    var form,dialog;
+    dialog = $( "#dialog-form" ).dialog({
+      autoOpen: false,
+      height: 400,
+      width: 450,
+      modal: true,
+      buttons: {
+        "Enviar Observación": function()
+        {
+          var datos=$("#formdata").serializeObject();
+          $.ajax({
+            url: '/admin/participante/Observar',
+            type: 'post',
+            dataType: 'json',
+            data: datos,
+          })
+          .done(function(html) {
+              if(html.succes)
+              {
+                alert("Participante Observado Correctamente");
+                dialog.dialog( "close" );
+              }else
+              {
+                alert("Se ha producido algún error");
+              }
+          })
+          .fail(function() {
+            console.log("error");
+          })
+          .always(function() {
+            console.log("complete");
+              });
+            },
+            Cancel: function() {
+              dialog.dialog( "close" );
+            }
+      },
+      close: function() {
+        //form[ 0 ].reset();
+        //allFields.removeClass( "ui-state-error" );
+      }
+    });
+    $("#observarbtn").click(function(event) {
+      dialog.dialog( "open" );
+      return false;
+    });
+
+    
+  });
+</script>
 <div class="container">
   @if($participante[0]->destado =='proceso')
     <div class="alert alert-warning">
@@ -65,15 +117,27 @@
           </form>
         </td>
         <td>
-          <form action="/admin/participante/Observar" method="post">
-              <input type="hidden" name="_token" value="{{ csrf_token() }}">
-              <input type="hidden" name="id" value="{{$p->id}}">
-              <button type="submit" id="acreditar" class="btn btn-danger">Observar</button>
-          </form>
+          <button type="submit" id="observarbtn" class="btn btn-danger">Observar</button>
         </td>
       </tr>
     </tbody>
+    <div id="dialog-form" title="Mensaje de Observación">
+  <p class="validateTips">All form fields are required.</p>
+ 
+  <form id="formdata"> 
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    <input type="hidden" name="id" value="{{$p->id}}">
+    <input type="hidden" name="nombre" value="{{$p->nombres}}">
+    <span class="label label-info">Email</span>
+    <input type="text" name="email" id="input"  class="form-control" value="{{$p->emails}}" required="required" pattern="" title="">
+    <span class="label label-info">Mensaje</span>
+    <textarea name="message" id="input" class="form-control" rows="3" required="required"></textarea>
+  </form>
+</div>
     @endforeach
   </table>
 </div>
 @stop
+
+
+

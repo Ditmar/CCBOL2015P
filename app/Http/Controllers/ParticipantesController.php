@@ -133,11 +133,28 @@ class ParticipantesController extends Controller
       }
 
       public function ObservarParticipante(Request $request){
+        
         $idp=\Input::get("id");
+        $nombre=\Input::get("nombre");
+        $email=\Input::get("email");
+        $msn=\Input::get("message");
+
         \DB::table("deposito")
         ->where("idPa",$idp)
         ->update(array("estado"=>"observado"));
-        return back()->withInput();
+
+          $data = array(
+                  "nombre"=>$nombre,
+                  "mensaje"=>$msn
+                );
+        \Mail::send('contacto.observacion',$data, function($message)use ($email)
+        {
+            $message->from('spyatorio@gmail.com', 'CCBOL2015');
+            $message->to($email);
+            $message->subject('DEPOSITO OBSERVADO');
+        });
+        return json_encode(array("succes"=>true));
+        //return back()->withInput();
       }
       public function paises(){
         $paises = \DB::table('Paises')->get();

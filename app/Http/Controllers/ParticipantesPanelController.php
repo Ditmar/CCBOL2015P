@@ -71,7 +71,7 @@ class ParticipantesPanelController extends Controller
     public function deposito(Request $request)
     {
         $rules=array(
-            'codigo'     => 'required|unique:deposito,codigo|min:8|max:12',
+            'codigo'     => 'required|unique:deposito,codigo|min:8|max:12|numeric',
             'monto' =>  'required|numeric',
             'fecha'  =>'required|date|date_format:Y-m-d',
             'hora'=>'required|date_format:H:i',

@@ -9,8 +9,8 @@
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-k2/8zcNbxVIh5mnQ52A0r3a6jAgMGxFJFE2707UxGCk= sha512-ZV9KawG2Legkwp3nAlxLIVFudTauWuBpC10uEafMHYL0Sarrz5A7G79kXh5+5+woxQ5HM559XX2UZjMJ36Wplg==" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="{{asset('css/blog.css')}}">
 	<link rel="stylesheet" href="{{asset('css/trumbowyg.min.css')}}">
-
-	<link rel="stylesheet" href="{{asset('css/select2-bootstrap.css')}}">
+	<link rel="stylesheet" href="{{asset('css/trumbowyg.min.css')}}">
+	<link rel="stylesheet" href="{{asset('css/jquery-ui.min.css')}}">
 </head>
 <body>
 	
@@ -20,6 +20,8 @@
 	<script src="{{asset('js/trumbowyg.min.js')}}"></script>
 	<script src="{{asset('js/select2.min.js')}}"></script>
 	<script src="{{asset('js/serializeObject.js')}}"></script>
+	<script src="{{asset('js/jquery-ui.min.js')}}"></script>
+	
 	@yield('content')
 	@if(isset($_GET['page']))
 	<script>

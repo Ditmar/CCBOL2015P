@@ -95,14 +95,18 @@ $.each(a, function() {
 });
 return o;
 };
-var peticiones=function(url)
+var peticiones=function(url,id,label,load)
 {
+    $("#"+id).val(load)
+    $("#"+id).attr('disabled', true);
     $.ajax({
                 url: url,
                 type:'get',
                 data: {},
                 success:function(html)
                 {
+                  $("#"+id).attr('disabled', false);
+                  $("#"+id).val(label)
                   $("#resultados").html(html);
                 }
               });
@@ -111,19 +115,19 @@ var peticiones=function(url)
 $(function() {
     $('#btntodos').click(function(e) {
       e.preventDefault();
-        peticiones("registrados/")
+        peticiones("registrados/","btntodos","Todos los registrados","Cargando...")
     });
     $('#btnproceso').click(function(e) {
       e.preventDefault();
-        peticiones("registradosproceso/")
+        peticiones("registradosproceso/","btnproceso","Participantes en Proceso","Cargado...")
     });
     $('#btninscritos').click(function(e) {
       e.preventDefault();
-        peticiones("inscritos/")
+        peticiones("inscritos/","btninscritos","Participantes inscritos","Cargando...")
     });
     $('#btnobservados').click(function(e) {
       e.preventDefault();
-        peticiones("observados/")
+        peticiones("observados/","btnobservados","Participantes Observados","Cargado...")
     });
 });
 </script>
