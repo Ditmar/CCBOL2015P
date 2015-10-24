@@ -81,8 +81,9 @@
                                   <div class="row">
                                         <div class="col-md-2">
                                                  <div class="site-logo-d">
-                                                          <a href="{{URL::to('/')}}" class="brand"><img  width="250" src="img/logo.jpg" alt=""> </a>
+                                                          <a href="{{URL::to('/')}}" class="brand"><img  width="150" src="img/logo.jpg" alt=""> </a>
                                                   </div>
+
                                         </div>
 
 
@@ -220,8 +221,8 @@ st->op1->op2->op3->e
     	</style>
     	<div class="row">
     		<div class="col-md-12">
-    			<div class="panel panel-default">
-    				<div class="panel-heading">Registro de  Participantes</div>
+
+          <div class="panel panel-default" id="panelregister">
     				<div class="panel-body">
               @if (count($errors) > 0)
               @if($errors->first('nombres'))
@@ -255,6 +256,9 @@ st->op1->op2->op3->e
               </div>
     				</div>
     			</div>
+
+
+
     		</div>
     	</div>
   </div>
@@ -264,6 +268,7 @@ st->op1->op2->op3->e
 
 <!-- Section: TEMAS -->
   <section id="agenda" class="home-section color-dark bg-gray">
+  
   <div class="container marginbot-50">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2">
@@ -981,6 +986,67 @@ var setCursor=function(key,idHtml)
       }
     });
   }
+  var resizeForm=function()
+  {
+    var W=$("#panelregister").width(); 
+    $(".containerpanel").width(W*3+100);
+    $(".containerpanel ul li").width(W);
+  }
+  var positionFrom=0;
+  var acu=0;
+  var moverForm=function(i,type)
+  {
+    var W=$("#panelregister").width();
+        W=-W;
+        if(type=="dinamic")
+        {
+          $(".containerpanel").animate({
+            "margin-left":W*i},
+            500, function() {
+            /* stuff to do after animation is complete */
+          });  
+        }else if(type=="static")
+        {
+          console.log("--> "+W*i)
+          //$(".containerpanel").attr("margin-left",W*i);
+         $(".containerpanel").css({
+           "margin-left":W*i
+         });
+           
+        }
+        
+  }
+  var formEfectos=function()
+  {
+    var btns=["anterior1","anterior2"]
+    var sigArray=["sgt1","sgt2"];
+    for(var i=0;i<sigArray.length;i++){
+      console.log($("#"+sigArray[i]));
+      $("#"+sigArray[i]).click(function(event) {
+          positionFrom=$(this).attr("ids");
+          var num=Number(positionFrom);
+          num++;
+          console.log(num);
+          moverForm(num,"dinamic");
+          positionFrom=num;
+      });
+    }
+    for(var i=0;i<btns.length;i++){
+      console.log($("#"+sigArray[i]));
+      $("#"+btns[i]).click(function(event) {
+          positionFrom=$(this).attr("ids");
+          var num=Number(positionFrom);
+          num--;
+          console.log(num);
+          moverForm(num,"dinamic");
+          positionFrom=num;
+      });
+    }
+    
+   
+    
+  }
+    
 var loaddata=function(){
    $.ajax({
     url: '/metadata',
@@ -1022,8 +1088,22 @@ var loaddata=function(){
   });
 }
 loaddata();
+formEfectos();
 var datainformation=[];
 jQuery(document).ready(function() {
+/*
+EFECTO FORMULARIO
+*/
+resizeForm();
+formEfectos();
+//If resize
+$(window).resize(function(){
+  resizeForm();
+  console.log(positionFrom)
+  moverForm(positionFrom,"static");
+});
+
+
 $("#registro-participante").submit(function(){
   //Borrar errores
   for(var i=0;i<datainformation.length;i++)

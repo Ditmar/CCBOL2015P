@@ -147,12 +147,12 @@ Route::get('/',[
 Route::get('/expositores/{id}',"Expositores@ver");
 
 Route::get('/fill/',function(){
-	$cc=[];
-	for($i=0;$i<count($cc);$i++)
+	$cc=["otros"];
+	for($i=1;$i<51;$i++)
 	{
 		$p=new ModelCarrera();
-		$p->nombre=$cc[$i];
-		$p->idUni=13;
+		$p->nombre="otros";
+		$p->idUni=$i;
 		$p->save();
 	}
 });

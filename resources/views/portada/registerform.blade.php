@@ -1,7 +1,9 @@
 <form id="registro-participante" class="form-horizontal" role="form" method="POST" action="{{URL::to('registroparticipante')}}" enctype='multipart/form-data'>
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                <div class="row">
-                  <div class="col-md-6">
+ <input type="hidden" name="_token" value="{{ csrf_token() }}">     
+<div class="containerpanel">
+  <ul>
+    <li>
+                  
                     <div class="form-group">
                   <label class="col-md-4 control-label">Nombres</label>
                   <div class="col-md-6">
@@ -41,10 +43,9 @@
                     <div class="bg-danger" id="password_confirmation">{{$errors->first('password_confirmation')}}</div>
                   </div>
                 </div>
-
-
-                  </div>
-                  <div class="col-md-6">
+                <center> <button type="button" ids="0" id="sgt1" class="btn btn-success">Siguiente</button></center>
+    </li>
+    <li>
                     <div class="form-group">
                       <label class="col-md-4 control-label">Cedula de Identidad</label>
                       <div class="col-md-6">
@@ -79,11 +80,10 @@
                         <div class="bg-danger" id="emails">{{$errors->first('emails')}}</div>
                       </div>
                     </div>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-md-6">
+                    <center><button type="button" ids="1" id="anterior1" class="btn btn-danger">Atrás</button>|<button type="button" ids="1" id="sgt2" class="btn btn-success">Siguiente</button></center>
+                
+    </li>
+    <li>
                   <div class="form-group">
                   <label class="col-md-4 control-label">Pais</label>
                   <div class="col-md-6">
@@ -119,37 +119,7 @@
                     <div class="bg-danger" id="carrera">{{$errors->first('carrera')}}</div>
                   </div>
                 </div>
-                  </div>
-                  <!---
-
-                   -->
-
-
-                <script >
-                   function showMyImage(fileInput) {
-                          var files = fileInput.files;
-                          for (var i = 0; i < files.length; i++) {
-                              var file = files[i];
-                              var imageType = /image.*/;
-                              if (!file.type.match(imageType)) {
-                                  continue;
-                              }
-                              var img=document.getElementById("thumbnil");
-                              console.log(img)
-                              img.file = file;
-                              var reader = new FileReader();
-                              reader.onload = (function(aImg) {
-                                  return function(e) {
-                                      aImg.src = e.target.result;
-                                  };
-                              })(img);
-                              reader.readAsDataURL(file);
-                          }
-                      }
-                </script>
-                </div>
-                <br><br>
-                <br><br>
+                
                 <div class="form-group" id="capp">
                   
                     @include("portada.captcha")
@@ -158,9 +128,22 @@
                 <br>
                 <div class="form-group">
                   <div class="col-md-6 col-md-offset-4">
+                  <button type="button" ids="2" id="anterior2" class="btn btn-danger">Atrás</button>|
                     <button type="submit" class="btn btn-success" id="btnregister">
                       Registrar Participante
                     </button>
                   </div>
                 </div>
+    </li>
+  </ul>
+</div>
+      
+                
+      
+
+
+                  
+                
+
+                
               </form>
