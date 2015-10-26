@@ -155,7 +155,7 @@ class RegistroParticipanteController extends Controller
         {
             $message->from('spyatorio@gmail.com', 'CCBOL2015');
             $message->to(\Input::get('emails'));
-            $message->subject('REGISTRO DEL DEPOSITO CCBOL2015');
+            $message->subject('PREINSCRIPCIÓN CCBOL2015');
         });
 
 
@@ -165,7 +165,7 @@ class RegistroParticipanteController extends Controller
         }else {    
             return \Response::json(array(
                 "success"=>true,
-                "msn"=>"Su registro se completo con exito, le acabamos de enviar un correo a  ".\Input::get('emails').", con instruciones sobre el registro, si el email no se encuentra en la bandeja de entrada verifique el correo SPAM, muchas gracias por registrarte  "
+                "msn"=>"Registro exitoso.<br>Verifique en la bandeja de entrada de su correo ".\Input::get('emails').", para continuar con el registro.<br>Verifique su SPAM (en caso de no haber recibido en la bandeja de entrada) ";
                 ));
         }
 

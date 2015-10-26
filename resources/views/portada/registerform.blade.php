@@ -15,7 +15,7 @@
                 <div class="form-group">
                   <label class="col-md-4 control-label">Apellidos</label>
                   <div class="col-md-6">
-                    <input type="text" class="form-control" name="apellidos" value="{{ old('apellidos') }}" required  placeholder="Ej. Perez Gutierrez">
+                    <input type="text" class="form-control" name="apellidos" value="{{ old('apellidos') }}" required  placeholder="Ej. Perez Rodriguez">
                     <div class="bg-danger" id="apellidos">{{$errors->first('apellidos')}}</div>
                   </div>
                 </div>
@@ -29,7 +29,7 @@
                 </div>
 
                 <div class="form-group">
-                  <label class="col-md-4 control-label">Password</label>
+                  <label class="col-md-4 control-label">Constraseña</label>
                   <div class="col-md-6">
                     <input type="password" class="form-control" id="pass" name="password" value="" required  placeholder="password">
                     <div class="bg-danger" id="password">{{$errors->first('password')}}</div>
@@ -37,7 +37,7 @@
                 </div>
 
                 <div class="form-group">
-                  <label class="col-md-4 control-label">Re. Password</label>
+                  <label class="col-md-4 control-label">Repetir contraseña</label>
                   <div class="col-md-6">
                     <input type="password" class="form-control" id="repass" name="password_confirmation" value="" required  placeholder="confirmar">
                     <div class="bg-danger" id="password_confirmation">{{$errors->first('password_confirmation')}}</div>
@@ -47,14 +47,14 @@
     </li>
     <li>
                     <div class="form-group">
-                      <label class="col-md-4 control-label">Cedula de Identidad</label>
+                      <label class="col-md-4 control-label">Cédula de identidad</label>
                       <div class="col-md-6">
                         <input type="text" class="form-control" name="ci" value="{{ old('ci') }}" required >
                         <div class="bg-danger" id="ci">{{$errors->first('ci')}}</div>
                       </div>
                     </div>
                     <div class="form-group">
-                      <label class="col-md-4 control-label">Usted es:</label>
+                      <label class="col-md-4 control-label">Usted es</label>
                       <div class="col-md-6">
                         <select name="semestre" required class="form-control">
                             <option value="profesional">Profesional</option>
@@ -74,7 +74,7 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <label class="col-md-4 control-label">E-Mail Address</label>
+                      <label class="col-md-4 control-label">Correo electrónico</label>
                       <div class="col-md-6">
                         <input type="email" class="form-control" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"  name="emails" value="{{ old('emails') }}" required>
                         <div class="bg-danger" id="emails">{{$errors->first('emails')}}</div>

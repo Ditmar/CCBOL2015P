@@ -95,7 +95,7 @@
 		  	  	@if($depo=="proceso")
 			  	  <div class="alert alert-warning">
 			  	      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-			  	      <strong>Pago enviado. </strong>La boleta fue enviada correctamente, en este momento se encuentra en proceso de verificación, espere 24 hrs para procesar y verificar su pago.
+			  	      <strong>Pago enviado. </strong>La boleta fue enviada correctamente, en este momento se encuentra en proceso de verificación.
 			  	  </div>
 		  	  	@endif
 		  	  	@if($depo=="correcto")

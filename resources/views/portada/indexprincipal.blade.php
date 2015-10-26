@@ -156,15 +156,12 @@
 
         <div class="row">
           <div><textarea id="code" style="width: 100%; visibility:hidden; position:absolute; z-index:-1000;" rows="11">
-st=>start: Ingresar a la Página|inicio:>http://www.ccbol2015.com.bo
-e=>end: Fin de registro:>http://www.ccbol2015.com.bo
-op1=>operation: Paso  1:
-Llenar el registro de preinscripción.|operacion
-op2=>operation: Paso 2:
-Hacer el deposito a la cuenta bancaria
+st=>start: Inicio|operacion
+e=>end: Fin|operacion
+op1=>subroutine: Llenar el registro de preinscripción.|operacion
+op2=>subroutine: Hacer el depósito a la cuenta bancaria
 1-6714592, BANCO UNION S.A.|operacion
-op3=>operation: Paso 3:
-Registrar el deposito y enviarlo.|operacion
+op3=>subroutine: Registrar el depósito y enviarlo.|operacion
 
 st->op1->op2->op3->e
         </textarea></div>
@@ -1298,7 +1295,7 @@ $("#pais1").change( function(event) {
                         }
                       },
                       'flowstate' : {
-                        'operacion' : {'fill' : 'white','font-size' : 15, 'font-color' : 'black', 'font-weight' : 'bold'},
+                        'operacion' : {'fill' : '#FFFF99','font-size' : 15, 'font-color' : 'black', 'font-weight' : 'bold'},
                       }
                     });
 

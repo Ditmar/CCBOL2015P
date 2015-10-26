@@ -3,7 +3,7 @@
 @section('content')
 <div class="expo">
 <h2>
-	Eduardo Di Santi
+	Jose Daniel Alberto Constan
 </h2>
 	<div class="row">
 		<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
