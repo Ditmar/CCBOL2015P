@@ -162,7 +162,7 @@ op1=>operation: Paso  1:
 Llenar el registro de preinscripción.|operacion
 op2=>operation: Paso 2:
 Hacer el deposito a la cuenta bancaria
-1-6714592, BANCO UNION S.A.|operación
+1-6714592, BANCO UNION S.A.|operacion
 op3=>operation: Paso 3:
 Registrar el deposito y enviarlo.|operacion
 
