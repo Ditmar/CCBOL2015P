@@ -40,9 +40,9 @@
                           </h3>
                           <br>
                           <div class="">
-                               <a class="btn btn-theme btn-sm btn-min-block" href="#registro">Registrate Ya</a>
+                               <a class="btn btn-theme btn-sm btn-min-block" href="#registro">Regístrate Ya</a>
                           </div>
-                          <h3>Falta</h3>
+                          <h3>El evento iniciará en:</h3>
                       </div>
                   </div><!-- /header-text -->
         </div>
@@ -177,9 +177,9 @@ st->op1->op2->op3->e
       <div class="col-lg-8 col-lg-offset-2">
         <div class="wow flipInY" data-wow-offset="0" data-wow-delay="0.4s">
         <div class="section-heading text-center">
-        <h2 class="h-bold">Registrate</h2>
+        <h2 class="h-bold">Regístrate</h2>
         <div class="divider-header"></div>
-        <p>Registrate hoy</p>
+        
         </div>
         </div>
       </div>
