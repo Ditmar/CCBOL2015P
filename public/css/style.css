@@ -1248,5 +1248,45 @@ overflow:hidden;
 	display: inline-block;
 	vertical-align:top;
 }
+/*
+CSS DISEÑO
+*/
+
+.tuto1
+{
+	background-color:#6699CC;
+	color:#000;
+	cursor:pointer;
+}
+.tuto1:hover
+{
+	color:#000;
+}
+.tuto5
+{
+	background-color:#F8CB15;
+	color:#000;
+	cursor:pointer;
+}
+.tuto2
+{
+	background-color:#99CC00;
+	color:#000;
+	cursor:pointer;
+}
+.tuto4
+{
+	background-color:#6666CC;
+	color:#000;
+	cursor:pointer;
+}
+
+.tuto3
+{
+	background-color:#CC3300;
+	color:#000;
+	cursor:pointer;
+}
+
 
 

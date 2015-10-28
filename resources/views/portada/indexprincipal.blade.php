@@ -283,9 +283,152 @@ st->op1->op2->op3->e
 
   <div class="text-center">
   <div class="container">
-
       <div class="row">
-
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>Horas</th>
+              <th>Lunes</th>
+              <th>Martes</th>
+              <th>Miercoles</th>
+              <th>Jueves</th>
+              <th>Viernes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>8:30-10:00</td>
+              <td>Acreditación</td>
+              <td class="tuto3">Turorial 3</td>
+              <td></td>
+              <td class="tuto4">Tutorial 4</td>
+              <td class="tuto5">Tutorial 5 </td>
+            </tr>
+            <tr>
+              <td>10:00-10:30</td>
+              <td colspan="6">
+                REFRIGERIO
+              </td>
+            </tr>
+            <tr>
+              <td>
+                10:30-12:00
+              </td>
+              <td class="tuto1">
+                Tutorial 1
+              </td>
+              <td class="tuto2">
+                Tutorial 2
+              </td>
+              <td>
+                
+              </td>
+              <td class="tuto5">
+                Tutorial 5
+              </td>
+              <td class="tuto4">
+                Tutorial 4
+              </td>
+            </tr>
+            <tr>
+              <td>
+                12:00-14:30
+              </td>
+                <td colspan="6">
+                  DESCANSO
+                </td>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                14:30-16:00
+              </td>
+              <td class="tuto2">
+                Tutorial 2
+              </td>
+              <td class="tuto3">
+                Tutorial 3
+              </td>
+              <td>
+                
+              </td>
+              <td>
+                Conf. 4 / Conf. 5
+              </td>
+              <td class="tuto5">
+                Tutorial 5
+              </td>
+            </tr>
+            <tr>
+              <td>
+                16:00-16:30
+              </td>
+              <td colspan="6">
+                REFRIGERIO
+              </td>
+            </tr>
+            <tr>
+              <td>
+                16:30-17:15
+              </td>
+              <td class="tuto1">
+                Tutorial 1
+              </td>
+              <td>
+                Conferencia 2
+              </td>
+              <td>
+                
+              </td>
+              <td class="tuto5">
+                Tutorial 5
+              </td>
+              <td>
+                Conferencia 7
+              </td>
+            </tr>
+            <tr>
+              <td>
+                17:15-18:00
+              </td>
+              <td class="tuto1">
+                Tutorial 1
+              </td>
+              <td>
+                Conferencia 3
+              </td>
+              <td>
+                
+              </td>
+              <td class="tuto5">
+                Tutorial 5
+              </td>
+              <td>
+                
+              </td>
+            </tr>
+            <tr>
+              <td>
+                18:00-18:45
+              </td>
+              <td>
+                Conferencia 1
+              </td>
+              <td>
+                
+              </td>
+              <td>
+                
+              </td>
+              <td>
+                Conferencia 6
+              </td>
+              <td>
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
         <div class="list-group">
           <a href="#" class="list-group-item">
             <h4 class="list-group-item-heading">16 Nov. 8:00 - 10:00</h4>
@@ -876,8 +1019,7 @@ st->op1->op2->op3->e
         <div class="text-center">
           <a href="#intro" class="totop"><i class="fa fa-angle-up fa-3x"></i></a>
 
-          <p>CCOL2015 Potosí - Bolivia Carrera de SISTEMAS e INFORMATICA<br />
-          &copy;Copyright 2014 - Shuffle. Designed by <a href="http://bootstraptaste.com">Bootstraptaste</a></p>
+          <p>CCBOL 2015 Potosí - Bolivia Carrera de SISTEMAS e INFORMATICA</p>
         </div>
       </div>
     </div>

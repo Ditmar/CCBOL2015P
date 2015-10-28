@@ -3,6 +3,9 @@
 @section('content')
 <script type="text/javascript">
   $(document).ready(function($) {
+
+    
+
     var form,dialog;
     dialog = $( "#dialog-form" ).dialog({
       autoOpen: false,
