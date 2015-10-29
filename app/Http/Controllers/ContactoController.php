@@ -37,12 +37,12 @@ class ContactoController extends Controller
 				);
 				$data = array(
 					'name' => \Input::get('name'),
-					'email' => \Input::get('email'),
+					'email' => \Input::get('emailcontacto'),
 					'subject' => \Input::get('subject'),
 					'msg' => \Input::get('msg'),
 				);
 			$this->validate($request, $rules, $messages);
-      $fromEmail = 'darkdragonplec@gmail.com';
+      $fromEmail = 'spyatorio@gmail.com';
 			$fromName = 'Administrador CCbol 2015';
 			\Mail::send('contacto.correo', $data, function($message) use ($fromName, $fromEmail){
 				$message->to($fromEmail, $fromName);

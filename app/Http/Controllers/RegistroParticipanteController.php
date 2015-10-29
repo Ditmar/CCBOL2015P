@@ -165,7 +165,7 @@ class RegistroParticipanteController extends Controller
         }else {    
             return \Response::json(array(
                 "success"=>true,
-                "msn"=>"Registro exitoso.<br>Verifique en la bandeja de entrada de su correo ".\Input::get('emails').", para continuar con el registro.<br>Verifique su SPAM (en caso de no haber recibido en la bandeja de entrada) ";
+                "msn"=>"Registro exitoso.<br>Verifique en la bandeja de entrada de su correo ".\Input::get('emails').", para continuar con el registro.<br>Verifique su SPAM (en caso de no haber recibido en la bandeja de entrada) "
                 ));
         }
 
