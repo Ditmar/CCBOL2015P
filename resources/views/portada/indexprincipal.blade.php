@@ -1254,71 +1254,6 @@ $("#registro-participante").submit(function(){
   $("#btnregister").html("Enviando Registro, Espere porfavor");
   $("#btnregister").attr('disabled', true);
   
-  $.ajax({
-    url: '/registroparticipante',
-    type: 'post',
-    dataType: 'json',
-    data:entrydata,
-  })
-  .done(function(html) {
-    console.log(html);
-    if(html.success==false)
-    {
-        $("#pass").val("");
-        $("#repass").val("");
-        var errores=html.errors;
-        var listerror=Object.keys(errores);
-        //console.log(html.catpcha);
-        $(".posibleerror").html("<span class='label label-danger'>Existen errores en el formulario</span>");
-        var top=$(document).scrollTop();
-        window.scrollTo(0,top-400);
-        datainformation=listerror;
-        for(var i=0;i<listerror.length;i++)
-        {
-          $("#"+listerror[i]).html(errores[listerror[i]]);
-          if(listerror[i]=="g-recaptcha-response")
-          {
-            $("#catch").html("Debe resolver el captcha de manera obligada");
-          }
-        }
-        $.ajax({
-          url: '/captcha',
-          type: 'get',
-          dataType: 'html',
-          data: {},
-        })
-        .done(function(html) {
-          $("#capp").html(html);
-        })
-        .fail(function() {
-          console.log("error");
-        })
-        .always(function() {
-          console.log("complete");
-        });
-        
-        $("#btnregister").html("Registrar Participante");
-        $("#btnregister").attr('disabled',false); 
-    }else
-    {
-      var top=$(document).scrollTop();
-      window.scrollTo(0,top-550);
-
-      $(".formcontent").html(html.msn);
-    }
-    
-  })
-  .fail(function() {
-    $(".formcontent").html("Lo sentimos existe un error, estamos trabajando para arreglarlo, intentelo de nuevo más tarde");
-  })
-  .always(function() {
-    console.log("complete");
-  });
-  //MOdificamos la vista una vez realizada la consulta
-
-  
-  return false;
-});
 
 //Verificamos si existen datos en el metadato
 
@@ -1332,7 +1267,7 @@ $("#registro-participante").submit(function(){
 		$.each(pais, function(i) {
 			$('#pais1').append("<option value="+pais[i].id+">"+pais[i].nombre+"</option>");
 		});
-    setCursor(paiss.idPais,"pais1");
+    //setCursor(paiss.idPais,"pais1");
 		$('#pais1').select2();
 	});
 //para universidades
@@ -1370,27 +1305,7 @@ $("#pais1").change( function(event) {
 		});
 	});
 //para las carreras de los paises
-	$("#universidad1").change( function(event) {
-		$.ajax({
-			type: 'post',
-			url: '/carreras',
-			beforeSend: function (xhr) {
-						var token = $('meta[name="csrf_token"]').attr('content');
-						if (token) {
-									return xhr.setRequestHeader('X-CSRF-TOKEN', token);
-						}
-				},
-			data: 'universidad=' + $("#universidad1 option:selected").val(),
-		}).done(function ( carrera ){
-			//console.log(carrera)
-			$('#carrera1').html('');
-			$('#carrera1').append($('<option></option>').text('Seleccione una carrera').val(''));
-			$.each(carrera, function(i) {
-				$('#carrera1').append("<option value="+carrera[i].id+">"+carrera[i].nombre+"</option>");
-			});
-			$('#carrera1').select2();
-		});
-	});
+	
 });
 </script>
 <script>

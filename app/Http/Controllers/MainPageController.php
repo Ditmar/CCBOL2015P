@@ -26,10 +26,10 @@ class MainPageController extends BaseController
     $paises = \DB::table('Paises')->get();
     $universidades = \DB::table('Universidad')->get();
     $carreras = \DB::table('carrera')->get();
-
+    //indexprincipalnew
     $inaguracion = \DB::table('tiempos')->get();
 
-		return View("portada.indexprincipal",$this->baseresponse)
+		return View("portada.indexprincipalnew",$this->baseresponse)
                 ->with('ciudades',$ciudades)
                 ->with('paises',$paises)
                 ->with('universidades',$universidades)

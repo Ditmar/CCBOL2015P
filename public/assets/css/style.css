@@ -1,0 +1,89 @@
+  .recaptchatable .recaptcha_image_cell, #recaptcha_table {
+    background-color:#FF0000 !important; // reCAPTCHA widget background color
+  }
+  
+  #recaptcha_table {
+    border-color: #FF0000 !important; // reCAPTCHA widget border color
+  }
+  
+  #recaptcha_response_field {
+    border-color: #FF0000 !important; // Text input field border color
+    background-color: #FF0000 !important; //Text input field background color
+  }
+
+.newformcontent{
+  background-color:#8E1D1A;
+    border-radius:10px;
+    padding:5px;
+    overflow:hidden;
+    height:500px;
+}
+.slice_form
+{
+  width:305%;
+}
+.step{
+  margin-left:15px;
+  width:32%;
+
+  display:inline-block;
+  vertical-align:top;
+}
+.bg-danger,#catch
+{
+  padding:3px;
+  border-radius:5px;
+  background-color:#ef8181;
+  display:none;
+}
+.navform
+{
+  margin:0px;
+  -webkit-border-bottom-right-radius: 10px;
+-webkit-border-bottom-left-radius: 10px;
+-moz-border-radius-bottomright: 10px;
+-moz-border-radius-bottomleft: 10px;
+border-bottom-right-radius: 10px;
+border-bottom-left-radius: 10px;
+box-shadow: inset 0px 0px 10px #000;
+border:1px solid #771816;
+padding:10px;
+background-color:#FFF;
+
+}
+.navform li
+{
+  display: inline-block;
+  width:30%;
+  text-align: center;
+  vertical-align:top;
+  padding:5px;
+  border-radius:5px;
+  padding-bottom:10px;
+  padding-top: 10px;
+  margin-left:15px;
+  cursor:pointer;
+  color:#000;
+  -webkit-transition: 0.5s ease-in-out;
+    -moz-transition: 0.5s ease-in-out;
+    -o-transition: 0.5s ease-in-out;
+}
+.navform li:hover
+{
+background-color: #000;
+color:#fff;
+}
+@media (max-width:599px) {
+  .navform
+  {
+    display:none;
+  }
+  .slice_form
+{
+  width:100%;
+}
+.step{
+  width:90%;
+  }
+
+}

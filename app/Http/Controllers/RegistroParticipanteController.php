@@ -60,31 +60,22 @@ class RegistroParticipanteController extends Controller
     }
     public function registroparticipante(Request $request) // mismo post para registro personal y con un ususario
     {
-
-        //guardamos los datos en variables de session
-        \Session::put('idPa',\Input::get('pais'));
-        \Session::put('idCi',\Input::get('ciudad'));
         \Session::put('idUni',\Input::get('universidad'));
         \Session::put('idCa',\Input::get('carrera'));
         $url="http://".$_SERVER['HTTP_HOST'].":".$_SERVER['SERVER_PORT'].$_SERVER['REQUEST_URI'];
         //$data=\Request::all();
         $rules = array(
-            'nombres'   => 'required|max:150|min:3',
-            'apellidos' => 'required|max:150|min:3',
-            'nick'      => 'required|unique:participante,nick|max:150|min:2',
+            'nombres'   => 'required',
+            'apellidos' => 'required',
             'ci'      => 'required|unique:participante,ci|max:16000000|min:6|numeric',
             'semestre'  => 'required|max:100|min:6',
             'sexo'      => 'required',
             'emails'     => 'required|unique:participante,emails|max:255|min:5',
-            'pais' => 'required',
-            'ciudad' => 'required',
             'universidad' => 'required',
             'carrera' => 'required',
             'g-recaptcha-response' => 'required|captcha',
             'password'  => 'required|confirmed|min:6|max:16',
         );
-
-        //$this->validate($request, $rules);
         $validator = \Validator::make(\Input::all(), $rules);
         if($validator->fails())
         {
@@ -94,7 +85,7 @@ class RegistroParticipanteController extends Controller
         }
 
         $u=new User();
-        $u->username=\Input::get('nick');
+        $u->username=\Input::get('emails');
         $u->email=\Input::get('emails');
         $u->nombres=\Input::get('nombres');
         $u->apellidos=\Input::get('apellidos');
@@ -117,18 +108,18 @@ class RegistroParticipanteController extends Controller
 
         $p->nombres=\Input::get('nombres');
         $p->apellidos=\Input::get('apellidos');
-        $p->nick=\Input::get('nick');
+        $p->nick="Guest";
         $p->ci=\Input::get('ci');
         $p->semestre=\Input::get('semestre');
         $p->sexo=\Input::get('sexo');
         $p->emails=\Input::get('emails');
         $p->idUni=\Input::get('universidad');
         $p->idCa=\Input::get('carrera');
-        $p->idPais=\Input::get('pais');
-        $p->idCi=\Input::get('ciudad');
+        $p->idPais=1;
+        $p->idCi=29;
         $p->remember_token=\Input::get('_token');
         /*fila de usuario*/
-        $p->idUs=$idusuario;// lo puse uno por que NOSE que usuario poner, se supone que el registro es libre
+        $p->idUs=$idusuario;
         $p->save();
         $monto=250;
         $msn="";
