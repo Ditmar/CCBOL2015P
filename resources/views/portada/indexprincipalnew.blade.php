@@ -15,6 +15,7 @@
                     <li><a href="#registro">Inscribete</a></li>
                     <li><a href="#mapa">Lugares</a></li>
                     <li><a href="#">Potos&iacute;</a></li>
+                    <li><a href="http://ccbol2015.com.bo/inicio-de-sesion">login</a></li>
                 </ul>
             </nav>
             </div>
