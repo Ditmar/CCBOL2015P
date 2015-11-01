@@ -73,6 +73,9 @@ background-color:#FFF;
 background-color: #000;
 color:#fff;
 }
+#typeinput
+{
+}
 @media (max-width:599px) {
   .navform
   {
@@ -81,6 +84,9 @@ color:#fff;
   .slice_form
 {
   width:100%;
+}
+.newformcontent{
+  height:1400px;
 }
 .step{
   width:90%;

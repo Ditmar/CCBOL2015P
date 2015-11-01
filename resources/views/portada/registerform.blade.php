@@ -59,7 +59,7 @@
               <div class="form-group">
                       <div class="col-sm-6 col-md-3">
                       <div class="form-group" data-animation="fadeInUp" data-animation-delay="1200">
-                        <input type="email" class="form-control"   name="emails" value="{{ old('emails') }}"  placeholder="Email">
+                        <input type="text" class="form-control"   name="emails" value="{{ old('emails') }}"  placeholder="Email">
                         
                       </div>
                         <div class="bg-danger" id="emails">{{$errors->first('emails')}}</div>
@@ -98,6 +98,7 @@
                     <span data-animation="fadeInRight" data-animation-delay="1400" class="title-inner">Datos Académicos</span>
           </h1>
               <div class="form-group">
+
                 <div class="col-sm-6 col-md-3">
                     <div class="form-group" data-animation="fadeInUp" data-animation-delay="600">
                       <select name="semestre"  class="selectpicker input-price" data-live-search="true" data-width="100%">
