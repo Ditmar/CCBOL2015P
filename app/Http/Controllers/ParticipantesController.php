@@ -24,13 +24,18 @@ class ParticipantesController extends Controller
       }
       public function ParticipantesRegistrados()
       {
+        $cantidad=0;
+        $total=0;
         $participantes = \DB::table('participante')
+        ->join("Universidad",'Universidad.id','=','participante.idUni')
+        ->join('carrera','carrera.id','=','participante.idCa')
         ->orderBy('id', 'desc')
-        ->select("participante.*","participante.estado as destado")
+        ->select("participante.*","participante.estado as destado","Universidad.nombre as unombre","carrera.nombre as cnombre")
         ->get();
         $lista=[];
         foreach ($participantes as $p) {
           $data=\DB::table('deposito')->where("idPa",$p->id)->first();
+            $cantidad++;
             /*$pp=new ParticipanteAux();
             $pp->id=$p->id;
             $pp->nombres=$p->nombres;
@@ -41,38 +46,82 @@ class ParticipantesController extends Controller
             $pp->emails=$p->emails;*/
           if(isset($data))
           {
-            
             $p->destado=$data->estado;
+            $p->fechadep=$data->created_at;
+            //deposito.monto
+            $p->monto=$data->monto;
           }else
           {
+
             $p->destado="No registro la boleta";
+            $p->fechadep="-";
+            $p->monto=0;
           }
+          $total+=$p->monto;
           $lista[]=$p;
           
         }
-        return view('participantes.resultadosparticipantes')->with('participantes',$lista);
+        $stats=array("cantidad"=>$cantidad,"dinero"=>$total);
+        $infoo[]=(object)$stats;
+        return view('participantes.resultadosparticipantes')
+        ->with('participantes',$lista)
+        ->with("data",$infoo);
       
       }
       public function ParticipantesProceso()
       {
         $participantes = \DB::table('participante')
         ->join("deposito","participante.id",'=','deposito.idPa')
+        ->join("Universidad",'Universidad.id','=','participante.idUni')
+        ->join('carrera','carrera.id','=','participante.idCa')
         ->where("deposito.estado","proceso")
-        ->select("participante.*","deposito.estado as destado")
+        ->select("participante.*","deposito.estado as destado","Universidad.nombre as unombre","carrera.nombre as cnombre","deposito.monto","deposito.created_at as fechadep")
         ->orderBy('id', 'desc')
         ->get();
-        return view('participantes.resultadosparticipantes')->with('participantes',$participantes);
+        
+        //return json_encode(array("participantes"=>$participantes));
+        $cantidad=0;
+        $sumdinero=0;
+        foreach($participantes as $item)
+        {
+          $cantidad++;
+          $sumdinero+=$item->monto;
+
+        }
+         $stats=array("cantidad"=>$cantidad,"dinero"=>$sumdinero);
+        $data[]=(object)$stats;
+
+        return view('participantes.resultadosparticipantes')
+        ->with('participantes',$participantes)
+        ->with("data",$data);;
       
       }
       public function ParticipantesObservados()
       {
+
         $participantes = \DB::table('participante')
         ->join("deposito","participante.id",'=','deposito.idPa')
+        ->join("Universidad",'Universidad.id','=','participante.idUni')
+        ->join('carrera','carrera.id','=','participante.idCa')
         ->where("deposito.estado","observado")
-        ->select("participante.*","deposito.estado as destado")
+        ->select("participante.*","deposito.estado as destado","Universidad.nombre as unombre","carrera.nombre as cnombre","deposito.monto","deposito.created_at as fechadep")
         ->orderBy('id', 'desc')
         ->get();
-           return view('participantes.resultadosparticipantes')->with('participantes',$participantes);
+        //Estadistica
+        $cantidad=0;
+        $sumdinero=0;
+        foreach($participantes as $item)
+        {
+          $cantidad++;
+          $sumdinero+=$item->monto;
+
+        }
+        $stats=array("cantidad"=>$cantidad,"dinero"=>$sumdinero);
+        $data[]=(object)$stats;
+
+           return view('participantes.resultadosparticipantes')
+           ->with('participantes',$participantes)
+           ->with("data",$data);
       
       
       }
@@ -80,11 +129,26 @@ class ParticipantesController extends Controller
       {
         $participantes = \DB::table('participante')
         ->join("deposito","participante.id",'=','deposito.idPa')
-        ->where("deposito.estado","correcto")
-        ->select("participante.*","deposito.estado as destado")
+        ->join("Universidad",'Universidad.id','=','participante.idUni')
+        ->join('carrera','carrera.id','=','participante.idCa')
+        ->where("deposito.estado","corecto")
+        ->select("participante.*","deposito.estado as destado","Universidad.nombre as unombre","carrera.nombre as cnombre","deposito.monto","deposito.created_at as fechadep")
         ->orderBy('id', 'desc')
         ->get();
-          return view('participantes.resultadosparticipantes')->with('participantes',$participantes);
+        $cantidad=0;
+        $sumdinero=0;
+        foreach($participantes as $item)
+        {
+          $cantidad++;
+          $sumdinero+=$item->monto;
+
+        }
+        $stats=array("cantidad"=>$cantidad,"dinero"=>$sumdinero);
+        $data[]=(object)$stats;
+         
+          return view('participantes.resultadosparticipantes')
+          ->with('participantes',$participantes)
+          ->with('data',$data);
       
        
       }
