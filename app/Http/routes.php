@@ -130,6 +130,7 @@ Route::group(['middleware' => ['auth','administrator'],'prefix'=>'admin'], funct
 						Route::post('/participante/AgreditarParticipante','ParticipantesController@AgreditarParticipante');
 						/*DESAGREDITAR PARTICIPANTE*/
 						Route::post('/participante/Observar','ParticipantesController@ObservarParticipante');
+						Route::post('/participante/editardatos','ParticipantesController@editParticipante');
 						/*DAR DE BAJA AL PARTICIPANTE*/
 						Route::get('/participante/{id}/BajaSistema','ParticipantesController@BajaSistema');
 						/*Volver al sistema participante*/

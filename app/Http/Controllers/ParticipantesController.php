@@ -216,13 +216,58 @@ class ParticipantesController extends Controller
                 ->get();
         return view('participantes.agreditacionparticipantes')->with('participante',$participante);
       }
+      public function editParticipante()
+      {
+        $idp=\Input::get("id");
+        $ci=\Input::get("ci");
+        $email=\Input::get("email");
+        $pass=\Input::get("password");
+        $idUs=\Input::get("idUs");
+        $participante=\DB::table("participante")->where("id",$idp)->first();
+       \DB::table("participante")
+        ->where("id",$idp)
+        ->update(array("emails"=>$email,"ci"=>$ci));
+       //\Hash::make(\Input::get('password'));
+       if($pass=="")
+       {
+        \DB::table("users")
+        ->where("id",$idUs)
+        ->update(array("email"=>$email));
+        $data = array(
+                    'ci'=>$ci,
+                    'nombre' => $participante->nombres." ".$participante->apellidos,
+                    'email' => $email,
+                    'password'=>'',
+                    "obs"=>"Su password no ha sufrido modificaciones."
+                );
+       }else
+       {
+        \DB::table("users")
+        ->where("id",$idUs)
+        ->update(array("email"=>$email,"password"=>\Hash::make($pass)));
+        $data = array(
+                    'ci'=>$ci,
+                    'nombre' => $participante->nombres." ".$participante->apellidos,
+                    'email' => $email,
+                    'password'=>$pass,
+                    'obs'=>""
+                );
+       }
+       
+        \Mail::send('contacto.reenvio',$data, function($message)use ($email)
+        {
+            $message->from('spyatorio@gmail.com', 'CCBOL2015');
+            $message->to($email);
+            $message->subject('CCBOL2015 Nuevas Credenciales');
+        });
+        return \Response::json(array("status"=>true));
+      }
       public function AgreditarParticipante(Request $request){
         $idp=\Input::get("id");
         \DB::table("deposito")
         ->where("idPa",$idp)
         ->update(array("estado"=>"correcto"));
         //id del participante
-        echo "-> ".$idp;
 
         $participante=\DB::table("participante")->where("id",$idp)->first();
 
@@ -235,10 +280,10 @@ class ParticipantesController extends Controller
         {
             $message->from('spyatorio@gmail.com', 'CCBOL2015');
             $message->to($participante->emails);
-            $message->subject('ACREDITACION CCBOL2015');
+            $message->subject('ACREDITACION CCBOL2015 CORRECTA');
         });
 
-        return back()->withInput();
+        return \Response::json(array("status"=>true));
       }
 
       public function ObservarParticipante(Request $request){
