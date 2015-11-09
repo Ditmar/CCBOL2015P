@@ -68,6 +68,51 @@ class ParticipantesController extends Controller
         ->with("data",$infoo);
       
       }
+      public function dashboard()
+      {
+        return view("admin.dashboard");
+      }
+      public function participanteslist($type)
+      {
+
+        if($type!="all")
+        {
+          $participantes = \DB::table('participante')
+        ->join("deposito","participante.id",'=','deposito.idPa')
+        ->join("Universidad",'Universidad.id','=','participante.idUni')
+        ->join('carrera','carrera.id','=','participante.idCa')
+        ->where("deposito.estado",$type)
+        ->select("participante.*","Universidad.nombre as unombre","carrera.nombre as cnombre")
+        ->distinct()
+        ->orderBy('id', 'desc')
+        ->get();
+          
+        }else
+        {
+          $participantes = \DB::table('participante')
+        ->join("Universidad",'Universidad.id','=','participante.idUni')
+        ->join('carrera','carrera.id','=','participante.idCa')
+        ->select("participante.*","Universidad.nombre as unombre","carrera.nombre as cnombre")
+        ->distinct()
+        ->orderBy('id', 'desc')
+        ->get();
+        }
+
+        foreach($participantes as $item) 
+        {
+          $deposito=\DB::table("deposito")
+          ->where("deposito.idPa",$item->id)
+          ->get();
+          if(count($deposito)==0)
+          {
+            $item->dep=false;
+          }else{
+            $item->dep=true;
+          }
+          $item->depo=$deposito;
+        }
+        return \Response::json(array("participante"=>$participantes));
+      }
       public function ParticipantesProceso()
       {
         $participantes = \DB::table('participante')

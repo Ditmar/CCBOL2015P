@@ -87,7 +87,8 @@ Route::group(['middleware' => ['auth','administrator'],'prefix'=>'admin'], funct
 					'uses' => 'HomeController@index',
 					'as' => 'home'
 					]);
-
+					Route:get("dashboard","ParticipantesController@dashboard");
+					Route::get("dashboard/list/{type}","ParticipantesController@participanteslist");
 					Route::get('admin/posts/{id}/edit','AdminController@edit');//ormulario para editar articulos
 					Route::post('admin/posts/refresh','AdminController@refresh');//editar actualizar post
 					Route::get('admin/posts/nuevo',[
