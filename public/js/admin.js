@@ -134,8 +134,11 @@ var csrftoken =  (function() {
 		}
 		$scope.setLista=function(m)
 		{
+			$scope.tipo=m;
+			$scope.mensajes="Cargando Listas Espere Porfavor";
 			listas.get({id:m.action},function(r){
 				$scope.lista=r.participante;
+				$scope.mensajes="Lista Cargada";
 			})
 		}
 		$scope.validate=function(item)
@@ -151,7 +154,4 @@ var csrftoken =  (function() {
 		});
 
 	});
-	
-	
-
 })();

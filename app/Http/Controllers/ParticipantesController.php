@@ -1,5 +1,4 @@
 <?php
-//sdddf
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -97,9 +96,11 @@ class ParticipantesController extends Controller
         ->orderBy('id', 'desc')
         ->get();
         }
-
+        $sumatotal=0;
+        $total=0;
         foreach($participantes as $item) 
         {
+          $total++;
           $deposito=\DB::table("deposito")
           ->where("deposito.idPa",$item->id)
           ->get();
@@ -109,9 +110,13 @@ class ParticipantesController extends Controller
           }else{
             $item->dep=true;
           }
+          foreach($deposito as $dd)
+          {
+            $sumatotal+=$dd->monto;
+          }
           $item->depo=$deposito;
         }
-        return \Response::json(array("participante"=>$participantes));
+        return \Response::json(array("participante"=>$participantes,"stats"=>array("total"=>$total,"monto"=>$sumatotal)));
       }
       public function ParticipantesProceso()
       {

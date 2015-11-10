@@ -45,8 +45,11 @@
 			        <div class="full col-sm-9">
 			          
 			            <!-- content -->
+			            <h3>
+			            	<%tipo%>
+			            </h3>
 			            <h2>
-			              Data: <%currentCategory%>
+			              Data: <%mensajes%>
 			              <a href="/logout"  class="btn btn-primary btn-xs pull-right"><i class="glyphicon glyphicon-plus-sign"></i> Cerrar Session</a>
 			            </h2>
 			            <div>
@@ -69,6 +72,7 @@
 			              			</tr>
 			              		</tbody>
 			              	</table>
+			              	
 			              	<span class="glyphicon glyphicon-education" aria-hidden="true"></span>
 			              	<small>Datos Académicos</small>
 			              
