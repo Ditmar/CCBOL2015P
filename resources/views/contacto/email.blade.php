@@ -39,7 +39,7 @@
 												Realice el depósito de {{$monto}}  Bs. hasta el 10 de noviembre de 2015, a partir de esta fecha de {{$montod}} Bs. en la cuenta Nº <b>1-6714592</b> del <b>BANCO UNION S.A.</b>
 											</li>
 											<li>
-												Con la cuenta registrada ingrese por este enlace  <a href="http://ccbol2015.com.bo/inicio-de-sesion">Login</a> y registre el comprobante de deposito (escaneado).
+												Con la cuenta registrada ingrese por este enlace  <a href="http://181.188.190.82/inicio-de-sesion">Login</a> y registre el comprobante de deposito (escaneado).
 
 											</li>
 											<li>
