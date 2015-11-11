@@ -30,7 +30,9 @@
 /*REGISTRO POST DE PARTICIPANTE*/
 Route::post('/registroparticipante','RegistroParticipanteController@registroparticipante');
 /* RUTA PARA CONTACTO*/
-Route::get('/Contacto','ContactoController@contactoindex');
+Route::get('/Contacto',function(){
+	echo "AQUI YA NO HAY NADA ";
+});
 Route::post('/Contacto','ContactoController@contactoenvio');
 /*RUTAS PARA BLOG*/
 Route::get('BLOG', 'BlogController@indexblog');
