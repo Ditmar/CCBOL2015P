@@ -27,7 +27,12 @@ class ParticipantesPanelController extends Controller
             $obs="";
             foreach ($deposito as $key) {
                 $type=$key->estado;
-                $obs=$key->obs;
+                if(isset($key->obs))
+                {
+                    $obs=$key->obs;    
+                }else{
+                    $obs="";
+                }
                 $dep=false;
             }
             
