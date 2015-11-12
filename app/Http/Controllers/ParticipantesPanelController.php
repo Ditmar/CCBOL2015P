@@ -28,8 +28,9 @@ class ParticipantesPanelController extends Controller
             foreach ($deposito as $key) {
                 $type=$key->estado;
                 $obs=$key->obs;
+                $dep=false;
             }
-            $dep=false;
+            
             return view('participantespanel.participantesdashboard')->with("user",$username)
         ->with("participante",$participantes)
         ->with("exist",$dep)
