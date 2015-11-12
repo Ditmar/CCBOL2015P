@@ -29,8 +29,18 @@
                     <span data-animation="flipInY" data-animation-delay="1300" class="icon-inner"><span class="fa-stack"><i class="fa rhex fa-stack-2x"></i><i class="fa fa-ticket fa-stack-1x"></i></span></span>
                     <span data-animation="fadeInRight" data-animation-delay="1400" class="title-inner">Inscr&iacute;bete Ahora !</span>
                 </h1>
-                @include("portada.registerform")
-                
+                @if(!$auth)
+                @include('portada.registerform')
+              @endif
+              @if($auth)
+                <p>
+                  Se ha detectado una session abierta.
+                </p>
+                <p>
+                  Si usted desea registrar una cuenta nueva cierre sesion por este enlace 
+                  <a class="btn btn-primary" href="/logout" role="button">Cerrar Sesion</a>
+                </p>
+              @endif
             </div>
         </section>
  

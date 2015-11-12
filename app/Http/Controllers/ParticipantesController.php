@@ -118,6 +118,39 @@ class ParticipantesController extends Controller
         }
         return \Response::json(array("participante"=>$participantes,"stats"=>array("total"=>$total,"monto"=>$sumatotal)));
       }
+      public function buscar($key)
+      {
+        $participantes = \DB::table('participante')
+        ->join("Universidad",'Universidad.id','=','participante.idUni')
+        ->join('carrera','carrera.id','=','participante.idCa')
+        ->where("participante.ci",$key)
+        ->select("participante.*","Universidad.nombre as unombre","carrera.nombre as cnombre")
+        ->distinct()
+        ->orderBy('id', 'desc')
+        ->get();
+        $sumatotal=0;
+        $total=0;
+        foreach($participantes as $item) 
+        {
+          $total++;
+          $deposito=\DB::table("deposito")
+          ->where("deposito.idPa",$item->id)
+          ->get();
+          if(count($deposito)==0)
+          {
+            $item->dep=false;
+          }else{
+            $item->dep=true;
+          }
+          foreach($deposito as $dd)
+          {
+            $sumatotal+=$dd->monto;
+          }
+          $item->depo=$deposito;
+        }
+        return \Response::json(array("participante"=>$participantes,"stats"=>array("total"=>$total,"monto"=>$sumatotal)));
+        
+      }
       public function ParticipantesProceso()
       {
         $participantes = \DB::table('participante')
@@ -300,8 +333,7 @@ class ParticipantesController extends Controller
 
         \DB::table("deposito")
         ->where("idPa",$idp)
-        ->update(array("estado"=>"observado"));
-
+        ->update(array("estado"=>"observado","obs"=>$msn));
           $data = array(
                   "nombre"=>$nombre,
                   "mensaje"=>$msn

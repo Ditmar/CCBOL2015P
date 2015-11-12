@@ -107,8 +107,12 @@
 		  	  	@if($depo=="observado")
 			  	  <div class="alert alert-danger">
 			  	  	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-			  	  	<strong>Pago Observado </strong>El pago fue observado los detalles de la observación fuerón enviados  a su correo electronico {{$participante->emails}}, cualquier consulta contactenos desde <a class="btn btn-default" href="#" role="button">contacto</a> o llamenos al ...
+			  	  	<strong>Pago Observado </strong>El pago fue observado los detalles de la observación fuerón enviados  a su correo electronico {{$participante->emails}}, cualquier consulta contactenos escribanos a admccbol2015@gmail.com.
+			  	  	<p>
+			  	  		<b>Observación</b>	{{$obs}}.
+			  	  	</p>
 			  	  </div>
+			  	  @include('participantespanel.deposito')
 		  	  	@endif
 		  	  	
 		  	  @endif

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
-	<title>Document</title>
+	<title>Dash Board</title>
 	<!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/admin.css">
@@ -43,11 +43,16 @@
 		<div class="column col-sm-9" id="main">
 			    <div class="padding">
 			        <div class="full col-sm-9">
-			          
-			            <!-- content -->
-			            <h3>
-			            	<%tipo%>
-			            </h3>
+			            <h2>Buscar</h2>|
+			            	<form action="" method="POST" class="form-inline" role="form">
+			            		<div class="form-group" >
+			            			<label class="sr-only" for="">Ci</label>
+			            			<input type="text" ng-model="label.txt" class="form-control" id="searchbox"  ng-keyup="keyupdatasearch(search)" placeholder="Buscar por Ci">
+			            		</div>
+			            		<button type="button" class="btn btn-primary" ng-click="buscardb(label)">Buscar en la db</button>
+			            	</form>
+			            	<br>
+			            	<b>Cantidad:</b> <%stats.total%>  Monto Aproximado <% stats.monto %>
 			            <h2>
 			              Data: <%mensajes%>
 			              <a href="/logout"  class="btn btn-primary btn-xs pull-right"><i class="glyphicon glyphicon-plus-sign"></i> Cerrar Session</a>

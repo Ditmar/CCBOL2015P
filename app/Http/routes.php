@@ -138,6 +138,8 @@ Route::group(['middleware' => ['auth','administrator'],'prefix'=>'admin'], funct
 						/*Volver al sistema participante*/
 						Route::get('/participante/{id}/VolverSistema','ParticipantesController@VolverSistema');
 						/*PArticipantes de Baja*/
+						Route::get('/participante/buscar/{id}','ParticipantesController@buscar');
+						
 						Route::get('/partipantesbaja','ParticipantesController@partipantesbaja');
 });
 /*Ruta para El Temporizador*/

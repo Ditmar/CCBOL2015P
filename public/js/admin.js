@@ -32,7 +32,10 @@ var csrftoken =  (function() {
 	.factory('Editar',function($resource){
 		return $resource("/admin/participante/editardatos");
 	})
-	.controller('MainController',function($scope,listas,Acreditar,CSRF_TOKEN,Observar,Editar){
+	.factory('Buscar',function($resource){
+		return $resource("/admin/participante/buscar/:id");
+	})
+	.controller('MainController',function($scope,listas,Acreditar,CSRF_TOKEN,Observar,Editar,Buscar){
 		$scope.title="CCBOL 2015 Admin";
 		$scope.menu=[ 
 		{label:"P. en Proceso",action:"proceso"},
@@ -47,6 +50,37 @@ var csrftoken =  (function() {
 				{
 					 $scope.lista.splice(i,1);
 				}
+			}
+		}
+		//buscador
+		$scope.buscardb=function(label)
+		{
+			//var labeltxt=$("#searchbox").val();
+			console.log(label.txt)
+			Buscar.get({id:label.txt},function(r){
+				console.log(r);
+				$scope.auxlist=r.participante;
+				$scope.stats=r.stats;
+				$scope.lista=r.participante;
+				$scope.mensajes="Lista Cargada";
+			});
+		}
+		$scope.keyupdatasearch=function(e)
+		{
+			var labeltxt=$("#searchbox").val();
+			var mayus=labeltxt.toUpperCase();
+			var listar=Array();
+			for(var i=0;i<$scope.auxlist.length;i++)
+			{
+				var ci=$scope.auxlist[i].ci.toUpperCase();
+				var nombres=$scope.auxlist[i].nombres.toUpperCase();
+				var apellidos=$scope.auxlist[i].apellidos.toUpperCase();
+				if(ci.indexOf(mayus)>-1  | nombres.indexOf(mayus)>-1| apellidos.indexOf(mayus)>-1)
+				{
+					listar.push($scope.auxlist[i]);
+				}
+				$scope.lista=listar;
+				//console.log(ci);
 			}
 		}
 		$scope.enviarObservacion=function(observacion)
@@ -137,19 +171,23 @@ var csrftoken =  (function() {
 			$scope.tipo=m;
 			$scope.mensajes="Cargando Listas Espere Porfavor";
 			listas.get({id:m.action},function(r){
+				$scope.auxlist=r.participante;
+				$scope.stats=r.stats;
 				$scope.lista=r.participante;
 				$scope.mensajes="Lista Cargada";
 			})
 		}
+
 		$scope.validate=function(item)
 		{
 			//console.log(item);
 			$scope.information=item;
 			$('#modal-id').modal('show');
 			//activamos algunnos plugins
-
 		}
 		listas.get({id:"proceso"},function(r){
+			$scope.auxlist=r.participante;
+			$scope.stats=r.stats;
 			$scope.lista=r.participante;
 		});
 

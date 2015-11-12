@@ -19,15 +19,22 @@ class ParticipantesPanelController extends Controller
         //Obtenemos los datos de los participantes
         $participantes=\DB::table("participante")->where("idUs",\Auth::user()->id)->first();
         //idPa
-        $deposito=\DB::table("deposito")->where("idPa",$participantes->id)->first();
+        $deposito=\DB::table("deposito")->where("idPa",$participantes->id)->get();
         $dep=true;
         if(isset($deposito))
         {
+            $type="";
+            $obs="";
+            foreach ($deposito as $key) {
+                $type=$key->estado;
+                $obs=$key->obs;
+            }
             $dep=false;
             return view('participantespanel.participantesdashboard')->with("user",$username)
         ->with("participante",$participantes)
         ->with("exist",$dep)
-        ->with("depo",$deposito->estado);
+        ->with('obs',$obs)
+        ->with("depo",$type);
 
         }
         return view('participantespanel.participantesdashboard')->with("user",$username)
@@ -126,7 +133,7 @@ class ParticipantesPanelController extends Controller
             'apellidos' => 'required|max:150|min:3',
             //'nick'      => 'required|unique:participante,nick|max:150|min:2',
             //'ci'      => 'required|unique:participante,ci|max:16000000|min:6|numeric',
-            'semestre'  => 'required|max:100|min:6',
+            'semestre'  => 'required|max:100|min:2',
             'sexo'      => 'required',
             //'emails'     => 'required|unique:participante,emails|max:255|min:5',
             'pais' => 'required',

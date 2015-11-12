@@ -19,11 +19,13 @@
 
                     
                     <div class="form-group">
-                      <label class="col-md-4 control-label">Semestre</label>
+                      @if($perfil->semestre=="Profesional")
+                      <label class="col-md-4 control-label">Titulo, Ing. Lic.</label>
                       <div class="col-md-6">
-                        <input type="text" class="form-control" name="semestre" value="{{$perfil->semestre}}" required placeholder="Ej.Primer Semestre">
+                        <input type="text" class="form-control" name="semestre" value="{{$perfil->semestre}}" required placeholder="Ing. Lic.">
                         <div class="bg-danger">{{$errors->first('semestre')}}</div>
                       </div>
+                      @endif
                     </div>
                     <div class="form-group">
                       <label class="col-md-4 control-label">sexo</label>
