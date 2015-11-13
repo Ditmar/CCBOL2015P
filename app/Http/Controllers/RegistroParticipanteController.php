@@ -67,7 +67,7 @@ class RegistroParticipanteController extends Controller
         $rules = array(
             'nombres'   => 'required',
             'apellidos' => 'required',
-            'ci'      => 'required|unique:participante,ci|max:16000000|min:6|numeric',
+            'ci'      => 'required|unique:participante,ci|max:13|min:6',
             'semestre'  => 'required|max:100|min:6',
             'sexo'      => 'required',
             'emails'     => 'required|unique:participante,emails|max:255|min:5',
