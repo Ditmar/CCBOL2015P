@@ -207,8 +207,12 @@
 									Carrera
 								</th>
 								<th>
+									Correo 
+								</th>
+								<th>
 									Fecha de Registro
 								</th>
+								
 							</tr>
 						</thead>
 						<span class="glyphicon glyphicon-user" aria-hidden="true"></span> <h4>Datos Personales</h4>
@@ -229,6 +233,9 @@
 								</td>
 								<td>
 									<%information.cnombre%>
+								</td>
+								<td>
+									<%information.emails%>	
 								</td>
 								<td>
 									<%information.created_at%>
@@ -288,6 +295,27 @@
 									 <img ng-click="imgload(de.id)"  id="zoom<%de.id%>" src="/imgpub/preinscripciones/<%de.imgboleta%>" data-zoom-image="/imgpub/preinscripciones/<%de.imgboleta%>" width="300" class="img-responsive" alt="Image">
 								</td>
 								
+							</tr>
+						</tbody>
+					</table>
+					<b>Estracto</b> <br>
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>Codigo</th>
+								<th>Agencia</th>
+								<th>Fecha</th>
+								<th>Monto</th>
+								<th> Estado</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="e in estracto">
+								<td><% e.code %></td>
+								<td><% e.agencia %></td>
+								<td><% e.fecha%></td>
+								<td><% e.monto %></td>
+								<td><% e.estado %> </td>
 							</tr>
 						</tbody>
 					</table>

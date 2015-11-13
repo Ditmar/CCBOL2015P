@@ -35,7 +35,10 @@ var csrftoken =  (function() {
 	.factory('Buscar',function($resource){
 		return $resource("/admin/participante/buscar/:id");
 	})
-	.controller('MainController',function($scope,listas,Acreditar,CSRF_TOKEN,Observar,Editar,Buscar){
+	.factory('checkdepo',function($resource){
+		return $resource("/admin/participante/depo/:id");
+	})
+	.controller('MainController',function($scope,listas,Acreditar,CSRF_TOKEN,Observar,Editar,Buscar,checkdepo){
 		$scope.title="CCBOL 2015 Admin";
 		$scope.menu=[ 
 		{label:"P. en Proceso",action:"proceso"},
@@ -80,7 +83,6 @@ var csrftoken =  (function() {
 					listar.push($scope.auxlist[i]);
 				}
 				$scope.lista=listar;
-				//console.log(ci);
 			}
 		}
 		$scope.enviarObservacion=function(observacion)
@@ -112,9 +114,18 @@ var csrftoken =  (function() {
 		}
 		$scope.acreditar=function(id)
 		{
-			var obj={"id":id,"_token":CSRF_TOKEN};
+			//rescatamos las varaibles
+		 	var depcode=$scope.estracto;
+		 	if(depcode.length==1)
+		 	{
+		 		var obj={"id":id,"code":depcode[0].code,"_token":CSRF_TOKEN};	
+		 	}else
+		 	{
+		 		var obj={"id":id,"code":0,"_token":CSRF_TOKEN};
+		 	}
 			var acre=new Acreditar();
 			acre.id=id;
+			acre.code=obj.code;
 			acre._token=CSRF_TOKEN;
 			$("#acreditarbtn").html("Acreditarndo al participante, Enviando Mails ...")
 			$("#acreditarbtn").attr({
@@ -128,7 +139,6 @@ var csrftoken =  (function() {
 			});
 				$('#modal-id').modal('hide');
 				borrarLista(id);
-
 			});
 		}
 		$scope.editconfirmed=function(Edit)
@@ -155,13 +165,11 @@ var csrftoken =  (function() {
 		//funciones de interfaz
 		$scope.editarUsuario=function(information)
 		{
-			console.log(information)
 			$scope.edit={
 				id:information.id,
 				ci:information.ci,
 				email:information.emails,
 				idUs:information.idUs
-
 			};
 
 			$("#modal-editar").modal('show');
@@ -177,11 +185,18 @@ var csrftoken =  (function() {
 				$scope.mensajes="Lista Cargada";
 			})
 		}
-
 		$scope.validate=function(item)
 		{
-			//console.log(item);
 			$scope.information=item;
+			var depositos=item.depo;
+			for(var i=0;i<depositos.length;i++)
+			{
+				//mandar a la db para verificar su deposito
+				checkdepo.get({id:depositos[i].codigo},function(r){
+					$scope.estracto=r.data;
+				})
+			}
+
 			$('#modal-id').modal('show');
 			//activamos algunnos plugins
 		}

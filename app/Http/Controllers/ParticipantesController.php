@@ -71,6 +71,13 @@ class ParticipantesController extends Controller
       {
         return view("admin.dashboard");
       }
+      public function checkdepositos($code)
+      {
+          $estracto=\DB::table('estracto')
+          ->where("code",$code)
+          ->get();
+          return \Response::json(array("data"=>$estracto)); 
+      }
       public function participanteslist($type)
       {
 
@@ -328,9 +335,18 @@ class ParticipantesController extends Controller
       }
       public function AgreditarParticipante(Request $request){
         $idp=\Input::get("id");
+        $code=\Input::get("code");
+        //return $code;
+        if($code!=0)
+        {
+          \DB::table("estracto")
+          ->where("code",$code)
+          ->update(array("estado"=>true));  
+        }
         \DB::table("deposito")
         ->where("idPa",$idp)
         ->update(array("estado"=>"correcto"));
+
         //id del participante
 
         $participante=\DB::table("participante")->where("id",$idp)->first();

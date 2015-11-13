@@ -137,6 +137,12 @@ Route::group(['middleware' => ['auth','administrator'],'prefix'=>'admin'], funct
 						Route::get('/participante/{id}/BajaSistema','ParticipantesController@BajaSistema');
 						/*Volver al sistema participante*/
 						Route::get('/participante/{id}/VolverSistema','ParticipantesController@VolverSistema');
+												
+						Route::get('/participante/depo/{id}','ParticipantesController@checkdepositos');
+						
+
+						Route::get('/participante/{id}/VolverSistema','ParticipantesController@VolverSistema');
+						
 						/*PArticipantes de Baja*/
 						Route::get('/participante/buscar/{id}','ParticipantesController@buscar');
 						
