@@ -138,6 +138,21 @@ class ParticipantesController extends Controller
         ->distinct()
         ->orderBy('id', 'desc')
         ->get();
+          //depositos
+          if(count($participantes)==0)
+          {
+            $depositos=\DB::table("deposito")
+            ->where('deposito.codigo',$key)
+            ->first();
+            $participantes = \DB::table('participante')
+            ->join("Universidad",'Universidad.id','=','participante.idUni')
+            ->join('carrera','carrera.id','=','participante.idCa')
+            ->where("participante.id",$depositos->idPa)
+            ->select("participante.*","Universidad.nombre as unombre","carrera.nombre as cnombre")
+            ->distinct()
+            ->orderBy('id', 'desc')
+            ->get();
+          } 
         }
         $sumatotal=0;
         $total=0;
