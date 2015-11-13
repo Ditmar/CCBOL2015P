@@ -39,7 +39,6 @@
                   </li>
               </ul>
           </div>
-
 		<div class="column col-sm-9" id="main">
 			    <div class="padding">
 			        <div class="full col-sm-9">
@@ -55,7 +54,8 @@
 			            	<b>Cantidad:</b> <%stats.total%>  Monto Aproximado <% stats.monto %>
 			            <h2>
 			              Data: <%mensajes%>
-			              <a href="/logout"  class="btn btn-primary btn-xs pull-right"><i class="glyphicon glyphicon-plus-sign"></i> Cerrar Session</a>
+			             <a href="#"  ng-click="nuevo()"  class="btn btn-primary btn-xs pull-right"><i class="glyphicon glyphicon-plus-sign"></i>Crear Nuevo</a>
+			             <a href="/logout"  class="btn btn-primary btn-xs pull-right"><i class="glyphicon glyphicon-plus-sign"></i> Cerrar Session</a>
 			            </h2>
 			            <div>
 			              <div ng-repeat="item in lista" class="column col-sm-5" id="content">

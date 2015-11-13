@@ -2,7 +2,6 @@
 @include('blog.partials.mainmenuparticipantes')
 @section('content')
 <meta name="csrf_token" content="{{ csrf_token() }}" />
-
 <div class="row">
   <div class="col-md-4">
   	@if(isset($alert))

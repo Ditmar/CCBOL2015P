@@ -128,6 +128,17 @@ class ParticipantesController extends Controller
         ->distinct()
         ->orderBy('id', 'desc')
         ->get();
+        if(count($participantes)==0)
+        {
+          $participantes = \DB::table('participante')
+        ->join("Universidad",'Universidad.id','=','participante.idUni')
+        ->join('carrera','carrera.id','=','participante.idCa')
+        ->where("participante.emails",'LIKE','%'.$key.'%')
+        ->select("participante.*","Universidad.nombre as unombre","carrera.nombre as cnombre")
+        ->distinct()
+        ->orderBy('id', 'desc')
+        ->get();
+        }
         $sumatotal=0;
         $total=0;
         foreach($participantes as $item) 
