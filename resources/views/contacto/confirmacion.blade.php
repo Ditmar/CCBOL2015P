@@ -22,12 +22,12 @@
 								<tr>
 									<td class="content-block">
 										 
-										Querido {{$name}}
+										Estimado(a) {{$name}}
 									</td>
 								</tr>
 								<tr>
 									<td>
-										Nos complace avisarte que tu inscripción fue concretada con éxito, te esperamos en la ciudad de potosí en nuestra casa superior de estudios.
+										Nos complace avisarte que tu inscripción fue concretada con éxito, te esperamos en la ciudad de potosí. <br /> La entrega del material correspondiente se hara en la carrera de Ingenieria Informática.
 									</td>
 								</tr>
 								
