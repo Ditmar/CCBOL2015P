@@ -81,6 +81,8 @@ class ParticipantesPanelController extends Controller
         $participantes=\DB::table("participante")->where("idUs",\Auth::user()->id)->first();
         return view('participantespanel.reloadform')->with("participante",$participantes);
     }
+    
+
     public function deposito(Request $request)
     {
         $rules=array(

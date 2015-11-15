@@ -121,6 +121,7 @@
 			              			</li>
 			              			<li>
 			              				<button ng-if="item.dep" type="button" class="btn btn-primary" ng-mouseleave="leaveimg()" ng-click="validate(item)"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Validar</button>
+			              				<button ng-if="item.dep==false" type="button" class="btn btn-danger" ng-mouseleave="leaveimg()" ng-click="validate(item)"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>Crear Deposito</button>
 			              			</li>
 			              		</ul>
 			              	</div>
@@ -173,6 +174,73 @@
 								</div>
 							</div>
 					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="modal-nuevo">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Registrar a Nuevo participante</h4>
+				</div>
+				<div class="modal-body">
+					<form action="" method="POST" class="form-horizontal" role="form">
+							<div class="form-group">
+								<div class="col-sm-10 col-sm-offset-2">
+									<input type="text" name="" id="input" ng-model="Participante.nombre" class="form-control" value="" placeholder="Nombre" required="required" pattern="" title="">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-10 col-sm-offset-2">
+									<input type="text" name="" id="input" ng-model="Participante.apellido" class="form-control" value="" placeholder="Apellidos" required="required" pattern="" title="">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-10 col-sm-offset-2">
+									<input type="text" name="" id="input" ng-model="Participante.ci" class="form-control" value="" placeholder="cédula de Identidad" required="required" pattern="" title="">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-10 col-sm-offset-2">
+									<select name="" id="input" ng-model="Participante.semestre" class="form-control" required="required">
+										<option value="Estudiante.">Estudiante</option>
+										<option value="Ing.">Ingeniero</option>
+										<option value="Lic.">Licenciado</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-10 col-sm-offset-2" >
+									<select name="" id="input" class="form-control" required="required" ng-model="Participante.sexo">
+										<option value="Masculino">Masculino</option>
+										<option value="Femenino">Femenino</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-10 col-sm-offset-2">
+									<select name="" ng-options="option.nombre for option in uni track by option.id" ng-model="Participante.uni" id="input" class="form-control" required="required" ng-change="changeUni(Participante.uni)">
+										
+									</select>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col-sm-10 col-sm-offset-2">
+									<select ng-options="item.nombre for item in carreras track by item.id"  ng-model="Participante.carreras"  name="" id="input" class="form-control" required="required">
+										
+									</select>
+								</div>
+							</div>
+					</form>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" ng-click="guardar(Participante)" class="btn btn-primary">Save changes</button>
 				</div>
 			</div>
 		</div>
@@ -298,6 +366,28 @@
 							</tr>
 						</tbody>
 					</table>
+					<form action="" method="POST" class="form-inline" role="form">
+						<div class="form-group">
+							<input type="text" class="form-control" ng-model="depo.depositante" id="" placeholder="Depositante">
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control" ng-model="depo.fecha" id="" placeholder="yy-mm-dd">
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control " ng-model="depo.hora" id="" placeholder="00:00:00">
+						</div>
+						<div class="form-group ">
+							<input type="text" class="form-control" ng-model="depo.codigo" id="" placeholder="codigo">
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control" ng-model="depo.monto" id="mont" placeholder="monto">
+						</div>
+						<input type="hidden" ng-model="depo.imgboleta" value="imgdefault.jpg">
+						<input type="hidden" ng-model="depo.idPa" value="imgdefault.jpg">
+								
+							
+					</form>
+					<button type="button" ng-click="registrarDeposito(depo)" class="btn btn-default">Agregar Deposito <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button> <br>
 					<b>Estracto</b> <br>
 					<table class="table table-hover">
 						<thead>

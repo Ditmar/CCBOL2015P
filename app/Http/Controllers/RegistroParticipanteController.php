@@ -94,6 +94,8 @@ class RegistroParticipanteController extends Controller
         $u->rol="participante";
         $u->save();
 
+        
+        
         $id_usuario = \DB::table('users')
                 ->select('id')
                 ->where('email',\Input::get('emails'))

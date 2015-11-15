@@ -21,6 +21,7 @@
 /*RUTAS PARA OBTENER LAS carreras DEPENDIENDO A Las universidades*/
 //obtenemos universidades
 	Route::get('universidades','ParticipantesController@universidades');
+	Route::get('carreras/{id}','ParticipantesController@carreraslist');
 //obtenemos carreras
 	Route::post('carreras','ParticipantesController@carreras');
 //verificamos si el usuario a selecionado las ubicaciones
@@ -139,8 +140,11 @@ Route::group(['middleware' => ['auth','administrator'],'prefix'=>'admin'], funct
 						Route::get('/participante/{id}/VolverSistema','ParticipantesController@VolverSistema');
 												
 						Route::get('/participante/depo/{id}','ParticipantesController@checkdepositos');
+						Route::post('/participante/registrodep','ParticipantesController@depositoadmin');
+						Route::get('/participante/registrodep/{id}','ParticipantesController@depositoadminget');
+						//register
+						Route::post('/participante/register','ParticipantesController@register');
 						
-
 						Route::get('/participante/{id}/VolverSistema','ParticipantesController@VolverSistema');
 						
 						/*PArticipantes de Baja*/

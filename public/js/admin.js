@@ -38,7 +38,19 @@ var csrftoken =  (function() {
 	.factory('checkdepo',function($resource){
 		return $resource("/admin/participante/depo/:id");
 	})
-	.controller('MainController',function($scope,listas,Acreditar,CSRF_TOKEN,Observar,Editar,Buscar,checkdepo){
+	.factory('SaveDep',function($resource){
+		return $resource("/admin/participante/registrodep/:id");
+	})
+	.factory('Universidad',function($resource){
+		return $resource("/universidades");
+	})
+	.factory('Carreras',function($resource){
+		return $resource("/carreras/:id");
+	})
+	.factory('RegPa',function($resource){
+		return $resource("/admin/participante/register");
+	})
+	.controller('MainController',function($scope,listas,Acreditar,CSRF_TOKEN,Observar,Editar,Buscar,checkdepo,SaveDep,Universidad,Carreras,RegPa){
 		$scope.title="CCBOL 2015 Admin";
 		$scope.menu=[ 
 		{label:"P. en Proceso",action:"proceso"},
@@ -54,6 +66,34 @@ var csrftoken =  (function() {
 					 $scope.lista.splice(i,1);
 				}
 			}
+		}
+		$scope.guardar=function(Participante)
+		{
+			console.log(Participante)
+
+			var obj={
+			"nombres":Participante.nombre,
+			"apellidos":Participante.apellido,
+			"ci":Participante.ci,
+			"semestre":Participante.semestre,
+			"sexo":Participante.sexo,
+			"universidad":Participante.uni.id,
+			"carrera":Participante.carreras.id,
+			"_token":CSRF_TOKEN
+			};
+			console.log(obj);
+			RegPa.save(obj,function(r){
+				if(r.msn){
+					$("#modal-nuevo").modal("hide");
+					Buscar.get({id:Participante.ci},function(r){
+						$scope.auxlist=r.participante;
+						$scope.stats=r.stats;
+						$scope.lista=r.participante;
+						$scope.mensajes="Lista Cargada";
+					});
+				}
+			});
+			//llamada al registro
 		}
 		//buscador
 		$scope.buscardb=function(label)
@@ -84,6 +124,35 @@ var csrftoken =  (function() {
 				}
 				$scope.lista=listar;
 			}
+		}
+		$scope.nuevo=function()
+		{
+			//universidad y carrera
+			Universidad.get(function(R){
+				console.log(R.uni);
+				$scope.uni=R.uni;
+			});
+			$("#modal-nuevo").modal("show");
+		}
+		$scope.changeUni=function(u)
+		{
+			 Carreras.get({id:u.id},function(c){
+			 	console.log(c.carreras);
+			 	$scope.carreras=c.carreras;
+			 }) 
+		}
+		$scope.registrarDeposito=function(depo)
+		{
+			depo._token=CSRF_TOKEN;
+			depo.id=$scope.idPa;
+			SaveDep.save(depo,function(r){
+				if(r.msn)
+				{
+					SaveDep.get({id:$scope.idPa},function(depo){
+						$scope.information.depo=depo.dep;
+					});
+				}
+			});
 		}
 		$scope.enviarObservacion=function(observacion)
 		{
@@ -187,6 +256,7 @@ var csrftoken =  (function() {
 		}
 		$scope.validate=function(item)
 		{
+			$scope.idPa=item.id;
 			$scope.information=item;
 			var depositos=item.depo;
 			for(var i=0;i<depositos.length;i++)

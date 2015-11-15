@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\DepositoParticipantes;
+use App\ModelParticipantes;
 class ParticipanteAux
 {
   var $id;
@@ -21,6 +23,34 @@ class ParticipantesController extends Controller
       public function participantesindex(){
         return view('participantes.participantes');
       }
+      public function depositoadminget($id)
+      {
+        $depo=\DB::table("deposito")
+        ->where("idPa",$id)
+        ->get();
+        return \Response::json(array("dep"=>$depo));
+      }
+      public function depositoadmin(Request $request)
+    {
+       
+
+        $url="";
+        $d = new DepositoParticipantes;
+        $d->idPa=\Input::get('id');;
+        $d->codigo=\Input::get('codigo');
+        $d->monto=\Input::get('monto');
+        $d->fecha=\Input::get('fecha');
+        $d->hora=\Input::get('hora');
+        $d->estado="proceso";
+        $d->depositante=\Input::get('depositante');
+        $d->ci_depositante="0000000";
+        $d->imgboleta="default.jpg";
+        $d->remember_token=\Input::get('_token');
+        $d->url=$url;
+        $d->absurl=$url;
+        $d->save();
+        return \Response::json(array("msn"=>true));
+    }
       public function ParticipantesRegistrados()
       {
         $cantidad=0;
@@ -352,16 +382,20 @@ class ParticipantesController extends Controller
         $participante=\DB::table("participante")->where("id",$idp)->first();
 
         //ENVIAMOS EL CORREO CONFIRMANDO QUE SU CUENTA SE AVALO
-        $data = array(
+        if($participante->emails!="admin")
+        {
+          $data = array(
                     'name' => $participante->nombres." ".$participante->apellidos,
                     'url' => "http://".$_SERVER['HTTP_HOST']."/verificar"
                 );
-        \Mail::send('contacto.confirmacion',$data, function($message)use ($participante)
-        {
-            $message->from('spyatorio@gmail.com', 'CCBOL2015');
-            $message->to($participante->emails);
-            $message->subject('ACREDITACION CCBOL2015 CORRECTA');
-        });
+          \Mail::send('contacto.confirmacion',$data, function($message)use ($participante)
+          {
+              $message->from('spyatorio@gmail.com', 'CCBOL2015');
+              $message->to($participante->emails);
+              $message->subject('ACREDITACION CCBOL2015 CORRECTA');
+          });
+        }
+        
 
         return \Response::json(array("status"=>true));
       }
@@ -404,6 +438,35 @@ class ParticipantesController extends Controller
       public function universidades(){
         $universidades = \DB::table('Universidad')->get();
         return json_encode(array("idUni"=>\Session::get('idUni'),"uni"=>$universidades));
+      }
+      public function register()
+      {
+        $id_usuario = $username=\Auth::user()->id;
+        $p = new ModelParticipantes;
+
+        $p->nombres=\Input::get('nombres');
+        $p->apellidos=\Input::get('apellidos');
+        $p->nick="Guest";
+        $p->ci=\Input::get('ci');
+        $p->semestre=\Input::get('semestre');
+        $p->sexo=\Input::get('sexo');
+        $p->emails="admin";
+        $p->idUni=\Input::get('universidad');
+        $p->idCa=\Input::get('carrera');
+        $p->idPais=1;
+        $p->idCi=29;
+        $p->remember_token=\Input::get('_token');
+        /*fila de usuario*/
+        $p->idUs=$id_usuario;
+        $p->save();
+        return \Response::json(array("msn"=>true));
+      }
+      public function carreraslist($uni)
+      {
+        $carreras =  \DB::table('carrera')
+                ->where('idUni',$uni)
+                ->get();
+        return \Response::json(array("carreras"=>$carreras));
       }
       public function carreras(){
         $universidad = \Input::get('universidad');
