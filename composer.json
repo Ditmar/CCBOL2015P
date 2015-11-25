@@ -10,7 +10,8 @@
         "cviebrock/eloquent-sluggable": "dev-master",
         "illuminate/html":"^5.0@dev",
         "nesbot/carbon": "~1.18",
-        "anhskohbo/no-captcha": "2.*"
+        "anhskohbo/no-captcha": "2.*",
+        "barryvdh/laravel-dompdf": "0.6.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

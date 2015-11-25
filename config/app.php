@@ -145,6 +145,7 @@ return [
         App\Providers\AppServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
         Cviebrock\EloquentSluggable\SluggableServiceProvider::class,
         Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
 
@@ -195,7 +196,7 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
-
+        'PDF' => 'Barryvdh\DomPDF\Facade',
         'Form'      => Illuminate\Html\FormFacade::class,
         'HTML'      => Illuminate\Html\HtmlFacade::class,
 

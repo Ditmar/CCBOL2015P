@@ -143,6 +143,10 @@ Route::group(['middleware' => ['auth','administrator'],'prefix'=>'admin'], funct
 						Route::post('/participante/registrodep','ParticipantesController@depositoadmin');
 						Route::get('/participante/registrodep/{id}','ParticipantesController@depositoadminget');
 						//register
+						//printpapeletas
+						
+						Route::get('/participante/imprimir','ParticipantesController@printpapeletas');
+						
 						Route::post('/participante/register','ParticipantesController@register');
 						
 						Route::get('/participante/{id}/VolverSistema','ParticipantesController@VolverSistema');

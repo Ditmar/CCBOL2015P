@@ -224,6 +224,8 @@ class Router implements RegistrarContract
      *
      * @param  array  $controllers
      * @return void
+     *
+     * @deprecated since version 5.1.
      */
     public function controllers(array $controllers)
     {
@@ -239,6 +241,8 @@ class Router implements RegistrarContract
      * @param  string  $controller
      * @param  array   $names
      * @return void
+     *
+     * @deprecated since version 5.1.
      */
     public function controller($uri, $controller, $names = [])
     {
@@ -274,6 +278,8 @@ class Router implements RegistrarContract
      * @param  string  $method
      * @param  array   $names
      * @return void
+     *
+     * @deprecated since version 5.1.
      */
     protected function registerInspected($route, $controller, $method, &$names)
     {
@@ -293,6 +299,8 @@ class Router implements RegistrarContract
      * @param  string  $controller
      * @param  string  $uri
      * @return void
+     *
+     * @deprecated since version 5.1.
      */
     protected function addFallthroughRoute($controller, $uri)
     {
@@ -723,7 +731,7 @@ class Router implements RegistrarContract
     /**
      * Resolve the middleware name to a class name preserving passed parameters.
      *
-     * @param $name
+     * @param  string  $name
      * @return string
      */
     public function resolveMiddlewareClassName($name)
@@ -928,7 +936,7 @@ class Router implements RegistrarContract
      * @param  \Closure|null  $callback
      * @return void
      *
-     * @throws NotFoundHttpException
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
     public function model($key, $class, Closure $callback = null)
     {

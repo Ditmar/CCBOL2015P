@@ -77,7 +77,6 @@
 			              			</tr>
 			              		</tbody>
 			              	</table>
-			              	
 			              	<span class="glyphicon glyphicon-education" aria-hidden="true"></span>
 			              	<small>Datos Académicos</small>
 			              

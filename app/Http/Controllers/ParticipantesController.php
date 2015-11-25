@@ -30,10 +30,49 @@ class ParticipantesController extends Controller
         ->get();
         return \Response::json(array("dep"=>$depo));
       }
+      public function printpapeletas()
+      {
+         $depo=\DB::table("deposito")
+         ->join('participante','participante.id','=','deposito.idPa')
+         ->join("estracto",'deposito.codigo','=','estracto.code')
+         ->select("participante.id","participante.nombres","participante.apellidos","deposito.codigo","estracto.code","deposito.monto as m","estracto.monto","estracto.estado")
+         ->get();
+         $depo2=\DB::table("participante")
+         ->join('deposito','participante.id','=','deposito.idPa')
+         ->where('deposito.monto','>',2)
+         ->where('deposito.estado','correcto')
+         ->get();
+         //print_r($depo);
+         $i=1;
+         foreach($depo as $item)
+         {
+            $item->index=$i;
+            $i++;
+         }
+         $j=1;
+         $information=[];
+         $total=0;
+         foreach($depo2 as $item)
+         {
+            $item->index=$j;
+            $j++;
+
+            if(strlen(trim($item->codigo))==8|strlen(trim($item->codigo))==14|strlen(trim($item->codigo))==6)
+            {
+              $information[]=$item;  
+              $total+=$item->monto;
+            }
+            
+         }
+        $pdf = \PDF::loadView('reportes.inscritos', array(
+          "p"=>$information,"Total"=>$total));
+         /*return view('reportes.inscritos',array(
+          "depositos"=>[],"p"=>$information,"Total"=>$total)
+         );*/
+        return $pdf->stream();
+      }
       public function depositoadmin(Request $request)
     {
-       
-
         $url="";
         $d = new DepositoParticipantes;
         $d->idPa=\Input::get('id');;
