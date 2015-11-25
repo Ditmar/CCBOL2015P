@@ -44,7 +44,6 @@ class ParticipantesController extends Controller
          ->join('deposito','participante.id','=','deposito.idPa')
          ->where('deposito.monto','>',2)
          ->where('deposito.estado','correcto')
-         ->take(100)
          ->get();
          //print_r($depo);
          $i=1;
@@ -63,13 +62,16 @@ class ParticipantesController extends Controller
             $j++;
             $item->code='-';
             $item->m='-';
+            $item->color="normal";
             if(strlen(trim($item->codigo))==8|strlen(trim($item->codigo))==14|strlen(trim($item->codigo))==6)
             {
+
               foreach($estracto as $b)
               {
                 if($b->code==$item->codigo)
                 {
                   $jj++;
+                  $item->color="color";
                   $item->code=$b->code;
                   $item->m=$b->monto;
                 }

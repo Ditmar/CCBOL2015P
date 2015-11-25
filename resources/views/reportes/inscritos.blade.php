@@ -27,11 +27,20 @@ table{
 
 td{
    border:1px solid #ccc; padding:10px;
-}
 
+}
+.normal
+{
+	background-color:#FAF500;
+}
+.color
+{
+	background-color:#fff;	
+}
 thead{
    width:100%;position:fixed;
    height:109px;
+   border:1px solid #ccc;
 }
 	</style>
 </head>
@@ -60,7 +69,7 @@ thead{
 			</th>			
 		</tr>
 	@foreach($p as $item)
-		<tr>
+		<tr class="{{$item->color}}">
 			<td>
 				{{$item->index}}
 			</td>
@@ -100,9 +109,7 @@ thead{
 		<li>
 			Total Recaudado {{$Total}}		
 		</li>
-		<li>
-			Boletas Sin revisión de estracto {{$boleta}}		
-		</li>
+
 	</ul>
 	 
 	
