@@ -37,13 +37,18 @@ class ParticipantesController extends Controller
          ->join("estracto",'deposito.codigo','=','estracto.code')
          ->select("participante.id","participante.nombres","participante.apellidos","deposito.codigo","estracto.code","deposito.monto as m","estracto.monto","estracto.estado")
          ->get();
+         $estracto=\DB::table("estracto")
+                    ->get();
+
          $depo2=\DB::table("participante")
          ->join('deposito','participante.id','=','deposito.idPa')
          ->where('deposito.monto','>',2)
          ->where('deposito.estado','correcto')
+         ->take(100)
          ->get();
          //print_r($depo);
          $i=1;
+         $jj=0;
          foreach($depo as $item)
          {
             $item->index=$i;
@@ -56,16 +61,26 @@ class ParticipantesController extends Controller
          {
             $item->index=$j;
             $j++;
-
+            $item->code='-';
+            $item->m='-';
             if(strlen(trim($item->codigo))==8|strlen(trim($item->codigo))==14|strlen(trim($item->codigo))==6)
             {
+              foreach($estracto as $b)
+              {
+                if($b->code==$item->codigo)
+                {
+                  $jj++;
+                  $item->code=$b->code;
+                  $item->m=$b->monto;
+                }
+              }
               $information[]=$item;  
               $total+=$item->monto;
             }
             
          }
         $pdf = \PDF::loadView('reportes.inscritos', array(
-          "p"=>$information,"Total"=>$total));
+          "p"=>$information,"j"=>$j-1,"Total"=>$total,"boleta"=>($j-1)-$jj));
          /*return view('reportes.inscritos',array(
           "depositos"=>[],"p"=>$information,"Total"=>$total)
          );*/

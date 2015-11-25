@@ -3,14 +3,44 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Reportes</title>
+	<style type="text/css">
+		table tr td {
+  margin:0; padding:2;
+}
+body{
+  font:12px Georgia, serif;
+}
+#resumen
+{
+	padding:10px;
+	font:20px Georgia, serif;
+	background-color:#FAF500;	
+}
+#page-wrap{
+  width:600px;
+  margin: 10 auto;
+}
+
+table{
+   border-collapse: collapse; width: 100%;
+}
+
+td{
+   border:1px solid #ccc; padding:10px;
+}
+
+thead{
+   width:100%;position:fixed;
+   height:109px;
+}
+	</style>
 </head>
 <body>
-
-	<br>
-	<br>
-	<table>
+<div id="page-wrap">
+		<table>
 		<tr>
 			<th>id</th>
+			<th>CI</th>
 			<th>Nombres</th>
 			<th>Apellidos</th>
 			<th>
@@ -20,6 +50,12 @@
 				Monto D.
 			</th>
 			<th>
+				Codigo Banco
+			</th>
+			<th>
+				Monto B.
+			</th>
+			<th>
 				FECHA DEP.
 			</th>			
 		</tr>
@@ -27,6 +63,9 @@
 		<tr>
 			<td>
 				{{$item->index}}
+			</td>
+			<td>
+				{{$item->ci}}
 			</td>
 			<td>
 				{{$item->nombres}}
@@ -41,12 +80,35 @@
 				{{$item->monto}}
 			</td>
 			<td>
+				{{$item->code}}
+			</td>
+			<td>
+				{{$item->m}}
+			</td>
+			<td>
 				{{$item->fecha}}
 			</td>
 			
 		</tr>
 	@endforeach
 </table>
-	TOTAL RECAUDADO={{$Total}}
+<div id="resumen">
+	<ul>
+		<li>
+			Total Inscritos {{$j}}		
+		</li>
+		<li>
+			Total Recaudado {{$Total}}		
+		</li>
+		<li>
+			Boletas Sin revisión de estracto {{$boleta}}		
+		</li>
+	</ul>
+	 
+	
+</div>
+	
+</div>
+
 </body>
 </html>
